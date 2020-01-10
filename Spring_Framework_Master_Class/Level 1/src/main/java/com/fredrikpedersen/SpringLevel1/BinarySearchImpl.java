@@ -7,11 +7,8 @@ import org.springframework.stereotype.Component;
 public class BinarySearchImpl {
 
     @Autowired
+    //Most projects these days use setter injections without writing the actual setters or constructors
     private SortAlgorithm sortAlgorithm;
-
-    public void setSortAlgorithm(SortAlgorithm sortAlgorithm) {
-        this.sortAlgorithm = sortAlgorithm;
-    }
 
     //Dummy method for demonstration purposes
     public int binarySearch(int[] numbers, int numberToSearchFor) {
