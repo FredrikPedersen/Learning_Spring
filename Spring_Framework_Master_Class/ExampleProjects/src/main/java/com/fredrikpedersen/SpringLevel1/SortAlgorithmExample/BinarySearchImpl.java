@@ -1,10 +1,13 @@
-package com.fredrikpedersen.SpringLevel1;
+package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) //Use prototype to get different instances when creating more than one bean, use singleton to get only one instance
 public class BinarySearchImpl {
 
     @Autowired

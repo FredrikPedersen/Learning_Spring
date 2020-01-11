@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1;
+package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
