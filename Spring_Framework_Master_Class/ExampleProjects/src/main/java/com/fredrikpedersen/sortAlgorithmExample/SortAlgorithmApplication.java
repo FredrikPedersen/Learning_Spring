@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
+package com.fredrikpedersen.sortAlgorithmExample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

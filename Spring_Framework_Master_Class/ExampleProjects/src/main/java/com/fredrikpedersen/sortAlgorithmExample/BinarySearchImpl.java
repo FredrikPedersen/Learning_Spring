@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
+package com.fredrikpedersen.sortAlgorithmExample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

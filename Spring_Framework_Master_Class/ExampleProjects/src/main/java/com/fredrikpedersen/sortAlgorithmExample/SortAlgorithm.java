@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
+package com.fredrikpedersen.sortAlgorithmExample;
 
 public interface SortAlgorithm {
 

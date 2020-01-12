@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1.ScopeExample;
+package com.fredrikpedersen.scopeExample;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

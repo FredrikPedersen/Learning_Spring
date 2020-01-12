@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1.ScopeExample;
+package com.fredrikpedersen.scopeExample;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

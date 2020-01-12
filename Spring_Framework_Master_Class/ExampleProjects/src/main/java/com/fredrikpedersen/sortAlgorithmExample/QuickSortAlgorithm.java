@@ -1,15 +1,17 @@
-package com.fredrikpedersen.SpringLevel1.SortAlgorithmExample;
+package com.fredrikpedersen.sortAlgorithmExample;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("bubble")
-public class BubblesortAlgorithm implements SortAlgorithm {
+@Primary
+@Qualifier("quick")
+public class QuickSortAlgorithm implements SortAlgorithm{
 
     //Dummy method for demonstration purposes
     public int[] sort(int[] numbers) {
-        System.out.println("Bubble bubble");
+        System.out.println("I dream of fast");
         return numbers;
     }
 }

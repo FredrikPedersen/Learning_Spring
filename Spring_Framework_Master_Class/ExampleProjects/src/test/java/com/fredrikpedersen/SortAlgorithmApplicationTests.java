@@ -1,4 +1,4 @@
-package com.fredrikpedersen.SpringLevel1;
+package com.fredrikpedersen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
