@@ -1,7 +1,5 @@
 package com.fredrikpedersen.spring5webapp.model;
 
-import org.springframework.context.annotation.Primary;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -13,7 +11,7 @@ public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstname;
+    private String firstName;
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
@@ -23,13 +21,13 @@ public class Author {
 
     }
 
-    public Author(String firstname, String lastName) {
-        this.firstname = firstname;
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Author(String firstname, String lastName, Set<Book> books) {
-        this.firstname = firstname;
+    public Author(String firstName, String lastName, Set<Book> books) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;
     }
@@ -42,12 +40,12 @@ public class Author {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
     public String getLastName() {
@@ -85,7 +83,7 @@ public class Author {
     public String toString() {
         return "Author{" +
                 "id=" + id +
-                ", firstname='" + firstname + '\'' +
+                ", firstname='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", books=" + books +
                 '}';
