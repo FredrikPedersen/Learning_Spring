@@ -1,6 +1,5 @@
 package com.fredrikpedersen.sortAlgorithmExample;
 
 public interface SortAlgorithm {
-
-    public int[] sort (int[] numbers);
+    int[] sort (int[] numbers);
 }
