@@ -44,11 +44,11 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
         Author rod = new Author("Rod", "Johnson");
         Publisher worx = new Publisher("Worx", "Streetplace 321");
-        Book harryPlotter = new Book("Harry Plotter And the Revenge of the Graphs", "4321", worx);
-        rod.getBooks().add(harryPlotter);
+        Book johnson = new Book("Johnson's rod", "4321", worx);
+        rod.getBooks().add(johnson);
 
         authorRepository.save(rod);
         publisherRepository.save(worx);
-        bookRepository.save(harryPlotter);
+        bookRepository.save(johnson);
     }
 }
