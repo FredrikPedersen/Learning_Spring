@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * @since: 15/01/2020 at 13:17
+ * @since 15/01/2020 at 16:56
  */
 
 @Service
-@Profile({"en","default"})
 @Primary
-public class PrimaryGreetingService implements GreetingService {
+@Profile("se")
+public class PrimarySwedishGreetingService implements GreetingService {
 
     @Override
     public String sayGreeting() {
-        return "Hello, Primary Greeting Service";
+        return "Tjänare grabben";
     }
 }
