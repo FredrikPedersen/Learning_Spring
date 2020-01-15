@@ -1,4 +1,4 @@
-package com.fredrikpedersen.petclinic.model.pets;
+package petclinic.model.pets;
 
 /**
  * @author Fredrik Pedersen
