@@ -1,6 +1,0 @@
-From Section 1: Part 13:
-To access the database created usin JPA, go to application.properties and enter:
-spring.h2.console.enabled=true.
-
-Then in the browser go to localhost:8080/h2-console and make sure that JDBC URL is set to
-jdbc:h2:mem:testdb, then press connect.
