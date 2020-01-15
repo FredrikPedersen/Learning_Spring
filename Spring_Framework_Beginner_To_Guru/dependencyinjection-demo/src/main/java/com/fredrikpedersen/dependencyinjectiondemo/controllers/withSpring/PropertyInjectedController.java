@@ -1,6 +1,6 @@
 package com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring;
 
-import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
+import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 public class PropertyInjectedController {
 
     @Autowired
-    public GreetingServiceImpl greetingService;
+    public GreetingService greetingService;
 
     public String sayHello() {
         return greetingService.sayGreeting();

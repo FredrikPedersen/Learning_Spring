@@ -1,5 +1,6 @@
 package com.fredrikpedersen.dependencyinjectiondemo.services;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@Primary
 public class GreetingServiceImpl implements GreetingService {
 
     public static final String GREETINGS = "Greetings";
