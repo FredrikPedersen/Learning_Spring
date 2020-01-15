@@ -9,7 +9,7 @@ package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 12:32
+ * @since: 15/01/2020 at 12:32
  */
 public class PropertyInjectedControllerNSTest {
 

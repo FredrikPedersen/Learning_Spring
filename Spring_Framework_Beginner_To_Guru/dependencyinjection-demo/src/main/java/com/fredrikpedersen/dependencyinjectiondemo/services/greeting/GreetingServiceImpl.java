@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 12:23
+ * @since: 15/01/2020 at 12:23
  */
 
 @Service

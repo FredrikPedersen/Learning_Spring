@@ -1,8 +1,7 @@
 package com.fredrikpedersen.dependencyinjectiondemo;
 
-import com.fredrikpedersen.dependencyinjectiondemo.controllers.MyController;
+import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.MyController;
 import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.ConstructorInjectedController;
-import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.PropertyInjectedController;
 import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

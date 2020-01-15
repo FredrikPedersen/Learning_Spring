@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 12:27
+ * @since: 15/01/2020 at 12:27
  *
  * Controller for demonstrating setter injection with Spring
  */

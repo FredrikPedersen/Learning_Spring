@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.greeting.GreetingService;
 import org.springframework.stereotype.Controller;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 11:26
+ * @since: 15/01/2020 at 11:26
  */
 
 @Controller

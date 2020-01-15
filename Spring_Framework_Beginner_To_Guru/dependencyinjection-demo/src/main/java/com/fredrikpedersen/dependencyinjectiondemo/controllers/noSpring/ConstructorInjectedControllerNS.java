@@ -5,7 +5,7 @@ import com.fredrikpedersen.dependencyinjectiondemo.services.greeting.GreetingSer
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 12:28
+ * @since: 15/01/2020 at 12:28
  *
  * Controller for demonstrating constructor injection without Spring
  */

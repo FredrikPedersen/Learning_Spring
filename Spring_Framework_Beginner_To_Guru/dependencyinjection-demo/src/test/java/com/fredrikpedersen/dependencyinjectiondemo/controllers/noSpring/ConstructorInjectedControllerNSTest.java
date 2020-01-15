@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * Created: 15/01/2020 at 12:36
+ * @since: 15/01/2020 at 12:36
  */
 public class ConstructorInjectedControllerNSTest {
 
