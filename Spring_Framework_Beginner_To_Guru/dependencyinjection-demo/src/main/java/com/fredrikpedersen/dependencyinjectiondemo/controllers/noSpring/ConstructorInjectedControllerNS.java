@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingService;
 
@@ -9,11 +9,11 @@ import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingService;
  *
  * Controller for demonstrating constructor injection without Spring
  */
-public class ConstructorInjectedController {
+public class ConstructorInjectedControllerNS {
 
     private GreetingService greetingService;
 
-    public ConstructorInjectedController(GreetingService greetingService) {
+    public ConstructorInjectedControllerNS(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 

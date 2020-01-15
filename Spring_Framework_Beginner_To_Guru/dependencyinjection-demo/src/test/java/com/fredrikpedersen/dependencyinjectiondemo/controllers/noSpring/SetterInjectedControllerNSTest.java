@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
 import org.junit.Before;
@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.0
  * Created: 15/01/2020 at 12:35
  */
-public class SetterInjectedControllerTest {
+public class SetterInjectedControllerNSTest {
 
-    private SetterInjectedController setterInjectedController;
+    private SetterInjectedControllerNS setterInjectedController;
 
     @Before
     public void setUp() throws Exception {
-        this.setterInjectedController = new SetterInjectedController();
+        this.setterInjectedController = new SetterInjectedControllerNS();
         this.setterInjectedController.setGreetingService(new GreetingServiceImpl()); //Here it is possible to instantiate the controller without the GreetingService, leading to a null pointer.
     }
 

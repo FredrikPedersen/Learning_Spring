@@ -1,22 +1,26 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  * @author Fredrik Pedersen
  * @version 1.0
  * Created: 15/01/2020 at 12:27
  *
- * Controller for demonstrating setter injection without Spring
+ * Controller for demonstrating setter injection with Spring
  */
+@Controller
 public class SetterInjectedController {
 
     private GreetingService greetingService;
 
-    String sayHello() {
+    public String sayHello() {
         return greetingService.sayGreeting();
     }
 
+    @Autowired
     public void setGreetingService(GreetingService greetingService) {
         this.greetingService = greetingService;
     }

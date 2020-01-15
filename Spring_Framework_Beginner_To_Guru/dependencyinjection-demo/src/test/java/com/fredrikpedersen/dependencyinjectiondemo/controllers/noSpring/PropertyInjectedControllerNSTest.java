@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
         import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
         import org.junit.Before;
@@ -11,13 +11,13 @@ package com.fredrikpedersen.dependencyinjectiondemo.controllers;
  * @version 1.0
  * Created: 15/01/2020 at 12:32
  */
-public class PropertyInjectedControllerTest {
+public class PropertyInjectedControllerNSTest {
 
-    private PropertyInjectedController propertyInjectedController;
+    private PropertyInjectedControllerNS propertyInjectedController;
 
     @Before
     public void setUp() throws Exception {
-        this.propertyInjectedController = new PropertyInjectedController();
+        this.propertyInjectedController = new PropertyInjectedControllerNS();
         this.propertyInjectedController.greetingService = new GreetingServiceImpl();
     }
 

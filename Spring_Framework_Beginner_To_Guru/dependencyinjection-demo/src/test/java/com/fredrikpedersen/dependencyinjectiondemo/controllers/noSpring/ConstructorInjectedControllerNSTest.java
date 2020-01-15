@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
 import org.junit.Before;
@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.0
  * Created: 15/01/2020 at 12:36
  */
-public class ConstructorInjectedControllerTest {
+public class ConstructorInjectedControllerNSTest {
 
-    private ConstructorInjectedController constructorInjectedController;
+    private ConstructorInjectedControllerNS constructorInjectedController;
 
     @Before
     public void setUp() throws Exception {
-        this.constructorInjectedController = new ConstructorInjectedController(new GreetingServiceImpl());
+        this.constructorInjectedController = new ConstructorInjectedControllerNS(new GreetingServiceImpl());
     }
 
     @Test

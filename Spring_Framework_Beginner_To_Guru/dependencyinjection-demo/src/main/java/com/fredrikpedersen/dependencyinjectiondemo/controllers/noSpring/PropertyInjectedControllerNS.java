@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.controllers;
+package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
 import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
 
@@ -10,7 +10,7 @@ import com.fredrikpedersen.dependencyinjectiondemo.services.GreetingServiceImpl;
  * Controller for demonstrating property injection without Spring
  */
 
-public class PropertyInjectedController {
+public class PropertyInjectedControllerNS {
 
     public GreetingServiceImpl greetingService;
 
