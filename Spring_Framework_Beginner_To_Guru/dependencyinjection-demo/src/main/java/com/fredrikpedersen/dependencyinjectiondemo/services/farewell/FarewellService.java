@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.services;
+package com.fredrikpedersen.dependencyinjectiondemo.services.farewell;
 
 /**
  * @author Fredrik Pedersen

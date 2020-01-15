@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.services;
+package com.fredrikpedersen.dependencyinjectiondemo.services.greeting;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,9 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@Primary
 public class GreetingServiceImpl implements GreetingService {
 
-    public static final String GREETINGS = "Greetings";
+    public static final String GREETINGS = "Greetings from Impl";
 
     @Override
     public String sayGreeting() {
