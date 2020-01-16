@@ -1,5 +1,6 @@
 package com.fredrikpedersen.petclinic.model.pets;
 
+import com.fredrikpedersen.petclinic.model.BaseEntity;
 import com.fredrikpedersen.petclinic.model.people.Owner;
 
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
  * @version 1.0
  * @since 15/01/2020 at 17:42
  */
-public class Pet {
+public class Pet extends BaseEntity {
 
     private PetType petType;
     private Owner owner;
