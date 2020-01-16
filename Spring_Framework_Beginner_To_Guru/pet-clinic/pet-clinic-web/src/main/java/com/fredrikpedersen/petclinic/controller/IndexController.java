@@ -1,6 +1,5 @@
 package com.fredrikpedersen.petclinic.controller;
 
-import com.fredrikpedersen.petclinic.util.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping({"/", "", "index", "index.html"})
+    private static final String INDEX_VIEW = "index";
+
+    @RequestMapping({"/", "", INDEX_VIEW, INDEX_VIEW + ".html"})
     public String index() {
-        return Constants.getIndexView();
+        return INDEX_VIEW;
     }
 
 }
