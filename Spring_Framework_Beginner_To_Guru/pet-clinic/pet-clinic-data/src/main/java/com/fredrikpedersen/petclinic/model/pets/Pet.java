@@ -1,6 +1,6 @@
-package petclinic.model.pets;
+package com.fredrikpedersen.petclinic.model.pets;
 
-import petclinic.model.people.Owner;
+import com.fredrikpedersen.petclinic.model.people.Owner;
 
 import java.time.LocalDate;
 
