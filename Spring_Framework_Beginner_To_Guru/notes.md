@@ -93,3 +93,8 @@ Ralph Johnson and Brian Foote
 	- ie - you compose your classes with DI in mind
 - IoC is the runtime environment of your code
 	- ie - Spring Framework's IoC container
+	
+## Section 3: Part 56:
+
+See this part again when you want to do releases. Your Git Repo is currently not configured correctly for the Maven
+Release Plugin to be allowed to push to the repo.
