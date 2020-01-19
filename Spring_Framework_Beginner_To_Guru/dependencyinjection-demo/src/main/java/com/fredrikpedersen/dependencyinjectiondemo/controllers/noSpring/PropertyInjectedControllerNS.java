@@ -1,6 +1,6 @@
 package com.fredrikpedersen.dependencyinjectiondemo.controllers.noSpring;
 
-import com.fredrikpedersen.dependencyinjectiondemo.services.greeting.GreetingServiceImpl;
+import com.fredrikpedersen.services.greeting.GreetingServiceImpl;
 
 /**
  * @author Fredrik Pedersen

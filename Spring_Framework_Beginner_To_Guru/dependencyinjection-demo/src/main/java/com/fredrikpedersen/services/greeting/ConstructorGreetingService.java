@@ -1,4 +1,4 @@
-package com.fredrikpedersen.dependencyinjectiondemo.services.greeting;
+package com.fredrikpedersen.services.greeting;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

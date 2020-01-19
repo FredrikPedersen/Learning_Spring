@@ -1,6 +1,6 @@
 package com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring;
 
-import com.fredrikpedersen.dependencyinjectiondemo.services.greeting.GreetingService;
+import com.fredrikpedersen.services.greeting.GreetingService;
 import org.springframework.stereotype.Controller;
 
 /**

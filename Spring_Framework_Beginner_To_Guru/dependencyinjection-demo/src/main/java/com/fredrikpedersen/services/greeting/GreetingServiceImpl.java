@@ -1,6 +1,5 @@
-package com.fredrikpedersen.dependencyinjectiondemo.services.greeting;
+package com.fredrikpedersen.services.greeting;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
