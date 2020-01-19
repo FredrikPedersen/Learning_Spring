@@ -78,11 +78,11 @@ John Munsch, 28 October 2009
 - Is a technique to allow dependencies to be injected at runtime.
 - Dependencies are not predetermined.
 
-*"One important chracteristic of a framework is that the methods deined by the user to tailer the framework wil often be called*
-*from within the framework itself, rather than from the user's application code. The framework often plays the role of the main*
-*program in coordinating and sequencing application activity. This inversion of control gives frameworks the power so serves as*
-*extensible skeletons. The methods supplied by the user tailer the generic algorithms defined in the framework for a particular*
-*application"*
+*"One important chracteristic of a framework is that the methods deined by the user to tailer the framework wil often be called
+from within the framework itself, rather than from the user's application code. The framework often plays the role of the main
+program in coordinating and sequencing application activity. This inversion of control gives frameworks the power so serves as
+extensible skeletons. The methods supplied by the user tailer the generic algorithms defined in the framework for a particular
+application"*
 
 Ralph Johnson and Brian Foote
 
@@ -98,3 +98,22 @@ Ralph Johnson and Brian Foote
 
 See this part again when you want to do releases. Your Git Repo is currently not configured correctly for the Maven
 Release Plugin to be allowed to push to the repo.
+
+## Section 4: Part 78:
+
+### Spring Framework Stereotypes
+
+**@Component:** Indicates that an annotated class is a component, and it will be created as a bean.
+
+**@Controller:** Indicates that an annotated class has the role of a Spring MVC Controller.
+
+**@RestController:** Convenience Annotation which extends @Controller and adds @Responsebody.
+
+**@Repository:** Indicates that an annotated class is a Repository. Originally defined by Domain-Driven Design as "a mechanism for encapsulating storage,
+retrieval and search behaviour which emulates a collection of objects."
+
+**@Service:** Indicates that an annotated class is a Service. Originally defuned by Domain-Driven Design as "an operation offered as an interface that
+stands alone in the model, with no encapsulated state."
+
+
+
