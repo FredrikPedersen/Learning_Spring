@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.services.map;
 
 import com.fredrikpedersen.petclinic.model.pets.Pet;
-import com.fredrikpedersen.petclinic.services.CrudService;
+import com.fredrikpedersen.petclinic.services.PetService;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * @version 1.0
  * @since 16/01/2020 at 14:30
  */
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Set<Pet> findAll() {

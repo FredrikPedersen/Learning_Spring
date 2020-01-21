@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.services.map;
 
 import com.fredrikpedersen.petclinic.model.people.Owner;
-import com.fredrikpedersen.petclinic.services.CrudService;
+import com.fredrikpedersen.petclinic.services.OwnerService;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * @version 1.0
  * @since 16/01/2020 at 14:25
  */
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
@@ -35,5 +35,10 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null; //Implement later
     }
 }
