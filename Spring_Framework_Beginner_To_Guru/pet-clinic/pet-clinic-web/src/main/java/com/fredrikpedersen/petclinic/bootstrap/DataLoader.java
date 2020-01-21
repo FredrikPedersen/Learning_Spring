@@ -19,7 +19,7 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VeterinaryService veterinaryService;
-    
+
     public DataLoader(OwnerService ownerService, VeterinaryService veterinaryService) {
         this.ownerService = ownerService;
         this.veterinaryService = veterinaryService;

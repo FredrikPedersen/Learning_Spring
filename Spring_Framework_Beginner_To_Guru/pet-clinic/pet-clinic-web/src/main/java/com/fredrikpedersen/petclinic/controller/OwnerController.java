@@ -1,6 +1,8 @@
 package com.fredrikpedersen.petclinic.controller;
 
+import com.fredrikpedersen.petclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -13,9 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OwnerController {
 
     private static final String OWNERS_VIEW = "owners";
+    private static final String ALL_OWNERS_ATTRIBUTE = "owners";
+    private final OwnerService ownerService;
+
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
+    }
 
     @RequestMapping({OWNERS_VIEW, OWNERS_VIEW + ".html"})
-    public String listOwners() {
+    public String listOwners(Model model) {
+
+        model.addAttribute(ALL_OWNERS_ATTRIBUTE, ownerService.findAll());
+
         return OWNERS_VIEW;
     }
 }

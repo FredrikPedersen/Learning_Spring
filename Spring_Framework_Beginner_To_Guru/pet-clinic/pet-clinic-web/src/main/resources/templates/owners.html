@@ -6,6 +6,21 @@
 </head>
 <body>
 <h1 th:text="'List of owners'">List...</h1>
-
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owners}"> <!-- "for (Owner owner : owners) -->
+        <td th:text="${owner?.id}">1</td>
+        <td th:text="${owner?.firstName}">Martina</td>
+        <td th:text="${owner?.lastName}">Førre</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
