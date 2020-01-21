@@ -1,7 +1,7 @@
 # Notes from Spring Framework 5: Begunner to Guru
 
 ## Section 1: Part 13:
-To access the database created usin JPA, go to the file*application.properties* and enter:
+To access the database created using JPA, go to the file*application.properties* and enter:
 *spring.h2.console.enabled=true*.
 
 Then in the browser go to *localhost:8080/h2-console* and make sure that JDBC URL is set to
@@ -115,5 +115,50 @@ retrieval and search behaviour which emulates a collection of objects."
 **@Service:** Indicates that an annotated class is a Service. Originally defuned by Domain-Driven Design as "an operation offered as an interface that
 stands alone in the model, with no encapsulated state."
 
+## Section 5: Part 83:
 
+### Dependency Management
+
+- Maven or Gradle are supported for curated dependencies
+- Each version of Spring Boot is configured to work with a specific version of Spring Framework.
+- Overriding the Spring Framework version is NOT recommended.
+ 
+### Maven Support
+
+- Maven project inherit from a Srping Boot Parent POM
+- When possible, do not specify versions in your POM. Allow the version to inherit from the parent.
+- The Srping Boot Maven Plugin alows for packaging the executable JAR.
+
+### Spring Boot Starters
+
+- Starters are top level dependencies for popular Java libraries.
+- Will bring in dependencies for the project and related Spring Components.
+- Starter *spring-boot-starter-data-jpa* brings in:
+	- Hibernate.
+	- Spring Data JPA - and related Spring deps.
+	
+### Spring Boot Annotations
+
+```Java
+//Main Annotation to use
+@SpringBootApplication 
+
+//Declares class as Spring Configuration
+@Configuration
+
+//Enables auto configuration
+@EnableAutoConfiguration
+
+//Scans for components inn current package and all child packages
+@ComponentScan
+```
+
+### Disabling Specific Auto Config
+
+- Auto configuration will bring a lot of configuration classes in supplied Spring Boot JARs.
+- You can specify classes to exclude with:
+
+```Java
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+```
 
