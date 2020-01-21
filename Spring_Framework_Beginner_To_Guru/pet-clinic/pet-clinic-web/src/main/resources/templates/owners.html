@@ -16,9 +16,9 @@
     </thead>
     <tbody>
     <tr th:each="owner : ${owners}"> <!-- "for (Owner owner : owners) -->
-        <td th:text="${owner?.id}">1</td>
-        <td th:text="${owner?.firstName}">Martina</td>
-        <td th:text="${owner?.lastName}">Førre</td>
+        <td th:text="${owner.id}">1</td>
+        <td th:text="${owner.firstName}">Martina</td>
+        <td th:text="${owner.lastName}">Førre</td>
     </tr>
     </tbody>
 </table>

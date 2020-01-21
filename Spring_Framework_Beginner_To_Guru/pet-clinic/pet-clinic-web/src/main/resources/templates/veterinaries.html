@@ -5,7 +5,22 @@
     <title>List of veterinaries</title>
 </head>
 <body>
-    <h1 th:text="'List of veterinaries'">List...</h1>
+<h1 th:text="'List of veterinaries'">List...</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="veterinary : ${veterinaries}"> <!-- "for (Veterinary veterinary : veterinaries) -->
+        <td th:text="${veterinary.id}">1</td>
+        <td th:text="${veterinary.firstName}">Martina</td>
+        <td th:text="${veterinary.lastName}">Førre</td>
+    </tr>
+    </tbody>
 
 </body>
 </html>
