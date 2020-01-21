@@ -162,3 +162,24 @@ stands alone in the model, with no encapsulated state."
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 ```
 
+## Section 5: Part 85: 
+
+### Spring Bean Scopes
+
+- **Singleton** - (default) Only one instance of the bean is created in the IoC containter.
+- **Prototype** - A new instance is created each time the bean is requested.
+- **Request** - A single instance per http request. Only valid in the context of a web-aware Spring ApplicationContext.
+- **Session** - A single instance per http session. Only valid in the context of a web-aware Spring ApplicationContext. 
+- **Global Session** - A single instance per global session. Typically only used in a Portlet Context. Only valid in the context of a web-aware Spring ApplicationContext.
+- **Application** - Bean is scoped to the lifecycle of a ServletContect. Only valid in the context of a web-aware Spring ApplicationContext.
+- **Websocket** - Scopes a single bean definition to the lifecycle of a Websocket. Only valid in the context of a web-aware Spring ApplicationContext.
+- **Custom Scope** - Spring Scopes are extensible, and you can define your own scope by implementating Spring's "Scope"-interface.
+
+### Declaring Bean Scope
+
+- No declaration needed for singleton scope.
+- In Java configuration, use *@Scope* annotation.
+- In XML configuration, scope is an XML attribute of the *bean*-tag.
+
+
+
