@@ -2,6 +2,7 @@ package com.fredrikpedersen.petclinic.services.map;
 
 import com.fredrikpedersen.petclinic.model.people.Veterinary;
 import com.fredrikpedersen.petclinic.services.VeterinaryService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
  * @since 16/01/2020 at 14:30
  */
 
+@Service
 public class VeterinaryServiceMap extends AbstractMapService<Veterinary, Long> implements VeterinaryService {
 
     @Override
