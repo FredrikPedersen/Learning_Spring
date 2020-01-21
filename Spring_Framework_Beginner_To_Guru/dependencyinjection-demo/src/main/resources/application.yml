@@ -3,3 +3,10 @@ com.fredrikpedersen:
     username: JMS Username
     password: password
     url: website
+
+---
+spring:
+  profiles: no
+com.fredrikpedersen:
+  jms:
+    username: JMS Brukernan
