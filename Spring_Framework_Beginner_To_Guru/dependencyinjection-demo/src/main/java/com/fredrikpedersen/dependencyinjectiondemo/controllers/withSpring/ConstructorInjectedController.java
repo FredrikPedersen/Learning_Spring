@@ -1,7 +1,7 @@
 package com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring;
 
-import com.fredrikpedersen.services.farewell.FarewellService;
-import com.fredrikpedersen.services.greeting.GreetingService;
+import com.fredrikpedersen.dependencyinjectiondemo.services.farewell.FarewellService;
+import com.fredrikpedersen.dependencyinjectiondemo.services.greeting.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

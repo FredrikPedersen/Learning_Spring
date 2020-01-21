@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"com.fredrikpedersen.services", "com.fredrikpedersen.dependencyinjectiondemo"})
 public class DependencyinjectionDemoApplication {
 
     public static void main(String[] args) {

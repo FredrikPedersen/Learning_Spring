@@ -1,4 +1,4 @@
-package com.fredrikpedersen.services.farewell;
+package com.fredrikpedersen.dependencyinjectiondemo.services.farewell;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

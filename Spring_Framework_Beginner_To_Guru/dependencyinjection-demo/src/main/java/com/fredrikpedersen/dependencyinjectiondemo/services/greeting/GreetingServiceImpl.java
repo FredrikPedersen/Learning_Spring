@@ -1,4 +1,4 @@
-package com.fredrikpedersen.services.greeting;
+package com.fredrikpedersen.dependencyinjectiondemo.services.greeting;
 
 import org.springframework.stereotype.Service;
 
