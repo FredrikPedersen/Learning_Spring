@@ -3,6 +3,7 @@ package com.fredrikpedersen.dependencyinjectiondemo;
 import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.ConstructorInjectedController;
 import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.MyController;
 import com.fredrikpedersen.dependencyinjectiondemo.controllers.withSpring.SetterInjectedController;
+import com.fredrikpedersen.dependencyinjectiondemo.examplebeans.FakeDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,10 +17,8 @@ public class DependencyinjectionDemoApplication {
         ApplicationContext ctx = SpringApplication.run(DependencyinjectionDemoApplication.class, args);
 
         MyController controller = (MyController)ctx.getBean("myController");
+        FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
 
-        System.out.println(controller.hello());
-        System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
-        System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
-        System.out.println(ctx.getBean(ConstructorInjectedController.class).sayGoodbye());
+        System.out.println(fakeDataSource.getUser());
     }
 }
