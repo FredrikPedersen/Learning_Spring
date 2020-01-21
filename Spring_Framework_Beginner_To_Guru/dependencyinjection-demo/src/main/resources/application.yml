@@ -1,0 +1,5 @@
+com.fredrikpedersen:
+  jms:
+    username: JMS Username
+    password: password
+    url: website
