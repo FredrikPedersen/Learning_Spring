@@ -1,11 +1,13 @@
 package com.fredrikpedersen.dependencyinjectiondemo.config;
 
 import com.fredrikpedersen.dependencyinjectiondemo.examplebeans.FakeDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
 
 /**
  * @author Fredrik Pedersen
@@ -16,6 +18,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource("classpath:datasource.properties")
 public class PropertyConfig {
+
+    @Autowired
+    Environment environment;
 
     @Value("${com.fredrikpedersen.username}")
     String user;
@@ -28,6 +33,7 @@ public class PropertyConfig {
 
     @Bean
     public FakeDataSource fakeDataSource() {
+        System.out.println(environment.getProperty("JAVA_HOME")); //Example of how to get hold of environment variables.
         FakeDataSource fakeDataSource = new FakeDataSource();
         fakeDataSource.setUser(user);
         fakeDataSource.setPassword(password);
