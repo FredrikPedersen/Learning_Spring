@@ -181,5 +181,37 @@ stands alone in the model, with no encapsulated state."
 - In Java configuration, use *@Scope* annotation.
 - In XML configuration, scope is an XML attribute of the *bean*-tag.
 
+## Section 7: Part 115:
+
+### Spring Boot Development Tools
+
+- Added to project via artifact *spring-boot-devtools'*.
+- Developer tools are automatically disabled when running a packaged application (ie a Java-JAR).
+- By default not included in repackaged archives.
+
+### Dev Tools Features
+
+- Automatic Restart:
+	- Triggers a restart of the Spring Context when classes change.
+	- Uses two classloaders. One for your application, one for project JAR dependencies.
+	- Restarts are very fast, since only your project classes are being loaded.
+	
+- By default you need to select *Build -> Build Project*.
+- There is an advaned setting you can change to make this more seamless.
+
+### Template Caching
+
+- By default, templates are cached for performance.
+- But caching will require a container restart to refresh the cache.
+- Developer Tools will disable template caching so the restart is not required to see changes.
+
+### LiveReload
+
+- Live Reload is a technology to automatically trigger a browser refresh when resources are changed.
+- Spring Boot Developer Tools includes a LiveReload server.
+- Browser plugins are available for free from [livereload's webpage](http://livereload.com/)
+
+
+
 
 
