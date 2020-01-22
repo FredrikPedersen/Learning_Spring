@@ -16,6 +16,7 @@ public class IndexController {
 
     @RequestMapping({"", "/", INDEX_VIEW})
     public String getIndexPage() {
+        System.out.println("Hello there");
         return INDEX_VIEW;
     }
 }

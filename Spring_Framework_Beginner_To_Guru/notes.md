@@ -211,6 +211,17 @@ stands alone in the model, with no encapsulated state."
 - Spring Boot Developer Tools includes a LiveReload server.
 - Browser plugins are available for free from [livereload's webpage](http://livereload.com/)
 
+## Section 7: Part 116: 
+
+### IntelliJ Compiler Configuration for Spring Boot Development Tools
+
+- Open search function by pressing CTRL + SHIFT + A.
+- Search for Registry.
+- Find key *compiler.automake.allow.when.app.running* and set it to be enabled.
+- Then go to *Settings (CTRL + ALT + S) -> Build, Execution and Deployment -> Compiler* and enable *Build Project Automatically*.
+- Restart IntelliJ.
+
+
 
 
 
