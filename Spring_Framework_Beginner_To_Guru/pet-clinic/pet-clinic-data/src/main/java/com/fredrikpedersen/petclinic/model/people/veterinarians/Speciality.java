@@ -1,4 +1,4 @@
-package com.fredrikpedersen.petclinic.model.people.veterinaries;
+package com.fredrikpedersen.petclinic.model.people.veterinarians;
 
 import com.fredrikpedersen.petclinic.model.BaseEntity;
 

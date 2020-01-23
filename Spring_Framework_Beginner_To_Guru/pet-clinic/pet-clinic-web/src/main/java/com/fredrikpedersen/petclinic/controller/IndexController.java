@@ -19,4 +19,9 @@ public class IndexController {
         return INDEX_VIEW;
     }
 
+    @RequestMapping("/oups")
+    public String oupsHanlder() {
+        return "notimplementedyet";
+    }
+
 }

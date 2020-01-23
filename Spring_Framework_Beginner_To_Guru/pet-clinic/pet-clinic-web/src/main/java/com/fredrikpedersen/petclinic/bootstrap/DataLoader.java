@@ -1,8 +1,8 @@
 package com.fredrikpedersen.petclinic.bootstrap;
 
 import com.fredrikpedersen.petclinic.model.people.owners.Owner;
-import com.fredrikpedersen.petclinic.model.people.veterinaries.Speciality;
-import com.fredrikpedersen.petclinic.model.people.veterinaries.Veterinary;
+import com.fredrikpedersen.petclinic.model.people.veterinarians.Speciality;
+import com.fredrikpedersen.petclinic.model.people.veterinarians.Veterinary;
 import com.fredrikpedersen.petclinic.model.pets.Pet;
 import com.fredrikpedersen.petclinic.model.pets.PetType;
 import com.fredrikpedersen.petclinic.services.OwnerService;
@@ -102,7 +102,7 @@ public class DataLoader implements CommandLineRunner {
         speciality3.setDescription("Dentistry");
         Speciality savedSpeciality3 = specialityService.save(speciality3);
 
-        /* ----- Veterinaries ----- */
+        /* ----- Veterinarians ----- */
 
         Veterinary veterinary1 = new Veterinary();
         veterinary1.setFirstName("Victor");

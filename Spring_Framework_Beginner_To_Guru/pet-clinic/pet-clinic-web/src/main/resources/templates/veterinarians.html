@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <head>
     <meta charset="UTF-8">
-    <title>List of veterinaries</title>
+    <title>List of veterinarians</title>
 </head>
 <body>
-<h2 th:text="'List of veterinaries'">List...</h2>
+<h2 th:text="'List of veterinarians'">List...</h2>
 
 <table class="table table-striped">
     <thead>
@@ -16,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="veterinary : ${veterinaries}"> <!-- "for (Veterinary veterinary : veterinaries) -->
+    <tr th:each="veterinary : ${veterinarians}"> <!-- "for (Veterinary veterinary : veterinarians) -->
         <td th:text="${veterinary.id}">1</td>
         <td th:text="${veterinary.firstName}">Martina</td>
         <td th:text="${veterinary.lastName}">Førre</td>

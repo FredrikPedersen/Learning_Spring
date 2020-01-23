@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 16/01/2020 at 19:06
  */
 
+@RequestMapping("/veterinarians")
 @Controller
 public class VeterinaryController {
 
-    private static final String VETERINARIES_VIEW = "veterinaries";
-    private static final String ALL_VETERINARIES_ATTRIBUTE = "veterinaries";
+    private static final String VETERINARIANS_VIEW = "veterinarians";
+    private static final String ALL_VETERINARIANS_ATTRIBUTE = "veterinarians";
     private final VeterinaryService veterinaryService;
 
     public VeterinaryController(VeterinaryService veterinaryService) {
         this.veterinaryService = veterinaryService;
     }
 
-    @RequestMapping({VETERINARIES_VIEW, VETERINARIES_VIEW + ".html"})
-    public String listVeterinaries(Model model) {
+    @RequestMapping("")
+    public String listVeterinarians(Model model) {
 
-        model.addAttribute(ALL_VETERINARIES_ATTRIBUTE, veterinaryService.findAll());
+        model.addAttribute(ALL_VETERINARIANS_ATTRIBUTE, veterinaryService.findAll());
 
-        return VETERINARIES_VIEW;
+        return VETERINARIANS_VIEW;
     }
 }

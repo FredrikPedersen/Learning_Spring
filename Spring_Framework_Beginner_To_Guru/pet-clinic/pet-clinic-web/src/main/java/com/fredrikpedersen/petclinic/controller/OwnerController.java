@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 16/01/2020 at 19:19
  */
 
+@RequestMapping("owners")
 @Controller
 public class OwnerController {
 
@@ -22,11 +23,16 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping({OWNERS_VIEW, OWNERS_VIEW + ".html"})
+    @RequestMapping("")
     public String listOwners(Model model) {
 
         model.addAttribute(ALL_OWNERS_ATTRIBUTE, ownerService.findAll());
 
         return OWNERS_VIEW;
+    }
+
+    @RequestMapping("/find")
+    public String findOwners() {
+        return "notimplementedyet";
     }
 }

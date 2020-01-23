@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.services.map;
 
-import com.fredrikpedersen.petclinic.model.people.veterinaries.Speciality;
-import com.fredrikpedersen.petclinic.model.people.veterinaries.Veterinary;
+import com.fredrikpedersen.petclinic.model.people.veterinarians.Speciality;
+import com.fredrikpedersen.petclinic.model.people.veterinarians.Veterinary;
 import com.fredrikpedersen.petclinic.services.SpecialityService;
 import com.fredrikpedersen.petclinic.services.VeterinaryService;
 import org.springframework.stereotype.Service;
