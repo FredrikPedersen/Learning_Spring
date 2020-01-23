@@ -33,6 +33,11 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
+    //EnumType Ordinal is default. Ordinal saves the Enum values as numbers, i.e in our case EASY = 1, MODERATE = 2. If we add a VERY_EASY before EASY, then VERY_EASY = 1, EASY = 2
+    //EnymType String saves the Enum values as their String values.
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
     @OneToOne(cascade = CascadeType.ALL) //If we delete a Recipe, it's belonging notes are deleted.
     private Notes notes;
 
@@ -115,6 +120,14 @@ public class Recipe {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Notes getNotes() {
