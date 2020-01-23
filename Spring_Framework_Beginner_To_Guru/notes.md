@@ -221,6 +221,56 @@ stands alone in the model, with no encapsulated state."
 - Then go to *Settings (CTRL + ALT + S) -> Build, Execution and Deployment -> Compiler* and enable *Build Project Automatically*.
 - Restart IntelliJ.
 
+## Section 8: Part 136:
+
+### JPA Entity Relationships
+
+```Java
+//One entity is related to one other entity
+@OneToOne
+
+//One entity is related to maneu entities (Collections and Arrays)
+@OneToMany
+
+//Inverse of OneToMany
+@ManyToOne
+
+//Many entities related to many entities. Each has a List or Set reference to the other.
+//A join table is used to define the relationships.
+@ManyToMany
+```
+
+### Unidirectional vs Bidirectional
+
+- Unidirectiional is one-way
+	- Mapping is only done one way. One side of the relationship will not know about the other.
+
+- Bidrectional is two way
+	- Both sides know about each other.
+	- Generally recommended to use Bidirectional, since you can navigate the object graph in either direction.
+	
+	
+### *Owning Side*
+
+- The owning side in the relationship will hold the foreign key in the database.
+- One to one is the side where the foreign key is specified.
+- OneToMay and ManyToOne is the *Many*-side.
+- *mappedBy* is used to define the field wich *owns* the reference of the relationship.
+ 
+ 
+### Fetch Types
+	
+- Lazy Fetch Type - Data is not required until referenced.
+- Eager Fetch Type - Data is queried up front.
+- Hibernate 5 supports the JPA 2.1 Fetch Type Defaults, which are:
+	- OneToMany - Lazy
+	- ManyToOne - Eager
+	- ManyToMany - Lazy
+	- OneToOne - Eager
+
+
+
+
 
 
 
