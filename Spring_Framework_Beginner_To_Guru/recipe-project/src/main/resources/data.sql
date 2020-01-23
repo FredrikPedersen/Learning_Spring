@@ -1,0 +1,10 @@
+INSERT INTO category (description) VALUES ('American');
+INSERT INTO category (description) VALUES ('Italian');
+INSERT INTO category (description) VALUES ('Mexican');
+INSERT INTO category (description) VALUES ('Fast Food');
+INSERT INTO unit_of_measure (description) VALUES ('Milliliter');
+INSERT INTO unit_of_measure (description) VALUES ('Centiliter');
+INSERT INTO unit_of_measure (description) VALUES ('Desiliter');
+INSERT INTO unit_of_measure (description) VALUES ('Liter');
+INSERT INTO unit_of_measure (description) VALUES ('Gram');
+INSERT INTO unit_of_measure (description) VALUES ('Kilogram');

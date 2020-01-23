@@ -263,10 +263,38 @@ stands alone in the model, with no encapsulated state."
 - Lazy Fetch Type - Data is not required until referenced.
 - Eager Fetch Type - Data is queried up front.
 - Hibernate 5 supports the JPA 2.1 Fetch Type Defaults, which are:
-	- OneToMany - Lazy
-	- ManyToOne - Eager
-	- ManyToMany - Lazy
-	- OneToOne - Eager
+	- OneToMany - Lazy.
+	- ManyToOne - Eager.
+	- ManyToMany - Lazy.
+	- OneToOne - Eager.
+
+## Section 8: Part 146:
+
+### Hibernate DDL Auto
+
+- DDL = Data Definition Language.
+- DML = Data Manipulation Language.
+- Hibernate property is set by the Srping property spring.jba.hibernate.ddl-auto.
+- Options are: none, validate, update, create, create-drop.
+- Spring Boot will use create-drop form embedded databases (hsql, h2, derby) or none.
+
+### Initialize with Hibernate
+
+- Data can be loaded from import.sql.
+	- Hibernate feature (not Spring Specific).
+	- Must be on root of class path.
+	- Only executed if Hibernate's ddl-auto property is set to create or create-drop.
+	
+### Spring JDBC
+
+- Spring DataSource initializer via Srping Boot will by default load schema.sql and data.sql from the root of the classpath.
+- Spring Boot will also load from schema-${platform}.sql and data-${platform}.sql.
+	- Must set spring.datasource.platform.
+	- May conflict with Hibernate's DDL Auto property.
+	- Should use setting of none or validate.
+	
+
+
 
 
 
