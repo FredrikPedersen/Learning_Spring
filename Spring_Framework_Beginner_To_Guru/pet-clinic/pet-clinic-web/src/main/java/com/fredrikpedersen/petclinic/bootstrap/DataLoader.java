@@ -1,10 +1,9 @@
 package com.fredrikpedersen.petclinic.bootstrap;
 
 import com.fredrikpedersen.petclinic.model.people.Owner;
-import com.fredrikpedersen.petclinic.model.people.Veterinary;
+import com.fredrikpedersen.petclinic.model.people.veterinary.Veterinary;
 import com.fredrikpedersen.petclinic.services.OwnerService;
 import com.fredrikpedersen.petclinic.services.VeterinaryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
