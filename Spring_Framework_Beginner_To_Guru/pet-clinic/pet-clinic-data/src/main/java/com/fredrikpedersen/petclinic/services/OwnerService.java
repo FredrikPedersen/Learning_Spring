@@ -1,6 +1,6 @@
 package com.fredrikpedersen.petclinic.services;
 
-import com.fredrikpedersen.petclinic.model.people.Owner;
+import com.fredrikpedersen.petclinic.model.people.owners.Owner;
 
 /**
  * @author Fredrik Pedersen

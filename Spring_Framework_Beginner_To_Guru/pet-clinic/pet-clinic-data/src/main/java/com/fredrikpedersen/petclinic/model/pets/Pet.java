@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.model.pets;
 
 import com.fredrikpedersen.petclinic.model.BaseEntity;
-import com.fredrikpedersen.petclinic.model.people.Owner;
+import com.fredrikpedersen.petclinic.model.people.owners.Owner;
 
 import java.time.LocalDate;
 

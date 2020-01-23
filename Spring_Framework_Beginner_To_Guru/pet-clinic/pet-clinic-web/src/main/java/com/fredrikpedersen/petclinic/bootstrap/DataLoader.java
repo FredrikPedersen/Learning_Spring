@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.bootstrap;
 
-import com.fredrikpedersen.petclinic.model.people.Owner;
-import com.fredrikpedersen.petclinic.model.people.veterinary.Veterinary;
+import com.fredrikpedersen.petclinic.model.people.owners.Owner;
+import com.fredrikpedersen.petclinic.model.people.veterinaries.Veterinary;
 import com.fredrikpedersen.petclinic.services.OwnerService;
 import com.fredrikpedersen.petclinic.services.VeterinaryService;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
 package com.fredrikpedersen.petclinic.services.map;
 
-import com.fredrikpedersen.petclinic.model.people.Owner;
+import com.fredrikpedersen.petclinic.model.people.owners.Owner;
 import com.fredrikpedersen.petclinic.services.OwnerService;
 import org.springframework.stereotype.Service;
 
