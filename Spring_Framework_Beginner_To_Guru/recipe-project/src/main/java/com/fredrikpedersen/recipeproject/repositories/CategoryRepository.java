@@ -3,6 +3,8 @@ package com.fredrikpedersen.recipeproject.repositories;
 import com.fredrikpedersen.recipeproject.domain.Category;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
+
 /**
  * @author Fredrik Pedersen
  * @version 1.0
@@ -11,4 +13,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
+    Optional<Category> findByDescription(String decription);
 }
