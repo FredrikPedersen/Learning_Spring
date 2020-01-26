@@ -1,13 +1,9 @@
 package com.fredrikpedersen.recipeproject.controllers;
 
-import com.fredrikpedersen.recipeproject.domain.Category;
-import com.fredrikpedersen.recipeproject.domain.UnitOfMeasure;
-import com.fredrikpedersen.recipeproject.repositories.CategoryRepository;
-import com.fredrikpedersen.recipeproject.repositories.UnitOfMeasureRepository;
+import com.fredrikpedersen.recipeproject.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 /**
  * @author Fredrik Pedersen
@@ -17,25 +13,18 @@ import java.util.Optional;
 
 @Controller
 public class IndexController {
-
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
-
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-    }
-
     private final String INDEX_VIEW = "index";
 
+    private final RecipeService recipeService;
+
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
+
     @RequestMapping({"", "/", INDEX_VIEW})
-    public String getIndexPage() {
+    public String getIndexPage(Model model) {
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Liter");
-
-        System.out.println("Cat Id is: " + categoryOptional.get().getId());
-        System.out.println("Uom Id is: " + unitOfMeasureOptional.get().getId());
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return INDEX_VIEW;
     }
