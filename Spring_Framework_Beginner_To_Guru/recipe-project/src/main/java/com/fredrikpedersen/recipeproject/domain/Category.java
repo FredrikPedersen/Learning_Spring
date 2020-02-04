@@ -12,6 +12,7 @@ import java.util.Set;
  */
 
 @Data
+@EqualsAndHashCode(exclude = {"recipes"}) //Excludes the attributes from the Equals and Hashcode methods.
 @Entity
 public class Category {
 

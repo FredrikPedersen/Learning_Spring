@@ -1,6 +1,7 @@
 package com.fredrikpedersen.recipeproject.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
  */
 
 @Data
+@EqualsAndHashCode(exclude = {"recipe"}) //Excludes the attributes from the Equals and Hashcode methods.
 @Entity
 public class Ingredient {
 
