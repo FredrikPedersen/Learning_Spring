@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @since 16/01/2020 at 13:31
  */
 
-@MappedSuperclass
+@MappedSuperclass //Indicates that this is not going to be a database entity, and that other classes will inherit from it.
 public abstract class BaseEntity implements Serializable {
 
     @Id

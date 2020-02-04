@@ -3,6 +3,7 @@ package com.fredrikpedersen.petclinic.model.people.owners;
 import com.fredrikpedersen.petclinic.model.people.Person;
 import com.fredrikpedersen.petclinic.model.pets.Pet;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +13,20 @@ import java.util.Set;
  * @since 15/01/2020 at 17:41
  */
 
+@Entity
+@Table(name = "owners")
 public class Owner extends Person {
 
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "telephone")
     private String telephone;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner") //Cascades the pets set to the owner. I.e, owner gets deleted, pets get deleted.
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {
