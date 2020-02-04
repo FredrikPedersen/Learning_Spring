@@ -1,7 +1,5 @@
 package com.fredrikpedersen.recipeproject.domain;
 
-import javax.persistence.Entity;
-
 /**
  * @author Fredrik Pedersen
  * @version 1.0
@@ -9,6 +7,5 @@ import javax.persistence.Entity;
  */
 
 public enum Difficulty {
-
     EASY, MODERATE, HARD
 }
