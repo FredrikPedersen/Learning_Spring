@@ -15,11 +15,11 @@ import java.util.Set;
  */
 
 @Service
-public class VeterinaryServiceMap extends AbstractMapService<Veterinary, Long> implements VeterinaryService {
+public class VeterinaryMapService extends AbstractMapService<Veterinary, Long> implements VeterinaryService {
 
     private final SpecialityService specialityService;
 
-    public VeterinaryServiceMap(SpecialityService specialityService) {
+    public VeterinaryMapService(SpecialityService specialityService) {
         this.specialityService = specialityService;
     }
 
