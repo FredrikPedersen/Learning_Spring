@@ -4,6 +4,7 @@ import com.fredrikpedersen.recipeproject.domain.*;
 import com.fredrikpedersen.recipeproject.repositories.CategoryRepository;
 import com.fredrikpedersen.recipeproject.repositories.RecipeRepository;
 import com.fredrikpedersen.recipeproject.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,9 @@ import java.util.Optional;
  * @since 26/01/2020 at 15:46
  */
 
+@Slf4j
 @Component
-public class RecipeBootsrap implements ApplicationListener<ContextRefreshedEvent> {
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
