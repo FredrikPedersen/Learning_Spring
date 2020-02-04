@@ -20,7 +20,7 @@ public class IndexController {
     }
 
     @RequestMapping("/oups")
-    public String oupsHanlder() {
+    public String oupsHandler() {
         return "notimplementedyet";
     }
 
