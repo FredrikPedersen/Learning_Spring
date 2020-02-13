@@ -385,3 +385,18 @@ stands alone in the model, with no encapsulated state."
 	- Exceptions are not thrown in a traditional sense.
 		- Would break processing of a stream.
 	- Exceptions are processed by a handler function.
+	
+## Section 20: Part 327:
+
+### Reactive Streams API
+
+- Goal is to create a standard for asynchronous stream processing with non-blocking back pressure.
+- Reactive Streams started in 2013 by engineers from Netflix, Pivotal, Lightbend, Red Hat, Twitter and Oracle.
+- Reactive Streams is a set of 4 interfaces which define the API.
+
+### Spring Reactive Types
+
+- Two new reactive tyoes were introduced with Spring Framework 5.
+- *Mono* is a publisher with zero or one elements in data stream.
+- *Flux* is a publisher with zero or MANY elements in the data stream.
+- Both types implement the Reactive Streams Publisher interface.
