@@ -336,17 +336,52 @@ stands alone in the model, with no encapsulated state."
 	- Location transparent messaging makes management of failures possible.
 	- Non-blocking communication allows recipients to only consume resources while active, leading to less system overhead.
 	
+
+## Section 20: Part 326:
+
+### Reactive Programming
+
+ - Reactive Programming is an asynchronous programming paradigm focused on streams of data.
+ - "Reactive programming also maintain a continous interaction with their environment, but at a speed which is determined
+ by the environment, not the program itself. Interactive programs work at their own pace and mostly deal with communication,
+ while reactive programs only work in response to external demands and mostly deal with accurate interrup handling. Real-time
+ programs are usually reactive." - Gerad Berry
+ 
+## Common Use Cases
+ 
+  - External Service Calls.
+  - Highly Concurrent Message Consumers.
+  - Spreadsheets.
+  - Abstraction Over Asynchronous Processing.
+	- Abstract whether or not your program is synchronous or asynchronous.
 	
+## Features of Reactive Programming
 
+- Reactive Programming focuses on processing streams of data.
+
+- Data Streams
+	- Data Streams can be just about anything.
+	- Mouse clicks or other user interactions.
+	- JMS Messages, RESTful service calls, Twitter Feed, Stock Trades, list of data from a database.
+	- A Stram is a sequence of events ordered in time.
+	- Events you want to listen to.
 	
-
-
-
-
-
-
-
-
-
-
-
+- Asynchronous.
+	- Events are captured asynchronously.
+	- A function is defined to execute when an event is emitted.
+	- Another function is defined if an error is emitted.
+	- Another function is defined when complete is emitted.
+	- See Observer Pattern.
+	
+- Non-blocking.
+	- The concecpt of using non-blocking is important.
+	- In Blocking, the code will stop and wait for more data (ie reading from disk, network etc).
+	- Non-blocking in contrast, will process available data, ask to be notified when more is available, then continue.
+	
+- Backpressure.
+	- The ability of the subscribeder to throttle data.
+	
+- Failures as messages.
+	- Exceptions are not thrown in a traditional sense.
+		- Would break processing of a stream.
+	- Exceptions are processed by a handler function.
