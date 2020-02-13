@@ -438,4 +438,9 @@ stands alone in the model, with no encapsulated state."
 		- DELETE /products/1234 to delete product 1234
 	- Most common in practical use.
 
-- Level 3: 
+- Level 3: Hypermedia
+	- Representation now contains URIs which may be useful to consumers.
+	- Helps client developers explore the resource.
+	- No clear standard at this time.
+	- Spring provides an implementation of HATEOS
+
