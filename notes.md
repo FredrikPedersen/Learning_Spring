@@ -294,6 +294,52 @@ stands alone in the model, with no encapsulated state."
 	- Should use setting of none or validate.
 	
 
+## Section 20: Part 325:
+
+### "Reactive"
+
+- Reactive Systems - Architecture and Design
+	- ie Cloud Native.
+	
+- Reactive Programming
+	- Generally Event Based.
+	
+- Functional Reactive Programming (FRP)
+	- Often confused with reactive programming.
+	
+### Reactive Manifesto
+
+- Responsive
+	- The system responds in a timely manner.
+	- Responsiveness is the conrerstone os usability and utility.
+	- Responsiveness also means problemsn may be detected quickly and dealt with effectively.
+	- Responsive systems provide rapid and consistent response times.
+	- Consistent behavious simplifies error handling, builds end user confidence, and encourages further interaction.
+
+- Resilient
+	- System stays responsive in the face of failure
+	- Resilience is achieveed by replication, containment, isolation and delegation.
+	- Failures are contained within each component.
+	- Parts of the system can fail, without compromising the system as a whole.
+	- Recovery of each component is delegated to another.
+	- High-availability is ensured by replication where necessary.
+
+- Elastic
+	- The system stays responsice under varying workloads.
+	- Reactive Systems can react to changes in the input rate by increasing or decreasing resources allocated to service inputs.
+	- Reactive Systems achieve elasticity in a cos effective way on commodity hardware and sofware platforms.
+
+- Message Driven
+	- Reactive Systems rely on asynchronous message passing to establish a boundry between components.
+		- This ensures loose coupling, isolation and location transparency
+	- Message passing enables load management, elasticity, and flow control.
+	- Location transparent messaging makes management of failures possible.
+	- Non-blocking communication allows recipients to only consume resources while active, leading to less system overhead.
+	
+	
+
+	
+
 
 
 
