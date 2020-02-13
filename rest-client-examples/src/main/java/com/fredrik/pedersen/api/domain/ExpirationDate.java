@@ -1,4 +1,4 @@
-package com.fredrik.pedersen.restclientexamples.api.domain;
+package com.fredrik.pedersen.api.domain;
 
 import lombok.Getter;
 import lombok.Setter;
