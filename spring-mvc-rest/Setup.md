@@ -10,6 +10,8 @@
 
 Used for converting POJOS to DTOs using annotations.
 
+Add plugin "MapStruct Support".
+
 ```XML
 
 In properties:
