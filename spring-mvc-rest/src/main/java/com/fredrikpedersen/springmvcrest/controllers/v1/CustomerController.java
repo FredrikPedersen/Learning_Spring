@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("api/v1/customers")
+@RequestMapping("/api/v1/customers/")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -31,10 +31,10 @@ public class CustomerController {
         return new ResponseEntity<>(new CustomerListDTO(customerService.getAllCustomers()), HttpStatus.OK);
     }
 
-    @GetMapping("{name}")
-    public ResponseEntity<CustomerDTO> getCustomerByName(@PathVariable final String name) {
+    @GetMapping("{id}")
+    public ResponseEntity<CustomerDTO> getCustomerByName(@PathVariable final Long id) {
         return new ResponseEntity<>(
-                customerService.getCustomerByName(name), HttpStatus.OK
+                customerService.getCustomerById(id), HttpStatus.OK
         );
     }
 }

@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class CustomerMapperTest {
 
-    private static final String NAME = "Joe";
+    private static final String FIRST_NAME = "Fredrik";
+    private static final String LAST_NAME = "Pedersen";
     private static final long ID = 1L;
 
     CustomerMapper customerMapper = CustomerMapper.INSTANCE;
@@ -23,14 +24,15 @@ class CustomerMapperTest {
 
         //given
         Customer customer = new Customer();
-        customer.setName(NAME);
+        customer.setFirstName(FIRST_NAME);
+        customer.setLastName(LAST_NAME);
         customer.setId(ID);
 
         //when
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         //then
-        assertEquals(Long.valueOf(ID), customerDTO.getId());
-        assertEquals(NAME, customerDTO.getName());
+        assertEquals(FIRST_NAME, customerDTO.getFirstName());
+        assertEquals(LAST_NAME, customerDTO.getLastName());
     }
 }

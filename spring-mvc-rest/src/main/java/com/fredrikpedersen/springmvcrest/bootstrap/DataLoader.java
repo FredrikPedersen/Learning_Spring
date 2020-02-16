@@ -27,6 +27,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         createCategoryData();
+        createCustomerData();
     }
 
     private void createCategoryData() {
@@ -56,22 +57,30 @@ public class DataLoader implements CommandLineRunner {
 
     private void createCustomerData() {
         Customer fredrik = new Customer();
-        fredrik.setName("Fredrik");
+        fredrik.setId(1L);
+        fredrik.setFirstName("Fredrik");
+        fredrik.setLastName("Pedersen");
 
         Customer nikita = new Customer();
-        nikita.setName("Nikita");
+        nikita.setId(2L);
+        nikita.setFirstName("Nikita");
+        nikita.setLastName("Petrovs");
 
         Customer victor = new Customer();
-        victor.setName("Victor");
+        victor.setId(3L);
+        victor.setFirstName("Victor");
+        victor.setLastName("Pishva");
 
         Customer cato = new Customer();
-        cato.setName("Cato");
+        cato.setId(4L);
+        cato.setFirstName("Cato");
+        cato.setLastName("Akay");
 
         customerRepository.save(fredrik);
         customerRepository.save(nikita);
         customerRepository.save(victor);
         customerRepository.save(cato);
 
-        System.out.println("Category Records created = " + customerRepository.count());
+        System.out.println("Customer Records created = " + customerRepository.count());
     }
 }

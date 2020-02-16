@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 /**
@@ -27,7 +27,8 @@ import static org.mockito.Mockito.when;
 class CustomerServiceTest {
 
     private static final Long ID = 2L;
-    private static final String NAME = "Jimmy";
+    private static final String FIRST_NAME = "Fredrik";
+
     private CustomerService customerService;
 
     @Mock
@@ -60,15 +61,14 @@ class CustomerServiceTest {
         //given
         Customer customer = new Customer();
         customer.setId(ID);
-        customer.setName(NAME);
+        customer.setFirstName(FIRST_NAME);
 
-        when(customerRepository.findByName(anyString())).thenReturn(customer);
+        when(customerRepository.findById(anyLong())).thenReturn(java.util.Optional.of(customer));
 
         //when
-        CustomerDTO customerDTO = customerService.getCustomerByName(NAME);
+        CustomerDTO customerDTO = customerService.getCustomerById(ID);
 
         //then
-        assertEquals(ID, customerDTO.getId());
-        assertEquals(NAME, customerDTO.getName());
+        assertEquals(FIRST_NAME, customerDTO.getFirstName());
     }
 }
