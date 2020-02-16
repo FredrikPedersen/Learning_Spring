@@ -16,7 +16,7 @@ public class DataLoader implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
 
-    public DataLoader(CategoryRepository categoryRepository) {
+    public DataLoader(final CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
