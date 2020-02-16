@@ -1,9 +1,11 @@
 package com.fredrikpedersen.springmvcrest.services;
 
 import com.fredrikpedersen.springmvcrest.api.v1.mapper.CategoryMapper;
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
 import com.fredrikpedersen.springmvcrest.domain.Category;
 import com.fredrikpedersen.springmvcrest.repositories.CategoryRepository;
+import com.fredrikpedersen.springmvcrest.services.category.CategoryService;
+import com.fredrikpedersen.springmvcrest.services.category.CategoryServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

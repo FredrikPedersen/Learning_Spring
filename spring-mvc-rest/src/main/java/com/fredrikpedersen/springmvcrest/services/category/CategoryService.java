@@ -1,6 +1,6 @@
-package com.fredrikpedersen.springmvcrest.services;
+package com.fredrikpedersen.springmvcrest.services.category;
 
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
 
 import java.util.List;
 
@@ -13,6 +13,5 @@ import java.util.List;
 public interface CategoryService {
 
     List<CategoryDTO> getAllCategories();
-
     CategoryDTO getCategoryByName(final String name);
 }

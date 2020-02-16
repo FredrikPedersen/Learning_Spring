@@ -1,6 +1,6 @@
 package com.fredrikpedersen.springmvcrest.api.v1.mapper;
 
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
 import com.fredrikpedersen.springmvcrest.domain.Category;
 import org.junit.jupiter.api.Test;
 

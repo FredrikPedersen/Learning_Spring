@@ -1,8 +1,8 @@
 package com.fredrikpedersen.springmvcrest.controllers.v1;
 
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryDTO;
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryListDTO;
-import com.fredrikpedersen.springmvcrest.services.CategoryService;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryListDTO;
+import com.fredrikpedersen.springmvcrest.services.category.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

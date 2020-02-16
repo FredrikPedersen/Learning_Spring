@@ -6,6 +6,8 @@
  - Spring DataJPA
  - H2 Database
  
+Use Postman for testing API responses (in addition to unit testing)
+ 
 ### MapStruct
 
 Used for converting POJOS to DTOs using annotations.

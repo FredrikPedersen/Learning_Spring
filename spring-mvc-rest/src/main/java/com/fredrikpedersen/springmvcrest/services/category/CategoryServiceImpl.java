@@ -1,7 +1,7 @@
-package com.fredrikpedersen.springmvcrest.services;
+package com.fredrikpedersen.springmvcrest.services.category;
 
 import com.fredrikpedersen.springmvcrest.api.v1.mapper.CategoryMapper;
-import com.fredrikpedersen.springmvcrest.api.v1.model.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
 import com.fredrikpedersen.springmvcrest.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
