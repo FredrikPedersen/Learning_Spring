@@ -5,3 +5,7 @@
  - Spring DevTools
  - Spring DataJPA
  - H2 Database
+ 
+### MapStruct
+
+Used for converting POJOS to DTOs using annotations.
