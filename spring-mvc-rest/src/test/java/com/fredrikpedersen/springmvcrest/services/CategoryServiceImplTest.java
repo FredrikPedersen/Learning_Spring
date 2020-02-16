@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
  * @since 16/02/2020 at 17:15
  */
 
-class CategoryServiceTest {
+class CategoryServiceImplTest {
 
     private static final Long ID = 2L;
     private static final String NAME = "Jimmy";

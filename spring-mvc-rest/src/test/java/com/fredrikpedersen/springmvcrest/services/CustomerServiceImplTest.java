@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -24,9 +25,9 @@ import static org.mockito.Mockito.when;
  * @since 16/02/2020 at 18:07
  */
 
-class CustomerServiceTest {
+class CustomerServiceImplTest {
 
-    private static final Long ID = 2L;
+    private static final Long ID = 1L;
     private static final String FIRST_NAME = "Fredrik";
 
     private CustomerService customerService;
@@ -70,5 +71,27 @@ class CustomerServiceTest {
 
         //then
         assertEquals(FIRST_NAME, customerDTO.getFirstName());
+    }
+
+    @Test
+    void createNewCustomerTest() {
+
+        //given
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setFirstName(FIRST_NAME);
+
+        Customer savedCustomer = new Customer();
+        savedCustomer.setFirstName(customerDTO.getFirstName());
+        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setId(ID);
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
+
+        //when
+        CustomerDTO savedDto = customerService.createNewCustomer(customerDTO);
+
+        //then
+        assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
+        assertEquals("/api/v1/customers/" + ID, savedDto.getCustomerUrl());
     }
 }
