@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private final String URL = "/api/v1/customers";
+    private final String URL = "/api/v1/customers/";
     private final CustomerMapper customerMapper;
     private final CustomerRepository customerRepository;
 
@@ -73,7 +73,10 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.setLastName(customerDTO.getLastName());
             }
 
-            return customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+            CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+            returnDto.setCustomerUrl(URL + id);
+
+            return returnDto;
         }).orElseThrow(RuntimeException::new);  //todo Implement better exception handling!
     }
 
