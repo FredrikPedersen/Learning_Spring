@@ -1,6 +1,7 @@
 package com.fredrikpedersen.springmvcrest.controllers.v1;
 
 import com.fredrikpedersen.springmvcrest.api.v1.model.category.CategoryDTO;
+import com.fredrikpedersen.springmvcrest.exceptions.ResourceNotFoundException;
 import com.fredrikpedersen.springmvcrest.services.category.CategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,15 +42,17 @@ class CategoryControllerTest {
     MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(categoryController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(categoryController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
+                .build();
 
     }
 
     @Test
-    public void testListCategories() throws Exception {
+    void listCategoriesTest() throws Exception {
         CategoryDTO category1 = new CategoryDTO();
         category1.setId(1L);
         category1.setName(NAME);
@@ -69,7 +72,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    public void testGetByNameCategories() throws Exception {
+    void getByNameCategoriesTest() throws Exception {
         CategoryDTO category1 = new CategoryDTO();
         category1.setId(1l);
         category1.setName(NAME);
@@ -81,4 +84,13 @@ class CategoryControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(NAME)));
     }
+
+    @Test
+    void getByNameNotFoundTest() throws Exception {
+        when(categoryService.getCategoryByName(anyString())).thenThrow(ResourceNotFoundException.class);
+        mockMvc.perform(get(URL + "/foo")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
 }

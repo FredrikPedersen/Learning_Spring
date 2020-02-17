@@ -4,6 +4,7 @@ import com.fredrikpedersen.springmvcrest.api.v1.mapper.CustomerMapper;
 import com.fredrikpedersen.springmvcrest.api.v1.model.customer.CustomerDTO;
 import com.fredrikpedersen.springmvcrest.controllers.v1.CustomerController;
 import com.fredrikpedersen.springmvcrest.domain.Customer;
+import com.fredrikpedersen.springmvcrest.exceptions.ResourceNotFoundException;
 import com.fredrikpedersen.springmvcrest.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO getCustomerById(final Long id) {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
             returnDto.setCustomerUrl(URL + id);
 
             return returnDto;
-        }).orElseThrow(RuntimeException::new);  //todo Implement better exception handling!
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
