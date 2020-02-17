@@ -17,7 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * @author Fredrik Pedersen
@@ -116,5 +116,11 @@ class CustomerServiceImplTest {
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
         assertEquals(URL + ID, savedDto.getCustomerUrl());
+    }
+
+    @Test
+    void deleteCustomerByIdTest() {
+        customerRepository.deleteById(ID);
+        verify(customerRepository, times(1)).deleteById(anyLong());
     }
 }
