@@ -29,6 +29,7 @@ class CustomerServiceImplTest {
 
     private static final Long ID = 1L;
     private static final String FIRST_NAME = "Fredrik";
+    private static final String URL = "/api/v1/customers/";
 
     private CustomerService customerService;
 
@@ -92,6 +93,28 @@ class CustomerServiceImplTest {
 
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
-        assertEquals("/api/v1/customers/" + ID, savedDto.getCustomerUrl());
+        assertEquals(URL + ID, savedDto.getCustomerUrl());
+    }
+
+    @Test
+    void saveCustomerByDTOTest() {
+
+        //given
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setFirstName(FIRST_NAME);
+
+        Customer savedCustomer = new Customer();
+        savedCustomer.setFirstName(customerDTO.getFirstName());
+        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setId(ID);
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
+
+        //when
+        CustomerDTO savedDto = customerService.saveCustomerByDTO(ID, customerDTO);
+
+        //then
+        assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
+        assertEquals(URL + ID, savedDto.getCustomerUrl());
     }
 }
