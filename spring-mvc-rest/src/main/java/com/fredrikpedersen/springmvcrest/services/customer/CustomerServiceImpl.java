@@ -2,6 +2,7 @@ package com.fredrikpedersen.springmvcrest.services.customer;
 
 import com.fredrikpedersen.springmvcrest.api.v1.mapper.CustomerMapper;
 import com.fredrikpedersen.springmvcrest.api.v1.model.customer.CustomerDTO;
+import com.fredrikpedersen.springmvcrest.controllers.v1.CustomerController;
 import com.fredrikpedersen.springmvcrest.domain.Customer;
 import com.fredrikpedersen.springmvcrest.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private final String URL = "/api/v1/customers/";
+    private final String URL = CustomerController.BASE_URL;
     private final CustomerMapper customerMapper;
     private final CustomerRepository customerRepository;
 

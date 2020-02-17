@@ -34,7 +34,7 @@ class CustomerControllerTest extends AbstractRestControllerTest {
     private static final String FIRST_NAME = "Fredrik";
     private static final String LAST_NAME = "Pedersen";
     private static final Long ID = 1L;
-    private static final String URL = "/api/v1/customers/";
+    private static final String URL = CustomerController.BASE_URL;
 
     @Mock
     private CustomerService customerService;
