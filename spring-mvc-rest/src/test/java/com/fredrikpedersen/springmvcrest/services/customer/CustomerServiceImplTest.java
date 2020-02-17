@@ -1,4 +1,4 @@
-package com.fredrikpedersen.springmvcrest.services;
+package com.fredrikpedersen.springmvcrest.services.customer;
 
 import com.fredrikpedersen.springmvcrest.api.v1.mapper.CustomerMapper;
 import com.fredrikpedersen.springmvcrest.api.v1.model.customer.CustomerDTO;
