@@ -1,2 +1,2 @@
-# Notes from Testing Spring Boot; Beginner to Guru
+# Notes from Testing Spring Boot: Beginner to Guru
 
