@@ -62,4 +62,44 @@ are run so that results are repeatable." - JUnit Docoumentation.
 - Spies are wrappers, but with real objects inside.
 
 
+## Section 2: Part 10 - Common Testing Frameworks for Java
 
+#### JUnit
+
+- The most popular testing framework for Java.
+- Currently JUnit 4 is widely used in the industry.
+- JUnit 5 was released in September 2017
+	- Is rapidly gaining popularity and will most likely take over in the near future
+
+#### TestNG
+
+- Created by Cedric Beust in 2004 as an alternative to JUnit.
+- Cedric wished to address deficiencies in JUnit.
+- Functionality of TestNG and JUnit have evolved to be very close.
+- Still popular, but has a much smaller user base.
+
+#### Spock
+
+- Testing Framework in Groovy for testing Java.
+- Does require knowlegde of Groovy.
+- Follows BDD approach.
+- Includes own Mocking framework.
+- Very popular where Groovy is used.
+
+
+#### Mockito
+
+- Mocking framework for testing.
+	- Only does mocks.
+	- Need to use with a testing framework such as JUnit or TestNG.
+- Very popular for testing Spring Applications.
+
+#### Spring MVC Test
+
+- Testing module found in the Spring Framework.
+- Very versatile for testing Spring MVC Controllers.
+- Provides mock servlet environment.
+- Used in conjunction with a testing framework such as JUnit, TestNG or Spock.
+
+
+	
