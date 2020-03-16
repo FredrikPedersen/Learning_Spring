@@ -101,5 +101,45 @@ are run so that results are repeatable." - JUnit Docoumentation.
 - Provides mock servlet environment.
 - Used in conjunction with a testing framework such as JUnit, TestNG or Spock.
 
+## Section 2: Part 11 - Beyond Testing with CI and CD
 
-	
+#### CI - Continuous Integration
+
+**Continuous Integration** is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build,
+allowing teams to detect problemts early. 
+
+"Continuous Integration doesen't get rid of bugs, but it does make them dramatically easier to find and remove." - Martin Fowler, Chief Scientist, ThoughWorks.
+
+**CI Practices per Martin Fowler:** 
+- Maintain a Single Source Repository. 
+- Automate Build.
+- Make Your Build Self-Testing.
+- Every Commit Should Build on Integration Machine.
+- Fix Broken Builds Immediately.
+- Keep the build fast.
+- Test in a Clone of the Production Environment.
+- Make it Easy for Anyone to get the Latest Executable Version.
+- Everyone Can See What is Happening.
+
+**Common CI Build Servers**
+
+Self-hosted:
+- Jenkins, Bamboo, TeamCity, Hudson.
+ 
+Cloud Based:
+- CircleCI, TravisCI, Codeship, GitLab CI, AWS CodeBuild, and many more...
+
+#### CD - Continuous Deployment
+**Continuous Deployment** will automatically deploy build artifacts after all CI tests have run.
+ - Should happen with every commit.
+ - Completly Automated.
+ - May include a staging area from which additional automated tests are run.
+ - Easily confused with continuous delivery.
+ 
+- Process to Automatically Deliver code changes directly to the Production Environment.
+- Involves a High Degree of Automation in Testing and Deployment.
+- Must have a *VERY* Mature Process.
+- Can be Difficult in Some Industries due to Regulatory Requirements.
+- This area is evolving.
+- Few Hard “Rules” - No Standard Way.
+- Best Practices” are maturing, and still a lot of lively debate!
