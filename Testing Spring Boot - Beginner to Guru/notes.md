@@ -168,34 +168,64 @@ Cloud Based:
  - To create grouped assertions:
  ```Java
  
-	@Test
-	void groupedAssertions() {
-		//given
-		Person person = new Person(1L, "John", "Doe");
+@Test
+void groupedAssertions() {
 	
-		//then
-		assertAll("Test Props Set",
-			() -> assertEquals(person.getFirstName(), "John2", "FirstName failed"),
-			() -> assertEquals(person.getLastName(), "Doe2", "LastName failed"));
-	}
+	//given
+	Person person = new Person(1L, "John", "Doe");
 	
-	@Test
-	void dependentAssertions() {
-		//given
-		Owner owner = new Owner(1L, "John", "Doe");
-		owner.setCity("Oslo");
-		owner.setPhone("12345678");
+	//then
+	assertAll("Test Props Set",
+		() -> assertEquals(person.getFirstName(), "John2", "FirstName failed"),
+		() -> assertEquals(person.getLastName(), "Doe2", "LastName failed"));
+}
+	
+@Test
+void dependentAssertions() {
+	
+	//given
+	Owner owner = new Owner(1L, "John", "Doe");
+	owner.setCity("Oslo");
+	owner.setPhone("12345678");
 		
-		assertAll("Properties Test",
-			() -> assertAll("Person Properties",	
-				() -> assertEquals(owner.getFirstName(), "John", "FirstName failed"),
-				() -> assertEquals(owner.getLastName(), "Doe2", "LastName failed")),
-			() -> assertAll("Owner Properties",
-				() -> assertEquals("Oslo", owner.getCity(), "City failed"),
-				() -> assertEquals("12345678", owner.getPhone(), "Phone failed"))
-		);	
-	}
+	//then
+	assertAll("Properties Test",
+		() -> assertAll("Person Properties",	
+			() -> assertEquals(owner.getFirstName(), "John", "FirstName failed"),
+			() -> assertEquals(owner.getLastName(), "Doe2", "LastName failed")),
+		() -> assertAll("Owner Properties",
+			() -> assertEquals("Oslo", owner.getCity(), "City failed"),
+			() -> assertEquals("12345678", owner.getPhone(), "Phone failed"))
+	);	
+}
 ```	
+
+## Misc JUnit functionality
+
+#### To ignore/skip a test or testclass
+
+```Java
+
+@Disabled(value = "Disabled until we get our shit together")
+class testingClass {
+
+	@Disabled
+	@Test
+	void testMethod() {
+	}
+}
+```
+
+#### Set a display name for the test (the test name displayed in the test result-panel in IntelliJ)
+
+```Java
+@DisplayName("This sets the display name")
+@Test
+void testMethod() {
+}
+```
+
+
 
 
 
