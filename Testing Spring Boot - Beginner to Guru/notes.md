@@ -151,3 +151,15 @@ Cloud Based:
 - "If I have the same logic in two places, I work with the design to understand how I can have only one copy. Designs without duplication tend to be easy to change".
 - "Don't make more versions of your source code. Rather than add more code bases, fix the underlying design problem that is preventing you from running from a single code base".
 - "If there are forms of testing, like stress and load testing, that find defects after development is "complete," bring them into the development cycle. Run load and stress tests continuously and automatically".
+
+## Section 5: Part 46 - Overview og JUnit Assertions
+
+#### JUnit Assertions
+
+- **Assertion** - You are asserting a condition for the test to pass.
+- **Grouped Assertions** - All assertions run in block, all failures reported.
+- **Dependent Assertions** - Allows for blocks of grouped assertions.
+- Exceptions are tested with assertThrows lambda expression.
+- Timeouts are tested with assertTimeour lamdba expression.
+- [JUnit 5 assertions documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html).
+
