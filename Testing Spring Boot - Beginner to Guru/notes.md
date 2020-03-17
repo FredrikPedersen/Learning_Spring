@@ -143,3 +143,11 @@ Cloud Based:
 - This area is evolving.
 - Few Hard “Rules” - No Standard Way.
 - Best Practices” are maturing, and still a lot of lively debate!
+
+## Section 3: Part 14 - Test Driven Development by Example
+
+#### Popular quotes by [Kent Beck](https://en.wikipedia.org/wiki/Kent_Beck)
+
+- "If I have the same logic in two places, I work with the design to understand how I can have only one copy. Designs without duplication tend to be easy to change".
+- "Don't make more versions of your source code. Rather than add more code bases, fix the underlying design problem that is preventing you from running from a single code base".
+- "If there are forms of testing, like stress and load testing, that find defects after development is "complete," bring them into the development cycle. Run load and stress tests continuously and automatically".
