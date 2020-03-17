@@ -165,7 +165,6 @@ Cloud Based:
 
 ## Section 5: Part 48 & 49 - JUnit Grouped and Dependent Assertions
 
- - To create grouped assertions:
  ```Java
  
 @Test
@@ -199,6 +198,51 @@ void dependentAssertions() {
 	);	
 }
 ```	
+
+## Section 5: Part 52 & 53 - Testing Expected Exceptions and Timeouts
+
+```Java
+
+public class SomeClass {
+
+	public void exceptionThrowingMethod() {
+		throw new Exception();
+	}
+	
+	public void timeoutMethod() {
+		Thread.sleep(100);
+	}
+	
+}
+
+
+class TestClass {
+
+	SomeClass someClass;
+	
+	@BeforeEach
+	void setUp() {
+		someClass = new SomeClass();
+	}
+	
+	@Test
+	void exceptionTest() {
+		assertThrows(Exception.class, () -> someClass.exceptionThrowingMethod());
+	}
+	
+	@Test
+	void timeoutTest() {
+		//assertTimeout waits for the timeout to finish before asserting the result. 
+		assertTimeout(Duration.ofMillis(100), () -> someClass.timeoutMethod());
+	}
+	
+	@Test
+	void timeourPreemptiveTest() {
+		//assertTimeoutPreemptively will fail the test once the condition duration is exceeded
+		assertTimeoutPreemptively(Duration.ofMillis(100), () -> someClass.timeourMethod());
+	}
+}
+```
 
 ## Misc JUnit functionality
 
