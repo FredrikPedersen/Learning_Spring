@@ -163,3 +163,50 @@ Cloud Based:
 - Timeouts are tested with assertTimeour lamdba expression.
 - [JUnit 5 assertions documentation](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html).
 
+## Section 5: Part 48 & 49 - JUnit Grouped and Dependent Assertions
+
+ - To create grouped assertions:
+ ```Java
+ 
+	@Test
+	void groupedAssertions() {
+		//given
+		Person person = new Person(1L, "John", "Doe");
+	
+		//then
+		assertAll("Test Props Set",
+			() -> assertEquals(person.getFirstName(), "John2", "FirstName failed"),
+			() -> assertEquals(person.getLastName(), "Doe2", "LastName failed"));
+	}
+	
+	@Test
+	void dependentAssertions() {
+		//given
+		Owner owner = new Owner(1L, "John", "Doe");
+		owner.setCity("Oslo");
+		owner.setPhone("12345678");
+		
+		assertAll("Properties Test",
+			() -> assertAll("Person Properties",	
+				() -> assertEquals(owner.getFirstName(), "John", "FirstName failed"),
+				() -> assertEquals(owner.getLastName(), "Doe2", "LastName failed")),
+			() -> assertAll("Owner Properties",
+				() -> assertEquals("Oslo", owner.getCity(), "City failed"),
+				() -> assertEquals("12345678", owner.getPhone(), "Phone failed"))
+		);	
+	}
+```	
+
+
+
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
