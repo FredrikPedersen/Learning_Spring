@@ -244,6 +244,22 @@ class TestClass {
 }
 ```
 
+## Section 5: Part 54 - JUnit Assumptions
+
+- [Assumptions Documentation](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/Assumptions.html)
+- An assumption is used for checking if it makes sense to run a test under certain conditions. If an assumption is failed, it will not result in test failure, but test abortian.
+- The the most common use case for this is if you have an application running in different environments.
+
+```Java
+	@Test
+	void testAssumptionTrue() {
+	
+		//will fail if you do not have a runtime variable set to "FREDRIK_RUNTIME", following tests will still run
+		assumeTrue("FREDRIK".equalsIgnoreCase(System.getenv("FREDRIK_RUNTIME")));
+	}
+```
+
+
 ## Misc JUnit functionality
 
 #### To ignore/skip a test or testclass
