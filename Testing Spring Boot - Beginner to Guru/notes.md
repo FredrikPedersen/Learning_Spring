@@ -545,18 +545,18 @@ class ParameterizedTests {
 
 #### Types of mocks
 
-**Dummy** - Object used to get the code to compile.
-**Fake** - An object that has an implementation, but not production ready.
-**Stub** - An object wuth pre defined answers to method calls.
-**Mock** - An object with pre-defined answers to method calls, and has expectations of executions. Can throw an exception if an unexpected invocation occurs.
-**Spy** - In Mockito, Spies are Mock like wrappers around the actual object. Will function as the actual object it is mocking, unless any behaviour is overridden. 
+- **Dummy** - Object used to get the code to compile.
+- **Fake** - An object that has an implementation, but not production ready.
+- **Stub** - An object wuth pre defined answers to method calls.
+- **Mock** - An object with pre-defined answers to method calls, and has expectations of executions. Can throw an exception if an unexpected invocation occurs.
+- **Spy** - In Mockito, Spies are Mock like wrappers around the actual object. Will function as the actual object it is mocking, unless any behaviour is overridden. 
 
 #### Terminology
 
-**Verify** - Used to verify number of times a mocked method has been called.
-**Argument Matcher** - Matches arguments passed to Mocked Method and will allow or disallow.
-**Argument Captor** - Captures arguments passed to a Mocked Method
-	- Allows you to persorm assertions of what was passed in to method.
+- **Verify** - Used to verify number of times a mocked method has been called.
+- **Argument Matcher** - Matches arguments passed to Mocked Method and will allow or disallow.
+- **Argument Captor** - Captures arguments passed to a Mocked Method
+	- Allows you to perform assertions of what was passed in to method.
 
 
 #### Mockito Annotations
@@ -675,7 +675,48 @@ class mockInjectDemo {
 }
 ```
 
+## Section 9: Part 110 and 111 - Returning Values from Mocks and Argument Matchers
 
+- You tell mocks what should be returned when their methods are called
+	- In this example we make SomeRepository's findById-method return person when called with the parameter value 1.
+	
+- In the ArgumentMatcher example we simply verify that someRepository.delete() has been called with any parameter value of type Person.
+
+```Java
+class returnFromMocks {
+	
+	@Mock
+	SomeRepository someRepository;
+	
+	@InjectMocks
+	SomeService someService;
+	
+	@Test
+	void returnFromMock() {
+		
+		//given
+		Person person = new Person();
+		when(someRepository.findById(1)).thenReturn(Optional.of(person));
+		
+		//when
+		Person foundPerson = someService.findById(1);
+		
+		//then
+		assertThat(foundPerson).isNotNull();
+		verify(someRepository).findById(1); //Here we could have used anyInt() instead of 1
+	}
+	
+	@Test
+	void usingArgumentMatcher() {
+		Person person = new Person();
+		
+		someService.delete(person);
+		
+		verify(someRepository).delete(any(Person.class));
+	}
+
+}
+```
 
 
 
