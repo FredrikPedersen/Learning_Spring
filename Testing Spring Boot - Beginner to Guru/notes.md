@@ -558,3 +558,12 @@ class ParameterizedTests {
 **Argument Captor** - Captures arguments passed to a Mocked Method
 	- Allows you to persorm assertions of what was passed in to method.
 
+
+#### Mockito Annotations
+
+```Java
+@Mock 	//used to create a mock
+@Spy 	//used to create a spy
+@InjectMocks 	//Inject mocks/spies into a class under test
+@Captor 	//Captures arguments to mock
+```
