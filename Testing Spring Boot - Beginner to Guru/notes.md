@@ -400,7 +400,7 @@ public class CustomArgsProvider implements ArgumentsProvider {
 	@Override
 	public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
 		return Stream.of(Arguments.of("FL", 1, 1),
-						Arguments.of("OH", 2, 2));
+				Arguments.of("OH", 2, 2));
 	}
 
 }
@@ -424,9 +424,9 @@ class ParameterizedTests {
 	@DisplayName("CSV Input Test -")
 	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
 	@CsvSource({
-				"FL, 1, 1",
-				"OH, 2, 2",
-				"MI, 1, 1"
+		"FL, 1, 1",
+		"OH, 2, 2",
+		"MI, 1, 1"
 	})
 	void csvInputTest(String stateName, int val1, int val2) {
 		System.out.println(stateName + " = " + val1 + ":" + val2);
@@ -455,7 +455,7 @@ class ParameterizedTests {
 	
 	private static Stream<Arguments> getArgs() {
 		return Stream.of(Arguments.of("FL", 1, 1),
-						Arguments.of("OH", 2, 2));
+				Arguments.of("OH", 2, 2));
 	}
 	
 }
