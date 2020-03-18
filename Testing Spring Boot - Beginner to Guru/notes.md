@@ -285,17 +285,8 @@ void testMethod() {
 }
 ```
 
-## Section 6: Part 63 - JUnit Nested Tests
+#### Tagging and Filtering Tests
 
-- Nested tests allows for setting up complex tests.
-- A use case for this is when testing a class dependent on other classes. In the example provided in the course, there is a Service, called OwnerService. An Owner has a Pet, and a Pet has a PetType. 
- The Owner Service is then reliant on the PetTypeService and the PetService to function, so we write nested tests, first testing the PetType service, then the PetService, and then at last the OwnerService.
- This way we ensure that the whole whole chain of dependent classes are working with unit tests. 
-- See example of this in the **Advanced JUnit project**, in the testclass [OwnerMapServiceTest](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/advanced-junit/src/test/java/com/fredrikpedersen/petclinic/services/map/OwnerMapServiceTest.java).
-
-## Section 6: Part 64 - Test Interfaces and Filtering Tests
-
-- Interfaces are a great tool to define common properties in tests, i.e Tags.
 - Tags can be used to filter tests by what part of the program they are testing (like controllers or models).
 
 ```Java
@@ -308,12 +299,40 @@ class IndexControllerTest implements ControllerTests {
 }
 ```
 
-- To filter tests (in IntelliJ), go to the dropdown box (where what class you are going to run is selected) to the left of the run-button in the top toolbar.
-- Click on the dropdown box's arrow, and select **Edit Configurations**.
-- Click on the "+"-button in the top left corner.
-- Add a new JUnit Configuration, name it appropriately, set **Test Kind** to *tags*, and in **Tag Expression**, fill in the sort of tagged classes you want to run
+- To filter tests (in IntelliJ):
+1. Go to the dropdown box (where what class you are going to run is selected) to the left of the run-button in the top toolbar.
+2. Click on the dropdown box's arrow, and select **Edit Configurations**.
+3. Click on the "+"-button in the top left corner.
+4. Add a new JUnit Configuration, name it appropriately, set **Test Kind** to *tags*, and in **Tag Expression**, fill in the sort of tagged classes you want to run
 	- In our example I could fill in "controllers" to make all testclasses tagged with "controllers" run.
-- Apply and run.
+5. Apply and run.
+
+## Section 6: Part 63 - JUnit Nested Tests
+
+- Nested tests allows for setting up complex tests.
+- A use case for this is when testing a class dependent on other classes. In the example provided in the course, there is a Service, called OwnerService. An Owner has a Pet, and a Pet has a PetType. 
+ The Owner Service is then reliant on the PetTypeService and the PetService to function, so we write nested tests, first testing the PetType service, then the PetService, and then at last the OwnerService.
+ This way we ensure that the whole whole chain of dependent classes are working with unit tests. 
+- See example of this in the **Advanced JUnit project**, in the testclass [OwnerMapServiceTest](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/advanced-junit/src/test/java/com/fredrikpedersen/petclinic/services/map/OwnerMapServiceTest.java).
+
+## Section 6: Part 64 & 65 - Test Interfaces and Default Methods
+
+- Interfaces are a great tool to define common properties in tests, i.e Tags or duplicate logic.
+- See documentation for @TestInstance and it's uses cases [here](https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/TestInstance.html).
+
+```Java
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Tag("controller")
+public interface ControllerTests {
+	
+	@BeforeAll
+	default void beforeAll() {
+		System.out.println("Hello from ControllerTests!");
+	}
+}
+```
+
+
 
 
 
