@@ -355,14 +355,97 @@ void repeatedTest() {
 - Allows JUnit to inject parameters into test methods.
 - There are three built in resolvers:
 	- TestInfo - Provides info about the test name, method, class and tags.
-	- RepetionInfo - Provides information about the test repetition.
+	- RepetionInfo - Provides information about the test repetition. NB! Only available in RepeatedTests.
 	- TestReporter - Allows you to publish runtime information for test reporting.
 	
 ```Java
 @RepeatedTest(5)
 void TestWithDependencyInjection(TestInfo testInfo, RepetitionInfo repetitionInfo) {
 	System.out.println(testInfo.getDisplayName() + " " + repetitionInfo.getCurrentRepetition());
+}
 ```
+
+## Section 6: Part 70 to 76 - JUnit Parameterized Tests
+
+- Parameterized tests are used to provide data into tests.
+	- Will run once for each value provided. Ex: valueSourceTest will run twice.
+- First you need a dependency ([latest version](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params)) :
+
+```XML
+<dependency>
+	<groupId>org.junit.jupiter</groupId>
+	<artifactId>junit-jupiter-params</artifactId>
+	<version>5.6.0</version>
+</dependency>
+```
+
+ - Have this input.csv file located in resources folder:
+
+```CSV
+state, val1, val2
+FL, 1, 1
+OH, 2, 2
+MI, 3, 1
+```
+
+```Java
+
+public enum OwnerType {
+
+	INDIVIDUAL, COMPANY
+}
+
+class ParameterizedTests {
+
+	@DisplayName("Value Source Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@ValueSoruce(strings = {"Spring", "Framework"})
+	void valueSourceTest(String val) {
+		System.out.println(val);
+	}
+	
+	@DisplayName("Enum Source Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@EnumSource(OwnerType.class)
+	void enumTest(OwnerType ownerType) {
+		System.out.println(ownerType);
+	}
+	
+	@DisplayName("CSV Input Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@CsvSource({
+				"FL, 1, 1",
+				"OH, 2, 2",
+				"MI, 1, 1"
+	})
+	void csvInputTest(String stateName, int val1, int val2) {
+		System.out.println(stateName + " = " + val1 + ":" + val2);
+	}
+	
+	@DisplayName("CSV File Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@CsvFileSource(resources = "/input.csv", numLinesToSkip = 1) 	//needs a CSV file in resources
+	void csvFileTest(String stateName, int val1, int val2) {
+		System.out.println(stateName + " = " + val1 + ":" + val2);
+	}
+	
+	@DisplayName("Method Provider Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@MethodSource("getArgs")
+	void fromMethodTest(String stateName, int val1, int val2) {
+		System.out.println(stateName + " = " + val1 + ":" + val2);
+	}
+	
+	private static Stream<Arguments> getArgs() {
+		return Stream.of(Arguments.of("FL", 1, 1),
+						Arguments.of("OH", 2, 2));
+	}
+	
+}
+
+
+```
+
 
 
 	
