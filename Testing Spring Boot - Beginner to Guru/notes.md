@@ -855,10 +855,32 @@ class MockitoDemos {
 @SpringJUnitConfig //Combines @ContextConfiguration and @WebAppConfiguration with @ExtendWith(SpringExtension.class) to configre the Spring Context for the test
 @EnabledIf //Conditional execution of test
 @DisabledIf //Conditional execution of test 
-
 ```
 
+## Section 15: Testing With Spring Boot
 
+#### Spring Testing Context with Spring Boot
+
+- **@SpringBootTest** - will enable Spring Context.
+	- Annotation includes @ExtendWith(SpringExtension.class) (only in JUnit 5!).
+- Can be used to start a WebEnvironment with the use of @SpringBootTest(webEnvironment = <option>)
+	- **Options**:
+	- MOCK - Default, loads mock web environment.
+	- RANDOM_PORT - Provided embedded web server listening on a random port (useful to avoid port conflicts).
+	- DEFINED_PORT - Provides embedded web server listening on a 8080 (default) or server port defined in application.properties.
+	- NONE - No Web Environment.
+
+#### Spring Boot Test Annotations
+```Java
+@TestComponent //Stereotype for test components
+@TestConfiguration //Java Configuration for tests
+@LocalServerPort //Inject port of running server
+@MockBean //Inject Mockito Mock
+@SpyBean //Inject Mockito Spy
+```
+	
+	
+	
 
 
 
