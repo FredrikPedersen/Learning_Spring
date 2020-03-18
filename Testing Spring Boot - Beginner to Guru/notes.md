@@ -718,5 +718,94 @@ class returnFromMocks {
 }
 ```
 
+## Section 11: Advanced Mockito
+
+#### Throwing Exceptions
+
+ - Mockito can be used to throw exceptions when a method is called.
+
+```Java
+@Test
+void testDoThrow() {
+
+	doThrow(new RuntimeException()).when(someRepository).delete(any());
+	
+	assertThrows(RuntimeException.class, () -> someRepository.delete(new Person()));
+	
+	verify(someRepository).delete(any());
+}
+```
+
+#### Argument Matchers
+
+- We can use Argument Matchers to controll the mock's return value based on input arguments.
+
+```Java
+@Test
+void argumentMatcherDemo() {
+
+	//given
+	final String MATCH_ME = "MATCH_ME";
+	Person person = new Person();
+	person.setName(MATCH_ME);
+	
+	Person savedPerson = new Person();
+	savedPerson.setId(1);
+	
+	when(someRepository.save(argThat(argument -> argument.getName().equals(MATCH_ME)))).thenReturn(savedPerson);
+
+	Person returnedPerson = someService.save(person);
+	
+	assertThat(returnedPerson.getId()).isEqualTo(1);
+}
+````
+
+#### Argument Capture
+
+- Argument Captors can be used to check what is passed to methods.
+	- Captors can be declared inline or with annotations.
+
+```Java
+
+public class SomeService{
+
+	public List<Person> peopleWithNameLike(Person person) {
+        return someRepository.findAllByNameLike(person.getName());
+    }
+}
+
+class MockitoDemos {
+
+	@Captor
+	ArgumentCaptor<String> captor; //Remove comment on inline declaration and comment this out if you want to test inline declaration.
+
+	@Test
+	void argumentCaptureDemo() {
+		Person person = new Person(1, "Fredrik");
+		List<Person> personList = new ArrayList<>();
+		//final ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+		
+		when(someRepository.findAllByNameLike(captor.capture())).thenReturn(personList);
+		
+		List<Person> returnList = someService.peopleWithNameLike(person);
+		
+		assertThat(captor.getValue()).isEqualtToIgnoringCase("Fredrik");
+	}
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
