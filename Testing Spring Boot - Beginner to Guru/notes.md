@@ -395,6 +395,16 @@ public enum OwnerType {
 	INDIVIDUAL, COMPANY
 }
 
+public class CustomArgsProvider implements ArgumentsProvider {
+	
+	@Override
+	public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+		return Stream.of(Arguments.of("FL", 1, 1),
+						Arguments.of("OH", 2, 2));
+	}
+
+}
+
 class ParameterizedTests {
 
 	@DisplayName("Value Source Test -")
@@ -433,6 +443,13 @@ class ParameterizedTests {
 	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
 	@MethodSource("getArgs")
 	void fromMethodTest(String stateName, int val1, int val2) {
+		System.out.println(stateName + " = " + val1 + ":" + val2);
+	}
+	
+	@DisplayName("Custom Provider Test -")
+	@ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+	@ArgumentsSource(CustomArgsProvider.class)
+	void fromCustomProviderTest(String stateName, int val1, int val2) {
 		System.out.println(stateName + " = " + val1 + ":" + val2);
 	}
 	
