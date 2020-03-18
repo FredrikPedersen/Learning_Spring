@@ -293,7 +293,30 @@ void testMethod() {
  This way we ensure that the whole whole chain of dependent classes are working with unit tests. 
 - See example of this in the **Advanced JUnit project**, in the testclass **OwnerMapServiceTest**.
 
-	
+## Section 6: Part 64 - Test Interfaces and Filtering Tests
+
+- Interfaces are a great tool to define common properties in tests, i.e Tags.
+- Tags can be used to filter tests by what part of the program they are testing (like controllers or models).
+
+```Java
+
+@Tag("controllers")
+public interface ControllerTests {
+]
+
+class IndexControllerTest implements ControllerTests {
+}
+```
+
+- To filter tests (in IntelliJ), go to the dropdown box (where what class you are going to run is selected) to the left of the run-button in the top toolbar.
+- Click on the dropdown box's arrow, and select **Edit Configurations**.
+- Click on the "+"-button in the top left corner.
+- Add a new JUnit Configuration, name it appropriately, set **Test Kind** to *tags*, and in **Tag Expression**, fill in the sort of tagged classes you want to run
+	- In our example I could fill in "controllers" to make all testclasses tagged with "controllers" run.
+- Apply and run.
+
+
+
 	
 	
 	
