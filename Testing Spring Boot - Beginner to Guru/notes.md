@@ -459,12 +459,82 @@ class ParameterizedTests {
 	}
 	
 }
-
-
 ```
 
+## Section 7: Part 81 to 85 - Running Tests with IntelliJ and Maven
+
+#### General Tips
+
+- Under run configurations (see *Tagging and Filtering Tests* on how to get there), you can define Environment Variables which are made available at runtime.
+	- Handy for API Keyes and other credentials
+- When right-clicking a test (or test folder) in the project window, you can select "Run with test coverage" to get test coverage statistics.
+
+#### Maven Surefire Plugin
+
+- Can be used to clean the project (remove all generated files) and run all tests.
+- Needs a plugin configuration:
+```XML
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+    <version>2.22.0</version>
+    <configuration>
+        <argLine>
+            --illegal-access=permit
+        </argLine>
+    </configuration>
+</plugin>
+```
+
+- Reports from the Surefire can be found under target -> surefire-reports.
+- By adding two plugins, we can generate more human friendly test reports.
+```XML
+<plugins>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-site-plugin</artifactId>
+		<version>3.7.1</version>
+	</plugin>
+</plugins>
+
+<reporting>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-surefire-report-plugin</artifactId>
+		<version>2.22.0</version>
+	</plugin>		
+</reporting>
+```
+
+- Now, in the Maven tab in the right sidepanel, run the *site*-script.
+- A site-folder with HTML files will be generated under target -> site.
 
 
+
+#### Maven Failsafe Plugin
+
+- Can be run by selecting Maven tab in the sidepanel, and running the "verify" script.
+- Needs a plugin configuration:
+```XML
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>2.22.0</version>
+    <configuration>
+        <argLine>
+            --illegal-access=permit
+        </argLine>
+    </configuration>
+	<executions>
+		<execution>
+			<goals>
+				<goal>integration-test</goal>
+				<goal>verify</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+```
 	
 	
 	
