@@ -585,3 +585,98 @@ class ParameterizedTests {
     <scope>test</scope>
 </dependency>
 ```
+
+#### Section 9: Part 103 to 107: Creating Mockito Mocks
+
+
+- Three different ways to create mocks
+	- Inline with static method mock(Clazz.class).
+	- Annotated with @Mock over an object with MockitoAnnotations.initMocks(this).
+	- Annotated with @Mock over an object with @ExtendWith(MockitoExtension.class) at class level.
+
+```Java
+
+@ExtendWith(MockitoExtension.class) //Alternative way to initializing annotated mocks
+class mockInitDemo {
+	
+	@Mock
+	Map<String, Object> annotatedMapMock;
+	
+	@BeforeEach
+	void setUp() {
+		//Initialize annotated mocks
+		MockitoAnnotations.initMocks(this);
+	}
+	
+	
+	@Test
+	void inlineMock() {
+		//Example of how to make an inline mock of a Map object
+		Map inlineMapMock = mock(Map.class);
+		
+		assertEquals(inlineMapMock.size(), 0);
+	}
+	
+	@Test
+	void annotatedMock() {
+		//Checking that our annotated mock has been initialized properly
+		annotatedMapMock.put("key", "value");
+		assertEquals(annotatedMapMock.size(), 1);
+	}
+}
+```
+
+- Injecting Mocks into an Object
+	- @InjectMocks tells Mockito to injectmocks into an object at runtime.
+	- This is done by checking for constructors.
+
+- Verify is used to make sure a method is called a certain number of times during the test
+	- May also specify atMost, atLeastOnce, and never. These are pretty much self explanatory.
+
+```Java
+
+@ExtendWith(MockitoExtension.class)
+class mockInjectDemo {
+	
+	@Mock
+	SomeRepository someRepository;
+	
+	@InjectMocks
+	SomeService someService;
+	
+	@Test
+	void delete() {
+		someService.deleteById(1);
+		someService.deleteById(2);
+		
+		verify(someRepository, times(2)).deleteById(1);
+	}
+	
+	@Test
+	void deleteOnce() {
+		someService.deleteById(1);
+		
+		verify(someRepository, atLeastOnce()).deleteById(1);
+	}
+	
+	@Test
+	void deleteAtMost() {
+		someService.deleteById(1);
+		
+		verify(someRepository, atMost(5)).deleteById(1);
+	}
+	
+	@Test
+	void deleteNever() {
+		someService.deleteById(1);
+		
+		verify(someRepository, never()).deleteById(2);
+	}
+
+}
+```
+
+
+
+
+
