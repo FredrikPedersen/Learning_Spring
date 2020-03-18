@@ -672,7 +672,6 @@ class mockInjectDemo {
 		
 		verify(someRepository, never()).deleteById(2);
 	}
-
 }
 ```
 
