@@ -536,5 +536,25 @@ class ParameterizedTests {
 </plugin>
 ```
 	
-	
-	
+## Section 9: Part 101 - Introduction to Mockito
+
+- Mockito is the most popular mocking framewok for testing Java,
+- Mocks (aka test doubles) are alternate implementations of objects to replace real objects in tests.
+- Works well with dependency injection.
+- For the class under test, injected dependencies can be mocks.
+
+#### Types of mocks
+
+**Dummy** - Object used to get the code to compile.
+**Fake** - An object that has an implementation, but not production ready.
+**Stub** - An object wuth pre defined answers to method calls.
+**Mock** - An object with pre-defined answers to method calls, and has expectations of executions. Can throw an exception if an unexpected invocation occurs.
+**Spy** - In Mockito, Spies are Mock like wrappers around the actual object. Will function as the actual object it is mocking, unless any behaviour is overridden. 
+
+#### Terminology
+
+**Verify** - Used to verify number of times a mocked method has been called.
+**Argument Matcher** - Matches arguments passed to Mocked Method and will allow or disallow.
+**Argument Captor** - Captures arguments passed to a Mocked Method
+	- Allows you to persorm assertions of what was passed in to method.
+
