@@ -1,8 +1,8 @@
 package com.fredrikpedersen.petclinic.services.springdatajpa;
 
-import com.fredrikpedersen.petclinic.services.SpecialtyService;
 import com.fredrikpedersen.petclinic.model.Speciality;
 import com.fredrikpedersen.petclinic.repositories.SpecialtyRepository;
+import com.fredrikpedersen.petclinic.services.SpecialtyService;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.formatters;
 
-import com.fredrikpedersen.petclinic.model.PetType;
 import com.fredrikpedersen.petclinic.fauxspring.Formatter;
+import com.fredrikpedersen.petclinic.model.PetType;
 import com.fredrikpedersen.petclinic.services.PetTypeService;
 
 import java.text.ParseException;

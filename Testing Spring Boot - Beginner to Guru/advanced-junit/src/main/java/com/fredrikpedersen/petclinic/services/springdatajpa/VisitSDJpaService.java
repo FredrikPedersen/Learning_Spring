@@ -1,7 +1,7 @@
 package com.fredrikpedersen.petclinic.services.springdatajpa;
 
-import com.fredrikpedersen.petclinic.repositories.VisitRepository;
 import com.fredrikpedersen.petclinic.model.Visit;
+import com.fredrikpedersen.petclinic.repositories.VisitRepository;
 import com.fredrikpedersen.petclinic.services.VisitService;
 
 import java.util.HashSet;

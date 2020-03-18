@@ -1,9 +1,9 @@
 package com.fredrikpedersen.petclinic.services.map;
 
+import com.fredrikpedersen.petclinic.model.Speciality;
 import com.fredrikpedersen.petclinic.model.Vet;
 import com.fredrikpedersen.petclinic.services.SpecialtyService;
 import com.fredrikpedersen.petclinic.services.VetService;
-import com.fredrikpedersen.petclinic.model.Speciality;
 
 import java.util.Set;
 

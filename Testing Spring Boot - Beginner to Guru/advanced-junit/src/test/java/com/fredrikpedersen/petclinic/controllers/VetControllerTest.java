@@ -1,12 +1,13 @@
 package com.fredrikpedersen.petclinic.controllers;
 
-import com.fredrikpedersen.petclinic.services.SpecialtyService;
-import com.fredrikpedersen.petclinic.services.map.SpecialityMapService;
 import com.fredrikpedersen.petclinic.fauxspring.Model;
-import com.fredrikpedersen.petclinic.fauxspring.ModelMapImpl;
 import com.fredrikpedersen.petclinic.model.Vet;
+import com.fredrikpedersen.petclinic.services.SpecialtyService;
 import com.fredrikpedersen.petclinic.services.VetService;
+import com.fredrikpedersen.petclinic.services.map.SpecialityMapService;
 import com.fredrikpedersen.petclinic.services.map.VetMapService;
+import com.fredrikpedersen.petclinic.ControllerTests;
+import com.fredrikpedersen.petclinic.fauxspring.ModelMapImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

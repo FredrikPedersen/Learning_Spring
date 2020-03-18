@@ -3,9 +3,6 @@ package com.fredrikpedersen.petclinic.fauxspring;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by jt on 2018-10-25.
- */
 public class ModelMapImpl implements Model {
     Map<String, Object> map = new HashMap<>();
 
