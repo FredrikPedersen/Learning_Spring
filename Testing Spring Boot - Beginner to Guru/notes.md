@@ -332,8 +332,37 @@ public interface ControllerTests {
 }
 ```
 
+## Section 6: Part 66 - Repeating Tests with JUnit 5
 
+- In some scenarios, you may want to run a test multiple times.
+	- A use case might be if you generate a random number and want to make sure it stays within a certain range.
+- Use the @RepeatedTest(value = n, name ="{displayName} : {currentRepetition} - {totalRepetitions}")
+	- n is the number of repetitions.
+	- displayName is pulled from the methods's displayname.
+	- currentRepetition and totalRepetitions are both configured automatically.
+	- the name attribute is simply for formatting the name in the "test results"-box, it has no functionality.
 
+```Java
+@RepeatedTest(value = 10, name ="{displayName} : {currentRepetition} - {totalRepetitions}")
+@DisplayName("Repeated Test")
+void repeatedTest() {
+}
+```
+
+## Section 6: Part 67 - JUnit Test Dependency Injection
+
+- JUnit Defines a Parameter Resolver API to resolve parameters at runtime.
+- Allows JUnit to inject parameters into test methods.
+- There are three built in resolvers:
+	- TestInfo - Provides info about the test name, method, class and tags.
+	- RepetionInfo - Provides information about the test repetition.
+	- TestReporter - Allows you to publish runtime information for test reporting.
+	
+```Java
+@RepeatedTest(5)
+void TestWithDependencyInjection(TestInfo testInfo, RepetitionInfo repetitionInfo) {
+	System.out.println(testInfo.getDisplayName() + " " + repetitionInfo.getCurrentRepetition());
+```
 
 
 	
