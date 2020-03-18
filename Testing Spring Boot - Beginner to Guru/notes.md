@@ -795,13 +795,68 @@ class MockitoDemos {
 
 ```
 
+## Section 12: Testing With Spring Framework
 
+#### Spring Framework Testing Features
 
+- **Features for Unit Testing**
+	- Environment - Mock Environment and Properties Source.
+	- JNDI - Mock of JNDI Lookup.
+	- Servlet API - For testing of web environment.
+	- Spring Web Reactive - Testing of reactive web environment.
 
+- **Testing Utilities**
+	- ReflectionTestUtils - allows use of reflection to modify private fields.
+	- Spring can autowire private properties (considered poor practice).
+	- Can also be used to hook into bean lifecycle events.
+	- AOP Utils - Helps with testing of AOP.
 
+#### Spring MVC Test
 
+- Robust Framework for Testing Controller interactions.
+	- MockHttpServletRequest - Mock implementation of request/respone.
+	- MockHttpSession - Mock of HTTP session.
+	- ModelAndViewAssert - Assertion Utilities.
+- Framework allows testing of web requests withouth the need of a running container.
+	- Allows true unit tests for controller.
+	- Tests run much faster when the web contect is not started.
 
+#### Spring Integration Testing
 
+- Integration testing is when the Spring Context is started to support the test.
+- Loading the Spring Context is considered an expensive operation.
+	- Can take 10-40 seconds, depending on complexity and hardware.
+- Spring will cache the context between tests to improve performance.
+- Dependency Injection - Spring can be used to inject beans into test classes.
+- Transaction Management - By default Spring will automatically rolllback database transactions.
+
+#### Spring Framework Testing Annotations
+
+```Java
+@BootstrapWith //Class-level annotation to configure how the test context is bootstrapped
+@ContextConfiguration //Class-level annotation to configure the application context
+@WebAppConfiguration //Class-level annotation to configure a web application context
+@ContextHierarchy //Class-level annotation to set multiple @ContextConfigurations
+@ActiveProfiles //Class-level annotation to set active profiles for tests
+@TestPropertySource //Class-level annotation to set property source for test
+@DirtiesContext //Class or method-level annotation which tells Spring to re-load context after
+
+@TestExecutionListeners //Used to configure test execution listeners
+@Commit //Class or method-level annotation to commit action of test to database
+@Rollback //Class or method-level annotation to rollback action of test from database
+@BeforeTransaction //Run a method which returns void before a transaction is started
+@AfterTransaction //Run a method which returns void after a transaction has completed
+@Sql //Used to configre SQL scripts to run before a test
+@SqlConfig //Configuration for the parsing of SQL Scripts
+@SqlGroup //Configure a grouping of SQL Scripts
+
+//Spring JUnit 5 Annotations
+@SpringJUnitConfig //Combines @ContextConfiguration with @ExtendWith(SpringExtension.class) to configure the Spring Context for the test
+@SpringJUnitConfig //Combines @ContextConfiguration and @WebAppConfiguration with @ExtendWith(SpringExtension.class) to configre the Spring Context for the test
+@EnabledIf //Conditional execution of test
+@DisabledIf //Conditional execution of test 
+
+```
 
 
 
