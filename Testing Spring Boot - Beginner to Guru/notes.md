@@ -247,7 +247,7 @@ class TestClass {
 ## Section 5: Part 54 & 55 - JUnit Assumptions and Conditional Test Execution
 
 - [Assumptions Documentation](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/Assumptions.html)
-- An assumption is used for checking if it makes sense to run a test under certain conditions. If an assumption is failed, it will not result in test failure, but test abortian.
+- An assumption is used for checking if it makes sense to run a test under certain conditions. If an assumption is failed, it will not result in test failure, but test abortion.
 - The the most common use case for this is if you have an application running in different environments.
 - See the JUnit [User Guide for narrowing down further whether a test should run or not](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution). 
 
@@ -291,7 +291,7 @@ void testMethod() {
 - A use case for this is when testing a class dependent on other classes. In the example provided in the course, there is a Service, called OwnerService. An Owner has a Pet, and a Pet has a PetType. 
  The Owner Service is then reliant on the PetTypeService and the PetService to function, so we write nested tests, first testing the PetType service, then the PetService, and then at last the OwnerService.
  This way we ensure that the whole whole chain of dependent classes are working with unit tests. 
-- See example of this in the **Advanced JUnit project**, in the testclass **OwnerMapServiceTest**.
+- See example of this in the **Advanced JUnit project**, in the testclass [OwnerMapServiceTest](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/advanced-junit/src/test/java/com/fredrikpedersen/petclinic/services/map/OwnerMapServiceTest.java).
 
 ## Section 6: Part 64 - Test Interfaces and Filtering Tests
 
@@ -302,7 +302,7 @@ void testMethod() {
 
 @Tag("controllers")
 public interface ControllerTests {
-]
+}
 
 class IndexControllerTest implements ControllerTests {
 }
