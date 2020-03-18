@@ -536,7 +536,7 @@ class ParameterizedTests {
 </plugin>
 ```
 	
-## Section 9: Part 101 - Introduction to Mockito
+## Section 9: Part 101 & 102 - Introduction to Mockito
 
 - Mockito is the most popular mocking framewok for testing Java,
 - Mocks (aka test doubles) are alternate implementations of objects to replace real objects in tests.
@@ -566,4 +566,22 @@ class ParameterizedTests {
 @Spy 	//used to create a spy
 @InjectMocks 	//Inject mocks/spies into a class under test
 @Captor 	//Captures arguments to mock
+```
+
+#### Mockito Dependencies
+
+```XML
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>3.3.3</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-junit-jupiter</artifactId>
+    <version>3.3.3</version>
+    <scope>test</scope>
+</dependency>
 ```
