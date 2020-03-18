@@ -218,7 +218,7 @@ public class SomeClass {
 
 class TestClass {
 
-	SomeClass someClass;
+	private SomeClass someClass;
 	
 	@BeforeEach
 	void setUp() {
@@ -239,26 +239,26 @@ class TestClass {
 	@Test
 	void timeourPreemptiveTest() {
 		//assertTimeoutPreemptively will fail the test once the condition duration is exceeded
-		assertTimeoutPreemptively(Duration.ofMillis(100), () -> someClass.timeourMethod());
+		assertTimeoutPreemptively(Duration.ofMillis(100), () -> someClass.timeoutMethod());
 	}
 }
 ```
 
-## Section 5: Part 54 - JUnit Assumptions
+## Section 5: Part 54 & 55 - JUnit Assumptions and Conditional Test Execution
 
 - [Assumptions Documentation](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/Assumptions.html)
 - An assumption is used for checking if it makes sense to run a test under certain conditions. If an assumption is failed, it will not result in test failure, but test abortian.
 - The the most common use case for this is if you have an application running in different environments.
+- See the JUnit [User Guide for narrowing down further whether a test should run or not](https://junit.org/junit5/docs/current/user-guide/#writing-tests-conditional-execution). 
 
 ```Java
-	@Test
-	void testAssumptionTrue() {
+@Test
+void testAssumptionTrue() {
 	
-		//will fail if you do not have a runtime variable set to "FREDRIK_RUNTIME", following tests will still run
-		assumeTrue("FREDRIK".equalsIgnoreCase(System.getenv("FREDRIK_RUNTIME")));
-	}
+	//will fail if you do not have a runtime variable set to "FREDRIK_RUNTIME", following tests will still run
+	assumeTrue("FREDRIK".equalsIgnoreCase(System.getenv("FREDRIK_RUNTIME")));
+}
 ```
-
 
 ## Misc JUnit functionality
 
@@ -267,7 +267,7 @@ class TestClass {
 ```Java
 
 @Disabled(value = "Disabled until we get our shit together")
-class testingClass {
+class TestingClass {
 
 	@Disabled
 	@Test
@@ -285,18 +285,15 @@ void testMethod() {
 }
 ```
 
+## Section 6: Part 63 - JUnit Nested Tests
 
+- Nested tests allows for setting up complex tests.
+- A use case for this is when testing a class dependent on other classes. In the example provided in the course, there is a Service, called OwnerService. An Owner has a Pet, and a Pet has a PetType. 
+ The Owner Service is then reliant on the PetTypeService and the PetService to function, so we write nested tests, first testing the PetType service, then the PetService, and then at last the OwnerService.
+ This way we ensure that the whole whole chain of dependent classes are working with unit tests. 
+- See example of this in the **Advanced JUnit project**, in the testclass **OwnerMapServiceTest**.
 
-
-
- 
 	
 	
 	
 	
-	
-	
-	
-	
-	
-
