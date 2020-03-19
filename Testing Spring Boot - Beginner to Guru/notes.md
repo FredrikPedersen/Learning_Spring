@@ -1026,7 +1026,6 @@ class MVCTestDemo {
 @SpyBean //Inject Mockito Spy
 ```
 	
-	
 ## Section 16: Spring MVC REST Controller Tests
 
 #### Jayway JsonPath
@@ -1055,3 +1054,28 @@ class MVCTestDemo {
 - Configuring a test for using the Spring Context requires a bit of a different setup.
 - In the @WebMVC example we don't use the full Spring Context, just the Web-part of it, hence the @WebMvcTest and not @SpringBootTest tag.
 - See [BeerControllerTestWithContext](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/web/controllers/BeerControllerTestWithContext.java).
+
+#### Using Test RestTemplate
+
+- This part demonstrates how to create an Integration Test utilizing the entire Spring Context.
+- The test itself just asserts that the number of Beers in the database are correct (3).
+- See [BeerControllerIT](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/web/controllers/BeerControllerIT.java).
+
+## Section 17: Testing With WireMock
+
+#### Introduction to WireMock
+
+- Wiremock is a simulator for HTTP based APIs
+- Can be configured to serve canned responses.
+- Also, can be used to verify requests.
+- Like Mockito, but for WebServices.
+
+#### Wiremock: Key Features
+
+- HTTP Response Stubbing
+	- Response based on matchers for URL, header, and/or body.
+- Request Verification.
+- Run for Unit tests or standalone.
+- Configure via Java, JSON or JSON over HTTP.
+- Recording and playback.
+- Configurable delays.
