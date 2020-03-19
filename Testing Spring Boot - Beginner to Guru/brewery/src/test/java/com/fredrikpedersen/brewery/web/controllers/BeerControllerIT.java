@@ -1,0 +1,30 @@
+package com.fredrikpedersen.brewery.web.controllers;
+
+import com.fredrikpedersen.brewery.web.model.BeerPagedList;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+/**
+ * @author Fredrik Pedersen
+ * @version 1.0
+ * @since 19/03/2020 at 15:28
+ */
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class BeerControllerIT {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    void testListBeers() {
+        BeerPagedList beerPagedList = restTemplate.getForObject("/api/v1/beer", BeerPagedList.class);
+
+        assertThat(beerPagedList.getContent()).hasSize(3);
+    }
+
+}
