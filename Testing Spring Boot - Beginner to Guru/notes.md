@@ -1040,8 +1040,8 @@ class MVCTestDemo {
 
 #### Using JsonPath in MockMVC Tests
 
-- See [BeerControllerTest: testGetBeerById](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on single attributes.
-- See [BeerControllerTest: testListBeers](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on list attributes.
+- See [BeerControllerTest: testGetBeerById](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/web/controllers/BeerControllerTest.java) for use on single attributes.
+- See [BeerControllerTest: testListBeers](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/web/controllers/BeerControllerTest.java) for use on list attributes.
 
 #### Using Custom Message Converters with Spring MVC Test
 
@@ -1050,3 +1050,7 @@ class MVCTestDemo {
 - In BeerControllerTest: testGetBeerById we now add a DateTimeFormatter and an assertion on the date object in the validBeer-object.
 - This part came somewhat out of the blue in the course and is not really explained any better.
 
+#### @WebMvc Test Slice
+
+- Configuring a test for using the Spring Context requires a bit of a different setup.
+- See [BeerControllerTestWithContext](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/web/controllers/BeerControllerTestWithContext.java).
