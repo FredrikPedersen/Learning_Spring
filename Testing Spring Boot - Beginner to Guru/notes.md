@@ -880,7 +880,14 @@ class MockitoDemos {
 ```
 	
 	
-	
+## Section 16: Spring MVC REST Controller Tests
+
+#### Jayway JsonPath
+
+- Is used to read JSON documents.
+- GitHub repo with documentation can be found [here](https://github.com/json-path/JsonPath).
+- Page where you can try different queries is found [here](http://jsonpath.herokuapp.com/).
+- Is included in Spring Boot dependencies.
 
 
 
