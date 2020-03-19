@@ -857,6 +857,99 @@ class MockitoDemos {
 @DisabledIf //Conditional execution of test 
 ```
 
+## Section 14: Spring MVC Test
+
+#### Spring MVC Test Configuration Modes
+
+- Standalone Setup
+	- Very light weight, ideal for unit tests.
+	- Tests one controller at a time.
+	- Allows for testing of controller requests and responses.
+
+- WebAppContextSetup
+	- Loads larger context of Spring Configuration.
+	- Tests many controllers per configuration.
+	- Allows for testing of application config.
+
+
+#### Static imports
+
+- Spring MVCTest users a "fluen" API via several Static Imports.
+	- MockMvcRequestBuilders - Builds Request.
+	- MockMvcResultsMatchers - Create assertions against response.
+	- MockMvcBuilders - Configure and build an instance of MockMvs.
+	
+#### Important Differences from Container
+
+- Spring MVC Tests does not use a running Servlet Container.
+- Not network requests are made.
+- HTML is not generated, thus templates are not executed (JSP, Thymeleaf etc).
+- You can test the view (template) requested, or directed to.
+	- You cannot test excpected HTML to be generated.
+- Spring does support testing with a running container when needed.
+
+#### Using Spring MVC Test
+
+- NB! These sample controllers are returning views, and are not REST Controllers!
+- These samples are here to show use of Spring MVC Test, for how to test REST Controllers, see Section 16!
+- Here we are also using JUnit BDD, which is a bit easier to read and understand.
+	- Like *given(someService.findAll()).willReturn(personList)* instead of *when(someService.findAll()).thenReturn(personList)*
+	- Functionality is the same, but the methods are different. 
+
+```Java
+
+@Controller
+public class SomeController {
+
+	private final SomeService someService;
+	
+	public SomeController(SomeService someService) {
+	
+		this.someService = someService;
+	}
+	
+	@RequestMapping(value = {"/index.html"})
+	public String showAll(Map<String, Object> model) {
+	
+		List<Person> people = someService.findAll();
+		model.put("people", people);
+		return "index";
+	}
+
+}
+
+@ExtendWith(MockitoExtension.class)
+class MVCTestDemo {
+
+	@Mock
+	private SomeService someService;
+	
+	@InjectMocks
+	private SomeController someController;
+	
+	MockMvc mockMvc;
+	List<Person> personList = new ArrayList<>();
+	
+	@BeforeEach
+	void setUp() {
+	
+		personList.add(new Person());
+		given(someService.findAll()).willReturn(personList);
+		
+		mockMvc = MockMvcBuilders.standaloneSetup(someController).build();
+	}
+	
+	@Test
+	void mockMvcDemo() {
+		mockMvc.perform(get("/index.html"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeExists("person"))
+				.andExpect(view().name("index"));
+	}
+}
+```
+
+
 ## Section 15: Testing With Spring Boot
 
 #### Spring Testing Context with Spring Boot
