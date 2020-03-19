@@ -895,6 +895,9 @@ class MockitoDemos {
 - Here we are also using JUnit BDD, which is a bit easier to read and understand.
 	- Like *given(someService.findAll()).willReturn(personList)* instead of *when(someService.findAll()).thenReturn(personList)*
 	- Functionality is the same, but the methods are different. 
+	
+
+#### Testing a Controller Method returning a View
 
 ```Java
 
@@ -908,7 +911,7 @@ public class SomeController {
 		this.someService = someService;
 	}
 	
-	@RequestMapping(value = {"/index.html"})
+	@RequestMapping(value = "/index.html")
 	public String showAll(Map<String, Object> model) {
 	
 		List<Person> people = someService.findAll();
@@ -940,7 +943,7 @@ class MVCTestDemo {
 	}
 	
 	@Test
-	void mockMvcDemo() {
+	void mockMvcGet() {
 		mockMvc.perform(get("/index.html"))
 				.andExpect(status().isOk())
 				.andExpect(model().attributeExists("person"))
@@ -948,6 +951,63 @@ class MVCTestDemo {
 	}
 }
 ```
+
+#### Testing a Form POST
+
+- Controller takes in a person as a parameter
+
+```Java
+
+@Controller
+public class SomeController {
+
+	private final SomeService someService;
+	
+	public SomeController(SomeService someService) {
+	
+		this.someService = someService;
+	}
+	
+	@RequestMapping(value = "/index.html", method = RequestMethod.POST)
+	public String showAll(@Valid Person person, BindingResult result) {
+		//posting logic
+	}
+
+}
+
+@ExtendWith(MockitoExtension.class)
+class MVCTestDemo {
+
+	@Mock
+	private SomeService someService;
+	
+	@InjectMocks
+	private SomeController someController;
+	
+	MockMvc mockMvc;
+	List<Person> personList = new ArrayList<>();
+	
+	@BeforeEach
+	void setUp() {
+
+		mockMvc = MockMvcBuilders.standaloneSetup(someController).build();
+	}
+	
+	@Test
+	void mockMvcPost() {
+		mockMvc.perform(post("/index.html")
+					.param("firstName", "Fredrik")
+					.param("lastName", "Pedersen")
+					.param("address", "Roadstreet 123"))
+				.andExpect(status().isOk())
+	}
+}
+```
+
+
+
+
+
 
 
 ## Section 15: Testing With Spring Boot
