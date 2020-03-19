@@ -1004,12 +1004,6 @@ class MVCTestDemo {
 }
 ```
 
-
-
-
-
-
-
 ## Section 15: Testing With Spring Boot
 
 #### Spring Testing Context with Spring Boot
@@ -1042,9 +1036,17 @@ class MVCTestDemo {
 - Page where you can try different queries is found [here](http://jsonpath.herokuapp.com/).
 - Is included in Spring Boot dependencies.
 
-- **NOTE: From here on out the tests are being run in the Brewery Project. Writing samples for everything that is being demonstrated will take a lot of time, so I will link to the relevant Test instead.
+- **NOTE: From here on the tests are being run in the Brewery Project. Writing samples for everything being demonstrated will be very time consuming, so I will link to the relevant Test instead.**
 
 #### Using JsonPath in MockMVC Tests
 
 - See [BeerControllerTest: testGetBeerById](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on single attributes.
 - See [BeerControllerTest: testListBeers](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on list attributes.
+
+#### Using Custom Message Converters with Spring MVC Test
+
+- You can create your own Jackson object converters. The exact use cases for this is not explained in the course.
+- In BeerControllerTest we add a method jackson2HttpMessageConverter, then in the setUp-method where we build the mockMvc, we add *setMessageConverters(jackson2HttpMessageConverter())* before .build() is called.
+- In BeerControllerTest: testGetBeerById we now add a DateTimeFormatter and an assertion on the date object in the validBeer-object.
+- This part came somewhat out of the blue in the course and is not really explained any better.
+
