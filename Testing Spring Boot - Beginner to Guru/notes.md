@@ -1042,7 +1042,9 @@ class MVCTestDemo {
 - Page where you can try different queries is found [here](http://jsonpath.herokuapp.com/).
 - Is included in Spring Boot dependencies.
 
+- **NOTE: From here on out the tests are being run in the Brewery Project. Writing samples for everything that is being demonstrated will take a lot of time, so I will link to the relevant Test instead.
 
+#### Using JsonPath in MockMVC Tests
 
-
-
+- See [BeerControllerTest: testGetBeerById](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on single attributes.
+- See [BeerControllerTest: testListBeers](https://github.com/springframeworkguru/tsbb2b-sfg-brewery/blob/jsonPath/src/test/java/guru/springframework/brewery/web/controllers/BeerControllerTest.java) for use on list attributes.
