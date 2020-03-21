@@ -1079,3 +1079,28 @@ class MVCTestDemo {
 - Configure via Java, JSON or JSON over HTTP.
 - Recording and playback.
 - Configurable delays.
+
+#### Wiremock Standalone Use
+
+- WireMock standalone instructions and download link can be found [here](http://wiremock.org/docs/running-standalone/).
+- With JSON configuration, add the JSON config to the folder "mappings", which is generated in the same folder you run WireMock from.
+	- Remember to restart WireMock when adding new mappings.
+- In the course the following config is used for the brewery application:
+	- It tells WireMock that for GET-requests the specified URL, it should return the specified response.
+
+```JSON
+{
+	"id" : "b3685b8b-6085-4463-bdee-e5f5dbdaf48a",
+	"request" : {
+		"url" : "/v1/payors/0a818933-087d-47f2-ad83-2f986ed087eb",
+		"method" : "GET"
+	},
+	"response" : {
+		"status" : 200,
+		"body" : "{\"payorId\":\"0a818933-087d-47f2-ad83-2f986ed087eb\"}",
+		"transformers" : [ "response-template" ]
+	},
+	"uuid" : "b3685b8b-6085-4463-bdee-e5f5dbdaf48a"
+}
+```
+
