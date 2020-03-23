@@ -874,12 +874,14 @@ class MockitoDemos {
 }
 ```
 
-#### Verify Order of Interactions
+#### Verify Order and Number of Interactions
 
 - Mockito can be used to verify the order different methods are called.
 - In this example, say we have a controller that utilizes two different services 
-	- The result of service2 is dependent on the result og service1.
+	- The result of service2 is dependent on the result of service1.
 	- We therefore verify that service1 is called before service2
+	- By adding *times(n)* we also assert that the service mock is only called n-number of times.
+	- Could use method *verifyZeroInteractions(mock)* to verify that a mock is not invocked.
 
 ```Java
 @Test
@@ -893,8 +895,8 @@ void inOrderDemo() {
 	someController.findPeople(person);
 	
 	//then
-	inOrder.verify(someService1).findAllByLastName(anyString());
-	inOrder.verify(someService2).findCityOfAllPeople(anyList());
+	inOrder.verify(someService1, times(1)).findAllByLastName(anyString());
+	inOrder.verify(someService2, times(1)).findCityOfAllPeople(anyList());
 }
 ```
 
@@ -1228,4 +1230,4 @@ class MVCTestDemo {
 ```
 
 - See [GitHub page](https://github.com/JensPiegsa/wiremock-extension) for updated versions and an Example use of the extension.
-- Se [BeerOrderStatusChangeEventListenerTest] (https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/events/BeerOrderStatusChangeEventListenerTest.java) for how to mock a response from a HTTP API.
+- Se [BeerOrderStatusChangeEventListenerTest](https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/events/BeerOrderStatusChangeEventListenerTest.java) for how to mock a response from a HTTP API.
