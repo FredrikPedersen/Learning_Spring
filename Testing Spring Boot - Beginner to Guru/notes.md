@@ -1104,3 +1104,25 @@ class MVCTestDemo {
 }
 ```
 
+#### Testing With WireMock
+
+- Using Wiremock with JUnit5 requires the following in your POM:
+
+```XML
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>com.github.JensPiegsa</groupId>
+    <artifactId>wiremock-extension</artifactId>
+    <version>0.4.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
+- See [GitHub page](https://github.com/JensPiegsa/wiremock-extension) for updated versions and an Example use of the extension.
+- Se [BeerOrderStatusChangeEventListenerTest] (https://github.com/FredrikPedersen/Learning_Spring/blob/master/Testing%20Spring%20Boot%20-%20Beginner%20to%20Guru/brewery/src/test/java/com/fredrikpedersen/brewery/events/BeerOrderStatusChangeEventListenerTest.java) for how to mock a response from a HTTP API.
