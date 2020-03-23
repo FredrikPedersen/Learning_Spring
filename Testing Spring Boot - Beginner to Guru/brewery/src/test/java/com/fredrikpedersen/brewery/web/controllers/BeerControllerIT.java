@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 19/03/2020 at 15:28
+ * Created by jt on 2019-03-03.
  */
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BeerControllerIT {
 
@@ -26,5 +23,4 @@ public class BeerControllerIT {
 
         assertThat(beerPagedList.getContent()).hasSize(3);
     }
-
 }
