@@ -795,6 +795,87 @@ class MockitoDemos {
 
 ```
 
+#### Mockito Answers
+
+- Mockito Answers can be used to modify the response behaviour from methods.
+- See [here](http://sangsoonam.github.io/2019/01/24/mockito-answers.html) for some additional info.
+
+```Java
+class MockitoDemos {
+
+	@Captor
+	ArgumentCaptor<String> captor;
+
+	@BeforeEach
+	void setUp() {
+		given(someService.findAllByLastName(captor.capture())).willAnswer(invocation -> {
+			
+			List<Person> people = new ArrayList<>();
+			String name = invocation.getArgument(0);
+			
+			if (name.equals("Pedersen") {
+				people.add(new Person(1, "Fredrik", "Pedersen"));
+				return people;
+			} else if (name.equals("DontFindMe") {
+				return people;
+			} else if (name.equals("FindMe") {
+				people.add(new Person(1, "Fredrik", "Pedersen"));
+				people.add(new Person(2, "Nikita", "Petrovs"));
+				return people;
+			}
+			
+			throw new RuntimeException("Invalid Argument");
+		});
+	}
+	
+	@Test
+	void answerDemo() {
+	
+		//given
+		Person person = new Person (1, "Fredrik", "Pedersen");
+		
+		//when
+		String viewName = someController.findPersoByLastName(person); //assuming that the controller returns a view called "people/{personId}" when a person is found
+		
+		//then
+		assertThat("Pedersen").isEqualtToIgnoringCase(captor.getValue());
+		assertThat("someSite/people/1").isEqualToIgnoringCase(viewName);
+	
+	}
+	
+	@Test
+	void answerDemo2() {
+	
+		//given
+		Person person = new Person (1, "Fredrik", "DontFindMe");
+		
+		//when
+		String viewName = someController.findPersoByLastName(person); //assuming that the controller returns a view called "people/notfound" when the people list is empty
+		
+		//then
+		assertThat("DontFindMe").isEqualtToIgnoringCase(captor.getValue());
+		assertThat("someSite/notfound").isEqualToIgnoringCase(viewName);
+	
+	}
+	
+	@Test
+	void answerDemo3() {
+	
+		//given
+		Person person = new Person (1, "Fredrik", "FindMe");
+		
+		//when
+		String viewName = someController.findPersoByLastName(person); //assuming that the controller returns a view called "people/peopleList" when there are more than one person in the returned list.
+		
+		//then
+		assertThat("FindMe").isEqualtToIgnoringCase(captor.getValue());
+		assertThat("someSite/peopleList").isEqualToIgnoringCase(viewName);
+	}
+}
+
+
+```
+
 ## Section 12: Testing With Spring Framework
 
 #### Spring Framework Testing Features
