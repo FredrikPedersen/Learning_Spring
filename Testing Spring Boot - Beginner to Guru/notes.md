@@ -872,8 +872,30 @@ class MockitoDemos {
 		assertThat("someSite/peopleList").isEqualToIgnoringCase(viewName);
 	}
 }
+```
 
+#### Verify Order of Interactions
 
+- Mockito can be used to verify the order different methods are called.
+- In this example, say we have a controller that utilizes two different services 
+	- The result of service2 is dependent on the result og service1.
+	- We therefore verify that service1 is called before service2
+
+```Java
+@Test
+void inOrderDemo() {
+
+	//given
+	Person person = new Person(1, "Fredrik", "Pedersen", "Oslo");
+	InOrder inOrder = inOrder(someService1, someService2); //Pass in mockObjects here
+	
+	//when
+	someController.findPeople(person);
+	
+	//then
+	inOrder.verify(someService1).findAllByLastName(anyString());
+	inOrder.verify(someService2).findCityOfAllPeople(anyList());
+}
 ```
 
 ## Section 12: Testing With Spring Framework
