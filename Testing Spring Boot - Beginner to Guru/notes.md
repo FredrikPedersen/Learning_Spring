@@ -881,7 +881,8 @@ class MockitoDemos {
 	- The result of service2 is dependent on the result of service1.
 	- We therefore verify that service1 is called before service2
 	- By adding *times(n)* we also assert that the service mock is only called n-number of times.
-	- Could use method *verifyZeroInteractions(mock)* to verify that a mock is not invocked.
+	- Use method *verifyZeroInteractions(mock)* to verify that a mock is not invocked at all.
+	- Use method *verifyNoMoreInteractions(mock)* to verify that there are no more interactions with that mock after the method call.
 
 ```Java
 @Test
