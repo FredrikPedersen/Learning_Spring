@@ -683,6 +683,7 @@ class mockInjectDemo {
 - In the ArgumentMatcher example we simply verify that someRepository.delete() has been called with any parameter value of type Person.
 
 ```Java
+@ExtendWith(MockitoExtension.class)
 class returnFromMocks {
 	
 	@Mock
@@ -774,6 +775,7 @@ public class SomeService{
     }
 }
 
+@ExtendWith(MockitoExtension.class)
 class MockitoDemos {
 
 	@Captor
@@ -801,6 +803,7 @@ class MockitoDemos {
 - See [here](http://sangsoonam.github.io/2019/01/24/mockito-answers.html) for some additional info.
 
 ```Java
+@ExtendWith(MockitoExtension.class)
 class MockitoDemos {
 
 	@Captor
@@ -899,6 +902,41 @@ void inOrderDemo() {
 	inOrder.verify(someService1, times(1)).findAllByLastName(anyString());
 	inOrder.verify(someService2, times(1)).findCityOfAllPeople(anyList());
 }
+```
+
+#### Mockito Spies
+
+- Works as a wrapper around the implementation of a real object.
+	- In practice this means you have a real object with implemented methods, where you can override it's behaviour.
+- See [Baeldung's article on Mockito Spies](https://www.baeldung.com/mockito-spy) for more info.
+	
+```Java
+@ExtendWith(MockitoExtension.class)
+class MockitoDemos {
+
+	@Spy
+	SomeService someService;
+	
+	@InjectMocks
+	SomeController someController;
+	
+	@Test
+	void spyDemo() {
+	
+		//given
+		Person person = new Person(1, "Fredrik", "Pedersen");
+		someService.save(person);
+		given(someService.findById(anyInt())).willCallRealMethod();
+		
+		//when
+		String viewName = someController.findPersoByLastName(person); //assuming that the controller returns a view called "people/{personId}" when a person is found
+
+		//then
+		assertThat("someSite/people/1").isEqualToIgnoringCase(viewName);
+	}
+
+}
+
 ```
 
 ## Section 12: Testing With Spring Framework
