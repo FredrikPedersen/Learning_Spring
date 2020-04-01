@@ -1,5 +1,11 @@
 # Setting up PostgreSQL for Spring project
 
+### Sources
+
+1. [General Guide](https://developer.okta.com/blog/2018/12/13/build-basic-app-spring-boot-jpa)
+2. [Maven Dependencies Explanation](https://mkyong.com/spring-boot/spring-boot-spring-data-jpa-postgresql/)
+3. [PostgresSQL Commands cheatsheet](https://karloespiritu.github.io/cheatsheets/postgresql/)
+
 
 ### Installing Postgre and enable CLI
 
@@ -17,8 +23,6 @@
 	```Powershell
 	psql -U postgres
 	```
-	
-5. See [this cheatsheet](https://karloespiritu.github.io/cheatsheets/postgresql/) for a list of commands.
 	
 ### Start, stop and restart
 
@@ -42,4 +46,25 @@ create database demodb;
 create user demouser;
 alter user demouser with encrypted password 'somepassword';
 grant all privileges on database demodb to demouser;
+```
+
+# Spring Project to do simple insertion in database
+
+1. Create a new Spring Project. Make sure Spring Data JPA and Spring Data Rest are added to the project.
+2. Add PostgreSQL dependency:
+```XML
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+3. Create [Model](https://github.com/FredrikPedersen/Learning_Spring/tree/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/model/Person.java) and [Repository](https://github.com/FredrikPedersen/Learning_Spring/tree/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/repository/PersonRepository.java).
+4. Add configurations for the database in [application.properties](https://github.com/FredrikPedersen/Learning_Spring/blob/master/PostgreDemo/src/main/resources/application.properties).
+5. Seed some data when running the project in the [Application class](https://github.com/FredrikPedersen/Learning_Spring/blob/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/PostgreDemoApplication.java).
+6. Verify data creation by running the following commands after logging into Postgre:
+```Powershell
+\connect demodb #connects to the database
+\dt #displays all tables
+SELECT * FROM person; #displays data in person-table
 ```
