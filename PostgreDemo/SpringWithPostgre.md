@@ -7,19 +7,19 @@
 3. [PostgresSQL Commands cheatsheet](https://karloespiritu.github.io/cheatsheets/postgresql/)
 
 
-### Installing Postgre and enable CLI
+### Installing Postgres and enable CLI
 
 1. Download and install PostgreSQL from [here](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
-2. Add Postgre to Path
-	- Good practice is to create a home variable and and that + /bin to path.
-	- Add a System varible called POSTGRE_HOME, set to wherever the root folder for Postgre version is located.
-	- Then add %POSTGRE_HOME%\bin to path.
+2. Add Postgres to Path
+	- Good practice is to create a home variable and add that + /bin to path.
+	- Add a System varible called POSTGRES_HOME, set to wherever the root folder for Postgres version is located.
+	- Then add %POSTGRES_HOME%\bin to path.
 3. Open Powershell and try:
 	```Powershell
 	psql -V
 	```
-	- Should return your version of Postgre.
-4. Log into Postgre
+	- Should return your version of Postgres.
+4. Log into Postgres
 	```Powershell
 	psql -U postgres
 	```
@@ -62,7 +62,7 @@ grant all privileges on database demodb to demouser;
 3. Create [Model](https://github.com/FredrikPedersen/Learning_Spring/tree/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/model/Person.java) and [Repository](https://github.com/FredrikPedersen/Learning_Spring/tree/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/repository/PersonRepository.java).
 4. Add configurations for the database in [application.properties](https://github.com/FredrikPedersen/Learning_Spring/blob/master/PostgreDemo/src/main/resources/application.properties).
 5. Seed some data when running the project in the [Application class](https://github.com/FredrikPedersen/Learning_Spring/blob/master/PostgreDemo/src/main/java/com/fredrikpedersen/postgredemo/PostgreDemoApplication.java).
-6. Verify data creation by running the following commands after logging into Postgre:
+6. Verify data creation by running the following commands after logging into Postgres:
 ```Powershell
 \connect demodb #connects to the database
 \dt #displays all tables
