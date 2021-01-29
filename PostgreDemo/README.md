@@ -14,11 +14,13 @@
 	- Good practice is to create a home variable and add that + /bin to path.
 	- Add a System varible called POSTGRES_HOME, set to wherever the root folder for Postgres version is located.
 	- Then add %POSTGRES_HOME%\bin to path.
-3. Open Powershell and try:
+	
+3. Open Powershell/CMD and try:
 	```Powershell
 	psql -V
 	```
 	- Should return your version of Postgres.
+	
 4. Log into Postgres
 	```Powershell
 	psql -U postgres
