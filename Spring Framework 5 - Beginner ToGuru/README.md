@@ -293,6 +293,7 @@ stands alone in the model, with no encapsulated state."
 	- May conflict with Hibernate's DDL Auto property.
 	- Should use setting of none or validate.
 	
+## Section 11
 
 ## Section 20: Part 325:
 
