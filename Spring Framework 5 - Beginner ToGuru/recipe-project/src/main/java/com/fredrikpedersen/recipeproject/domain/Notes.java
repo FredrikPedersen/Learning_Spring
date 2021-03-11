@@ -7,12 +7,12 @@ import javax.persistence.*;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 23/01/2020 at 16:08
+ * @version 1.1
+ * @since 11/03/2021 at 21:33
  */
 
 @Data
-@EqualsAndHashCode(exclude = {"recipe"}) //Excludes the attributes from the Equals and Hashcode methods.
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
 
@@ -24,5 +24,6 @@ public class Notes {
     private Recipe recipe;
 
     @Lob
-    private String recipeNote;
+    private String recipeNotes;
+
 }

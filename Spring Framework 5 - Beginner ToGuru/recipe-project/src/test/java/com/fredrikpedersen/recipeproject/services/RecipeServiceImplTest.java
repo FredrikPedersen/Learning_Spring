@@ -1,5 +1,7 @@
 package com.fredrikpedersen.recipeproject.services;
 
+import com.fredrikpedersen.recipeproject.converters.RecipeCommandToRecipe;
+import com.fredrikpedersen.recipeproject.converters.RecipeToRecipeCommand;
 import com.fredrikpedersen.recipeproject.domain.Recipe;
 import com.fredrikpedersen.recipeproject.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,23 +19,27 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 05/02/2020 at 20:34
+ * @version 1.1
+ * @since 11/03/2020 at 21:23
  */
 
 public class RecipeServiceImplTest {
 
-    RecipeServiceImpl recipeService;
+    private RecipeServiceImpl recipeService;
 
     @Mock
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
 
+    @Mock
+    private RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
