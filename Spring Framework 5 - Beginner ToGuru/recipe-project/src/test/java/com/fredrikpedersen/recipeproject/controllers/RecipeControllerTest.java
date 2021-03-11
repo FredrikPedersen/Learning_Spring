@@ -1,11 +1,5 @@
 package com.fredrikpedersen.recipeproject.controllers;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 11/03/2021 at 20:12
- */
-
 import com.fredrikpedersen.recipeproject.domain.Recipe;
 import com.fredrikpedersen.recipeproject.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,22 +12,24 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 /**
- * Created by jt on 6/19/17.
+ * @author Fredrik Pedersen
+ * @version 1.0
+ * @since 11/03/2021 at 20:12
  */
+
 public class RecipeControllerTest {
 
-
     @Mock
-    RecipeService recipeService;
+    private RecipeService recipeService;
 
-    RecipeController controller;
+    private RecipeController controller;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
 
         controller = new RecipeController(recipeService);
@@ -51,6 +47,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/show/1"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/show"));
+                .andExpect(view().name("recipe/show"))
+                .andExpect(model().attributeExists("recipe"));
     }
 }
