@@ -16,8 +16,8 @@ import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.1
- * @since 11/03/2021 at 21:15
+ * @version 1.2
+ * @since 12/03/2021 at 10:20
  */
 
 @Slf4j
@@ -37,8 +37,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe findById(long id) {
+    public Recipe findById(final Long id) {
         return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe Not Found!"));
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        return recipeToRecipeCommand.convert(findById(id));
     }
 
     @Override
