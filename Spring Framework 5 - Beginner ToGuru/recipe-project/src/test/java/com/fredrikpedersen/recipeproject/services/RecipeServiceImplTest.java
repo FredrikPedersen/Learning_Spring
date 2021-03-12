@@ -19,8 +19,8 @@ import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.1
- * @since 11/03/2020 at 21:23
+ * @version 1.2
+ * @since 12/03/2020 at 10:42
  */
 
 public class RecipeServiceImplTest {
@@ -71,6 +71,19 @@ public class RecipeServiceImplTest {
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
         verify(recipeRepository, never()).findById(anyLong());
+    }
+
+    @Test
+    public void testDeleteById() throws Exception {
+
+        //given
+        final Long idToDelete = 2L;
+
+        //when
+        recipeService.deleteById(idToDelete);
+
+        //then
+        verify(recipeRepository, times(1)).deleteById(anyLong());
     }
 
 }

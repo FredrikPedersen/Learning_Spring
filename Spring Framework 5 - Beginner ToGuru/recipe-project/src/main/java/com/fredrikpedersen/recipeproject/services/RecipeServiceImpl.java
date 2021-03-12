@@ -16,8 +16,8 @@ import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.2
- * @since 12/03/2021 at 10:20
+ * @version 1.3
+ * @since 12/03/2021 at 10:41
  */
 
 @Slf4j
@@ -52,5 +52,10 @@ public class RecipeServiceImpl implements RecipeService {
     public RecipeCommand saveRecipeCommand(final RecipeCommand recipeCommand) {
         final Recipe recipeFromCommand = recipeCommandToRecipe.convert(recipeCommand);
         return recipeToRecipeCommand.convert(recipeRepository.save(recipeFromCommand));
+    }
+
+    @Override
+    public void deleteById(final Long id) {
+        recipeRepository.deleteById(id);
     }
 }
