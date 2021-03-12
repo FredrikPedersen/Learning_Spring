@@ -1,16 +1,16 @@
 package com.fredrikpedersen.recipeproject.controllers;
 
+import com.fredrikpedersen.recipeproject.commands.RecipeCommand;
 import com.fredrikpedersen.recipeproject.services.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 11/03/2021 at 20:16
+ * @version 1.1
+ * @since 12/03/2021 at 09:50
  */
 
 @RequiredArgsConstructor
@@ -19,9 +19,22 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @RequestMapping("/recipe/show/{id}")
+    @GetMapping("/recipe/show/{id}")
     public String showById(@PathVariable final String id, final Model model) {
         model.addAttribute("recipe", recipeService.findById(Long.parseLong(id)));
         return "recipe/show";
+    }
+
+    @GetMapping("recipe/new")
+    public String newRecipe(final Model model) {
+        model.addAttribute("recipe", new RecipeCommand());
+
+        return "recipe/recipeForm";
+    }
+
+    @PostMapping("recipe")
+    public String saveOrUpdate(@ModelAttribute final RecipeCommand recipeCommand) {
+        final RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+        return "redirect:/recipe/show/" + savedCommand.getId();
     }
 }
