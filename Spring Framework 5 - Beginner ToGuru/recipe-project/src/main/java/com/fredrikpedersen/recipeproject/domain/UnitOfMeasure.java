@@ -1,16 +1,16 @@
 package com.fredrikpedersen.recipeproject.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.5
- * @since 23/01/2020 at 16:39
- */
 
-@Data
+@Getter
+@Setter
 @Entity
 public class UnitOfMeasure {
 

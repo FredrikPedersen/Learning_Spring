@@ -1,6 +1,5 @@
 package com.fredrikpedersen.recipeproject.converters;
 
-
 import com.fredrikpedersen.recipeproject.commands.CategoryCommand;
 import com.fredrikpedersen.recipeproject.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,9 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class CategoryToCategoryCommandTest {
 
-    public static final Long ID_VALUE = 1L;
+    public static final Long ID_VALUE = new Long(1L);
     public static final String DESCRIPTION = "descript";
     CategoryToCategoryCommand convter;
 

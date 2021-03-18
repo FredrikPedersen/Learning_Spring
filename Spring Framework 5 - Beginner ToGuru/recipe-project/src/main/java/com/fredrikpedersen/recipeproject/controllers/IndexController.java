@@ -6,16 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 22/01/2020 at 11:58
- */
 
 @Slf4j
 @Controller
 public class IndexController {
-    private final String INDEX_VIEW = "index";
 
     private final RecipeService recipeService;
 
@@ -23,12 +17,12 @@ public class IndexController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping({"", "/", INDEX_VIEW})
+    @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model) {
-        log.debug("Getting Index Page!");
+        log.debug("Getting Index page");
 
         model.addAttribute("recipes", recipeService.getRecipes());
 
-        return INDEX_VIEW;
+        return "index";
     }
 }

@@ -19,22 +19,17 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-/**
- * @author Fredrik Pedersen
- * @version 1.2
- * @since 12/03/2021 at 10:42
- */
-
 public class RecipeControllerTest {
 
     @Mock
-    private RecipeService recipeService;
+    RecipeService recipeService;
 
-    private RecipeController controller;
-    private MockMvc mockMvc;
+    RecipeController controller;
+
+    MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
         controller = new RecipeController(recipeService);
@@ -47,11 +42,9 @@ public class RecipeControllerTest {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-
         when(recipeService.findById(anyLong())).thenReturn(recipe);
 
-        mockMvc.perform(get("/recipe/show/1"))
+        mockMvc.perform(get("/recipe/1/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
@@ -63,7 +56,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeForm"))
+                .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
 
@@ -75,7 +68,10 @@ public class RecipeControllerTest {
         when(recipeService.saveRecipeCommand(any())).thenReturn(command);
 
         mockMvc.perform(post("/recipe")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id", "")
+                .param("description", "some string")
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/show"));
     }
@@ -89,7 +85,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/1/update"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeForm"))
+                .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
     }
 

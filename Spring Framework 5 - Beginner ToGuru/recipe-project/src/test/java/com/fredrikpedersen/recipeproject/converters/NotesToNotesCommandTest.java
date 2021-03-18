@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class NotesToNotesCommandTest {
 
-    public static final Long ID_VALUE = 1L;
+    public static final Long ID_VALUE = new Long(1L);
     public static final String RECIPE_NOTES = "Notes";
     NotesToNotesCommand converter;
 

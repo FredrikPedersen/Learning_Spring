@@ -12,11 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 11/03/2020 at 21:24
- */
+
+
 
 @SpringBootTest
 public class RecipeServiceIT {
@@ -24,16 +21,16 @@ public class RecipeServiceIT {
     public static final String NEW_DESCRIPTION = "New Description";
 
     @Autowired
-    private RecipeService recipeService;
+    RecipeService recipeService;
 
     @Autowired
-    private RecipeRepository recipeRepository;
+    RecipeRepository recipeRepository;
 
     @Autowired
-    private RecipeCommandToRecipe recipeCommandToRecipe;
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Autowired
-    private RecipeToRecipeCommand recipeToRecipeCommand;
+    RecipeToRecipeCommand recipeToRecipeCommand;
 
     @Transactional
     @Test

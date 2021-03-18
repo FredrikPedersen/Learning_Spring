@@ -5,17 +5,16 @@ import com.fredrikpedersen.recipeproject.domain.Recipe;
 
 import java.util.Set;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.1
- * @since 12/03/2020 at 10:42
- */
 
 public interface RecipeService {
 
     Set<Recipe> getRecipes();
-    Recipe findById(Long id);
-    void deleteById(Long id);
-    RecipeCommand findCommandById(Long id);
-    RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
+
+    Recipe findById(Long l);
+
+    RecipeCommand findCommandById(Long l);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
+
+    void deleteById(Long idToDelete);
 }

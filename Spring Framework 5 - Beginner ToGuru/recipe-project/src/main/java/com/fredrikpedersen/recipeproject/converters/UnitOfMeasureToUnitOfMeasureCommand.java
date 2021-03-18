@@ -7,11 +7,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 11/03/2021 at 20:57
- */
 
 @Component
 public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeasure, UnitOfMeasureCommand> {

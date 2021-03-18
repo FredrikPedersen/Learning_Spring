@@ -1,18 +1,14 @@
 package com.fredrikpedersen.recipeproject.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.1
- * @since 11/03/2021 at 21:33
- */
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
@@ -22,7 +18,6 @@ public class Notes {
     private Long id;
 
     @OneToOne
-    @ToString.Exclude
     private Recipe recipe;
 
     @Lob

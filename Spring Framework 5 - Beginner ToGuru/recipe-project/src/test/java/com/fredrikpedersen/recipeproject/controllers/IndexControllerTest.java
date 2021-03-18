@@ -14,19 +14,14 @@ import org.springframework.ui.Model;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 05/02/2020 at 20:42
- */
 
-class IndexControllerTest {
+public class IndexControllerTest {
 
     @Mock
     RecipeService recipeService;
@@ -34,17 +29,18 @@ class IndexControllerTest {
     @Mock
     Model model;
 
-    IndexController indexController;
+    IndexController controller;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        indexController = new IndexController(recipeService);
+
+        controller = new IndexController(recipeService);
     }
 
     @Test
     public void testMockMVC() throws Exception {
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -52,27 +48,31 @@ class IndexControllerTest {
     }
 
     @Test
-    void getIndexPage() {
+    public void getIndexPage() throws Exception {
 
         //given
         Set<Recipe> recipes = new HashSet<>();
-        Recipe recipe = new Recipe();
-        recipe.setId(3L);
-
         recipes.add(new Recipe());
+
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
         recipes.add(recipe);
 
-        //when
         when(recipeService.getRecipes()).thenReturn(recipes);
+
         ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
+        //when
+        String viewName = controller.getIndexPage(model);
+
+
         //then
-        String viewName = indexController.getIndexPage(model);
         assertEquals("index", viewName);
         verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
-
         Set<Recipe> setInController = argumentCaptor.getValue();
         assertEquals(2, setInController.size());
     }
+
 }

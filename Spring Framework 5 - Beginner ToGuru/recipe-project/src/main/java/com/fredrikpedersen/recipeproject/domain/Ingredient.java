@@ -1,20 +1,16 @@
 package com.fredrikpedersen.recipeproject.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-/**
- * @author Fredrik Pedersen
- * @version 1.0
- * @since 23/01/2020 at 16:25
- */
 
-@Data
-@EqualsAndHashCode(exclude = {"recipe"}) //Excludes the attributes from the Equals and Hashcode methods.
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 
@@ -24,12 +20,11 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @ManyToOne
-    @ToString.Exclude
-    private Recipe recipe;
-
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
+
+    @ManyToOne
+    private Recipe recipe;
 
     public Ingredient() {
     }
@@ -46,4 +41,5 @@ public class Ingredient {
         this.uom = uom;
         this.recipe = recipe;
     }
+
 }
