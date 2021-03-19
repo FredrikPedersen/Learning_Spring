@@ -90,8 +90,8 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
-        owner2.setFirstName("Signe");
-        owner2.setLastName("Eide");
+        owner2.setFirstName("Thomas");
+        owner2.setLastName("Kristiansen");
         owner1.setAddress("123 Vestkanten");
         owner1.setCity("Oslo");
         owner1.setTelephone("87654321");
