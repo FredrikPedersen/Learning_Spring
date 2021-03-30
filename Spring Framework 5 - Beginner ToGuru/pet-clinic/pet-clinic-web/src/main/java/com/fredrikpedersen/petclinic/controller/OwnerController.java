@@ -4,7 +4,9 @@ import com.fredrikpedersen.petclinic.services.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,11 @@ public class OwnerController {
     private static final String OWNERS_VIEW = "owners/index";
     private static final String ALL_OWNERS_ATTRIBUTE = "owners";
     private final OwnerService ownerService;
+
+    @InitBinder
+    public void setAllowedFields(final WebDataBinder dataBinder) {
+        dataBinder.setAllowedFields("id");
+    }
 
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String listOwners(final Model model) {
