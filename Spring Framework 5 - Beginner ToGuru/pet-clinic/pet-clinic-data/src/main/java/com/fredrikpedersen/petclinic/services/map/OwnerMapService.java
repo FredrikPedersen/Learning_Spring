@@ -9,12 +9,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.print.attribute.standard.RequestingUserName;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 16/01/2020 at 14:25
+ * @version 1.1
+ * @since 31.03.2021 at 10:32
  */
 
 @Service
@@ -40,7 +41,7 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Owner save(Owner owner) {
+    public Owner save(final Owner owner) {
         if (owner != null) {
             if (owner.getPets() != null) {
 
@@ -78,11 +79,16 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Owner findByLastName(String lastName) {
+    public Owner findByLastName(final String lastName) {
         return this.findAll()
                 .stream()
                 .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(final String lastname) {
+        return null;
     }
 }

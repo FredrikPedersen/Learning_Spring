@@ -7,12 +7,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 04.02.2020 at 14:42
+ * @version 1.1
+ * @since 31.03.2021 at 10:32
  */
 
 @Component
@@ -21,13 +22,18 @@ public class OwnerSDJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    public OwnerSDJpaService(OwnerRepository ownerRepository) {
+    public OwnerSDJpaService(final OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
 
     @Override
-    public Owner findByLastName(String lastName) {
+    public Owner findByLastName(final String lastName) {
         return ownerRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(final String lastname) {
+        return ownerRepository.findAllByLastNameLike(lastname);
     }
 
     @Override
@@ -38,22 +44,22 @@ public class OwnerSDJpaService implements OwnerService {
     }
 
     @Override
-    public Owner findById(Long id) {
+    public Owner findById(final Long id) {
         return ownerRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Owner save(Owner owner) {
+    public Owner save(final Owner owner) {
         return ownerRepository.save(owner);
     }
 
     @Override
-    public void delete(Owner owner) {
+    public void delete(final Owner owner) {
         ownerRepository.delete(owner);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(final Long id) {
         ownerRepository.deleteById(id);
     }
 }
