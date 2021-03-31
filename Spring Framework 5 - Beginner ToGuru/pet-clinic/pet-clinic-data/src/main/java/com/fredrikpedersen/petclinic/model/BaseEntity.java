@@ -10,8 +10,8 @@ import java.io.Serializable;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 16/01/2020 at 13:31
+ * @version 1.1
+ * @since 31/03/2021 at 11:43
  */
 
 @Setter
@@ -24,4 +24,8 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public boolean isNew() {
+        return this.id == null;
+    }
 }
