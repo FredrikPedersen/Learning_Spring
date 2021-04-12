@@ -10,8 +10,8 @@ import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 15/01/2020 at 17:41
+ * @version 1.1
+ * @since 12/04/2020 at 09:26
  */
 
 @Setter
@@ -40,6 +40,28 @@ public class Owner extends Person {
         this.address = address;
         this.city = city;
         this.telephone = telephone;
-        this.pets = pets;
+
+        if (pets != null) {
+            this.pets = pets;
+        }
     }
+
+    public Pet getPet(final String name) {
+        return getPet(name, false);
+    }
+
+    public Pet getPet(final String name, final boolean ignoreNew) {
+        for (Pet pet: pets) {
+            if (!ignoreNew || !pet.isNew()) {
+                final String compareName = pet.getName().toLowerCase();
+                if (compareName.equals(name.toLowerCase())) {
+                    return pet;
+                }
+
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -12,18 +12,27 @@ import java.util.Set;
 
 /**
  * @author Fredrik Pedersen
- * @version 1.0
- * @since 15/01/2020 at 17:42
+ * @version 1.1
+ * @since 12/04/2021 at 09:33
  */
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
+
+    @Builder
+    public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        super(id);
+        this.name = name;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.visits = visits;
+    }
 
     @Column(name = "name")
     private String name;
