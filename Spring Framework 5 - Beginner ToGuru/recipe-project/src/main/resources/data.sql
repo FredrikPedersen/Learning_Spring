@@ -8,4 +8,3 @@ INSERT INTO unit_of_measure (description) VALUES ('Centiliter');
 INSERT INTO unit_of_measure (description) VALUES ('Deciliter');
 INSERT INTO unit_of_measure (description) VALUES ('Liter');
 INSERT INTO unit_of_measure (description) VALUES ('Gram');
-INSERT INTO unit_of_measure (description) VALUES ('Kilogram');

@@ -2,6 +2,7 @@ package com.fredrikpedersen.recipeproject.controllers;
 
 import com.fredrikpedersen.recipeproject.commands.RecipeCommand;
 import com.fredrikpedersen.recipeproject.domain.Recipe;
+import com.fredrikpedersen.recipeproject.exceptions.NotFoundException;
 import com.fredrikpedersen.recipeproject.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,18 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RecipeControllerTest {
 
     @Mock
-    RecipeService recipeService;
+    private RecipeService recipeService;
 
-    RecipeController controller;
-
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new RecipeController(recipeService)).build();
     }
 
     @Test
@@ -48,6 +45,15 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
