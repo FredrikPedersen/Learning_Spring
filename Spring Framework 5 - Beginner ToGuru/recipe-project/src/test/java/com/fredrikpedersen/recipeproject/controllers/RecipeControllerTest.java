@@ -43,8 +43,8 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/1/show"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/show"))
-                .andExpect(model().attributeExists("recipe"));
+                .andExpect(view().name("templates/recipe/show"))
+                .andExpect(model().attributeExists("templates/recipe"));
     }
 
     @Test
@@ -53,7 +53,8 @@ public class RecipeControllerTest {
         when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
 
         mockMvc.perform(get("/recipe/1/show"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
     }
 
     @Test
@@ -62,8 +63,8 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeform"))
-                .andExpect(model().attributeExists("recipe"));
+                .andExpect(view().name("templates/recipe/recipeform"))
+                .andExpect(model().attributeExists("templates/recipe"));
     }
 
     @Test
@@ -91,8 +92,8 @@ public class RecipeControllerTest {
 
         mockMvc.perform(get("/recipe/1/update"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/recipeform"))
-                .andExpect(model().attributeExists("recipe"));
+                .andExpect(view().name("templates/recipe/recipeform"))
+                .andExpect(model().attributeExists("templates/recipe"));
     }
 
     @Test

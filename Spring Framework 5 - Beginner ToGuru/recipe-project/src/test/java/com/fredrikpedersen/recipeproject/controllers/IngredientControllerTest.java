@@ -53,8 +53,8 @@ public class IngredientControllerTest {
         //when
         mockMvc.perform(get("/recipe/1/ingredients"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/list"))
-                .andExpect(model().attributeExists("recipe"));
+                .andExpect(view().name("templates/recipe/ingredient/list"))
+                .andExpect(model().attributeExists("templates/recipe"));
 
         //then
         verify(recipeService, times(1)).findCommandById(anyLong());
@@ -71,7 +71,7 @@ public class IngredientControllerTest {
         //then
         mockMvc.perform(get("/recipe/1/ingredient/2/show"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/show"))
+                .andExpect(view().name("templates/recipe/ingredient/show"))
                 .andExpect(model().attributeExists("ingredient"));
     }
 
@@ -88,7 +88,7 @@ public class IngredientControllerTest {
         //then
         mockMvc.perform(get("/recipe/1/ingredient/new"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/ingredientform"))
+                .andExpect(view().name("templates/recipe/ingredient/ingredientform"))
                 .andExpect(model().attributeExists("ingredient"))
                 .andExpect(model().attributeExists("uomList"));
 
@@ -108,7 +108,7 @@ public class IngredientControllerTest {
         //then
         mockMvc.perform(get("/recipe/1/ingredient/2/update"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipe/ingredient/ingredientform"))
+                .andExpect(view().name("templates/recipe/ingredient/ingredientform"))
                 .andExpect(model().attributeExists("ingredient"))
                 .andExpect(model().attributeExists("uomList"));
     }

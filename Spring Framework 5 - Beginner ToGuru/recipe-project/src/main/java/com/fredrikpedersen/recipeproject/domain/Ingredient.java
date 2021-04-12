@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"recipe"})
+@EqualsAndHashCode(exclude = {"templates/recipe"})
 @Entity
 public class Ingredient {
 
