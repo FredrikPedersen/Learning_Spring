@@ -49,7 +49,7 @@ public class ImageControllerTest {
         //when
         mockMvc.perform(get("/recipe/1/image"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("templates/recipe"));
+                .andExpect(model().attributeExists("recipe"));
 
         verify(recipeService, times(1)).findCommandById(anyLong());
 
@@ -63,7 +63,7 @@ public class ImageControllerTest {
 
         mockMvc.perform(multipart("/recipe/1/image").file(multipartFile))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(header().string("Location", "/templates/recipe/1/show"));
+                .andExpect(header().string("Location", "/recipe/1/show"));
 
         verify(imageService, times(1)).saveImageFile(anyLong(), any());
     }
