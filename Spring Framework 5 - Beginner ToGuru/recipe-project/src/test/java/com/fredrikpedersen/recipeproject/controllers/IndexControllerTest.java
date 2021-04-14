@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-
 public class IndexControllerTest {
 
     @Mock
@@ -55,7 +54,7 @@ public class IndexControllerTest {
         recipes.add(new Recipe());
 
         Recipe recipe = new Recipe();
-        recipe.setId(1L);
+        recipe.setId("1");
 
         recipes.add(recipe);
 

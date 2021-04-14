@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class CategoryTest {
 
     Category category;
@@ -17,7 +16,7 @@ public class CategoryTest {
 
     @Test
     public void getId() throws Exception {
-        Long idValue = 4L;
+        String idValue = "4";
 
         category.setId(idValue);
 
