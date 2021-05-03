@@ -48,7 +48,22 @@
 	 - Default password - random UUID printed in console on application startup.
 	 - Can be overridden by setting spring.security.user.name and spring.security.user.password properties.
 
+## Section 5 In-Memory Authentication Provider
 
-	 
- 
+### Spring Security Authentication Process
+
+ - **Authentication Filter** - A filter for a specific authentication type in the Srping Security filter chain (ie. basic auth, remember me cookie etc).
+ - **Authentication Manager** - Standard API Interface used by filter.
+ - **Authentication Provider** - The implementation of Authentiacation - (in memory, database, etc).
+ - **User Details Service** - Service to provide information about user.
+ - **Password Encoder** - Service to encrypt and verify passwords.
+ - **Security Context** - Holds details about authenticated entity.
+
+### In Memory User Details Manager
+
+ - Implements User Details Service.
+ - Used by Spring Boot Auto-configuration.
+ - Non-persistent implementation, uses in-memory map.
+ 	- Mainly used for testing and demonstration purposes.
+
  
