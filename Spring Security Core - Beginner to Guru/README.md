@@ -46,7 +46,7 @@
  - All paths will be secured with a default username and password, except for actuator info and health.
 	 - Default User - user.
 	 - Default password - random UUID printed in console on application startup.
-	 - Can be overriden by setting spring.security.user.name and spring.security.user.password properties.
+	 - Can be overridden by setting spring.security.user.name and spring.security.user.password properties.
 
 
 	 
