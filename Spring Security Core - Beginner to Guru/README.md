@@ -47,8 +47,6 @@
 	 - Default User - user.
 	 - Default password - random UUID printed in console on application startup.
 	 - Can be overriden by setting spring.security.user.name and spring.security.user.password properties.
-	 
-### Spring Security Filter Chain
 
 
 	 

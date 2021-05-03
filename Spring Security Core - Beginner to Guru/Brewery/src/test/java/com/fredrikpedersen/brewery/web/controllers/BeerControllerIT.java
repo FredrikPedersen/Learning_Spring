@@ -51,7 +51,7 @@ public class BeerControllerIT {
                 .build();
     }
 
-    @WithMockUser("spring")
+    @WithMockUser()
     @Test
     void findBeers() throws Exception{
         mockMvc.perform(get("/beers/find"))
