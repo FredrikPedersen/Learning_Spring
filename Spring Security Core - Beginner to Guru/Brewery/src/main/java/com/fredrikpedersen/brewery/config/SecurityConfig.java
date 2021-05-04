@@ -1,15 +1,11 @@
 package com.fredrikpedersen.brewery.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
@@ -32,7 +28,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-    @Bean
+    @Override
+    protected void configure(AuthenticationManagerBuilder authenticationManager) throws Exception {
+        authenticationManager.inMemoryAuthentication()
+                .withUser("admin")
+                .password("{noop}pw")
+                .roles("ADMIN")
+                .and()
+                .withUser("user")
+                .password("{noop}pw")
+                .roles("USER");
+    }
+
+    //Other method for configuring in-memory userDetails
+    /*@Bean
     @Override
     protected UserDetailsService userDetailsService() {
         final UserDetails admin = User.withDefaultPasswordEncoder()
@@ -48,5 +57,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
 
         return new InMemoryUserDetailsManager(admin, user);
-    }
+    } */
 }
