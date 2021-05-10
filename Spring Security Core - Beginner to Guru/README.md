@@ -112,4 +112,22 @@
 	 - SCrypt.
  - These are also considered "slow", which are computationally expensive to guard against brute force attacks.	
 
- 
+## Section 7: Custom Authentication Filter
+
+### Overview
+
+#### Spring Security Filters
+ - All Spring Security Filters implement the Filter interface.
+ 	- Part of the Java Servlet API
+	- Accepts Servlet Request, Servlet Response, and Filter Chain.
+ - Can be used to implement actions on the Request or Response.
+ - HTTP Basic Authentication us using the filter BasicAuthenticationFilter.
+ 	- Inspects request for HTTP Basic credentials and performs authentication.
+	
+#### Custom Spring Security Filter Use Case
+ - Hypothetically speaking we have a REST API using custom headers for Authentication.
+ 	- Goal here is to mimic a legacy application, this is not a recommended approach for Authentication.
+ - Legacy Application sending API key and API Secret in HTTP Headers.
+ - Create Spring Security filter for this legacy Authentication.
+ 	- Extend Spring Security's AbstractAuthenticationProcessingFilter.
+ 	- Configure Spring Security to use Custom Filter. 
