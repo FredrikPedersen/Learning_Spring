@@ -1,5 +1,6 @@
 package com.fredrikpedersen.brewery.config;
 
+import com.fredrikpedersen.brewery.security.DomainPasswordEncoderFactories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -7,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     protected PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder(); //Default is BCrypt
+        return DomainPasswordEncoderFactories.createDelegatingPasswordEncoder(); //Default is BCrypt
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final AuthenticationManagerBuilder authenticationManager) throws Exception {
         authenticationManager.inMemoryAuthentication().withUser("admin").password("{bcrypt}$2a$10$lTeAU7EZPHkjL/aX0eWvS.a8eWfvAaGF6xgDrynSFIZCi2oynchT6").roles("ADMIN");
-        authenticationManager.inMemoryAuthentication().withUser("user").password("{bcrypt}$2a$10$L/VBtz7841kBDS.y2b2B/uBv77WPOOEy7dU/FkLcYKhJlsN6IwKJ.").roles("USER");
+        authenticationManager.inMemoryAuthentication().withUser("user").password("{sha256}563234b3bbc4975ca08d77918b816a07493e0634c7a6bd3fbb5bebb3d25e32b1172e09fb51ec0ac6").roles("USER");
     }
 
     //Other method for configuring in-memory userDetails
