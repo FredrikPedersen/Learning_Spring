@@ -29,7 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.addFilterBefore(restHeaderAuthFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class); //Adds restHeaderAuthFilter to execute before the UPAFilter in the filter chain.
+        httpSecurity.addFilterBefore( //Adds restHeaderAuthFilter to execute before the UPAFilter in the filter chain.
+                restHeaderAuthFilter(authenticationManager()),
+                UsernamePasswordAuthenticationFilter.class)
+        .csrf().disable();
 
         httpSecurity
                 .authorizeRequests(authorize -> authorize
