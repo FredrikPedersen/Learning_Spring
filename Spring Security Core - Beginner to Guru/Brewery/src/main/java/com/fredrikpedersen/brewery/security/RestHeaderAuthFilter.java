@@ -1,6 +1,7 @@
 package com.fredrikpedersen.brewery.security;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,19 +35,24 @@ public class RestHeaderAuthFilter extends AbstractAuthenticationProcessingFilter
             logger.debug("Request is to process authentication");
         }
 
-        final Authentication authResult = attemptAuthentication(request, response);
+        try {
+            final Authentication authResult = attemptAuthentication(request, response);
 
-        if (authResult == null) {
-            chain.doFilter(request, response);
-        } else {
-            successfulAuthentication(request, response, chain, authResult);
+            if (authResult == null) {
+                chain.doFilter(request, response);
+            } else {
+                successfulAuthentication(request, response, chain, authResult);
+            }
+        } catch (AuthenticationException e) {
+            log.error("Authentication failed", e);
+            unsuccessfulAuthentication(request, response, e);
         }
     }
 
     @Override
     public Authentication attemptAuthentication(final HttpServletRequest request, final HttpServletResponse response) throws AuthenticationException {
-        String userName = getUsername(request);
-        String password = getPassword(request);
+        String userName = getUsernameFromRequest(request);
+        String password = getPasswordFromRequest(request);
 
         if (userName == null) {
             userName = "";
@@ -72,11 +78,23 @@ public class RestHeaderAuthFilter extends AbstractAuthenticationProcessingFilter
         SecurityContextHolder.getContext().setAuthentication(authResult);
     }
 
-    private String getPassword(final HttpServletRequest request) {
+    @Override
+    protected void unsuccessfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException failed) throws IOException {
+        SecurityContextHolder.clearContext();
+
+        if (log.isDebugEnabled()) {
+            log.debug("Authentication request failed: " + failed.toString(), failed);
+            log.debug("Updated SecurityContextHolder to contain null Authentication");
+        }
+
+        response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
+    }
+
+    private String getPasswordFromRequest(final HttpServletRequest request) {
         return request.getHeader("Api-Secret");
     }
 
-    private String getUsername(final HttpServletRequest request) {
+    private String getUsernameFromRequest(final HttpServletRequest request) {
         return request.getHeader("Api-Key");
     }
 }
