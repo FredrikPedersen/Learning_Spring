@@ -131,3 +131,26 @@
  - Create Spring Security filter for this legacy Authentication.
  	- Extend Spring Security's AbstractAuthenticationProcessingFilter.
  	- Configure Spring Security to use Custom Filter. 
+	
+## Section 8: Database Authentication
+
+### Overview
+
+#### Spring Security Database Authentication
+
+ - Using a traditional database for authentication is a matter of providing an alternate User Details Service.
+ 	- Spring Security provides the interface, you provide the implementation.
+ 	- Can be in-memory, JDBC, NoSQL, external service, etc.
+ - Spring Security does provide a JDBC implementation with database schemas.
+ 	- Typically a starting point and then customized to your application.
+	
+	
+#### Spring Security JPA Authentication
+ 
+ - Provide custom Database Authentication using Spring Data JPA.
+ - Need User and Authority JPA Entities.
+ - Spring Data JPA Respositories.
+ - Custom implementation of User Details Service using Spring Data Repositories.
+ - Configure Spring Security to use custom implementation os User Details Service.
+
+
