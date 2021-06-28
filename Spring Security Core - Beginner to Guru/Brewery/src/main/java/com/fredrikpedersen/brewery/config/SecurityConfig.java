@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -56,11 +55,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return DomainPasswordEncoderFactories.createDelegatingPasswordEncoder(); //Default is BCrypt
     }
 
-    @Override
+
+    /* ----- Leaving these configs as reference, not necessary when implementing a UserDetailsService ----- */
+
+    /* @Override
     protected void configure(final AuthenticationManagerBuilder authenticationManager) throws Exception {
         authenticationManager.inMemoryAuthentication().withUser("admin").password("{bcrypt15}$2a$15$FQRQXaep0Baydaf7W8luO.lh5Y8w4wPIjoE8vujM1/tThMeQubQnm").roles("ADMIN");
         authenticationManager.inMemoryAuthentication().withUser("user").password("{sha256}563234b3bbc4975ca08d77918b816a07493e0634c7a6bd3fbb5bebb3d25e32b1172e09fb51ec0ac6").roles("USER");
-    }
+    } */
 
     //Other method for configuring in-memory userDetails
     /*@Bean
