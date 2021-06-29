@@ -34,9 +34,9 @@ public class UserDataLoader implements CommandLineRunner {
 
     private void seedSecurityData() {
         log.info("Seeding user data...");
-        final Authority admin = authorityRepository.save(Authority.builder().role("ADMIN").build());
-        final Authority userRole = authorityRepository.save(Authority.builder().role("USER").build());
-        final Authority customer = authorityRepository.save(Authority.builder().role("CUSTOMER").build());
+        final Authority admin = authorityRepository.save(Authority.builder().role("ROLE_ADMIN").build());
+        final Authority userRole = authorityRepository.save(Authority.builder().role("ROLE_USER").build());
+        final Authority customer = authorityRepository.save(Authority.builder().role("ROLE_CUSTOMER").build());
 
         userRepository.save(User.builder()
                 .username("admin")
@@ -51,8 +51,8 @@ public class UserDataLoader implements CommandLineRunner {
                 .build());
 
         userRepository.save(User.builder()
-                .username("fredrik")
-                .password(passwordEncoder.encode("pw"))
+                .username("customer")
+                .password(passwordEncoder.encode("password"))
                 .authority(customer)
                 .build());
 
