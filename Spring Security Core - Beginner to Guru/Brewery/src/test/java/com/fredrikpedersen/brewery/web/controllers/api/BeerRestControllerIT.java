@@ -12,42 +12,45 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class BeerRestControllerIT extends BaseIT {
 
-    @Test
-    void deleteBeerBadCredentials() throws Exception{
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311")
-                .header("Api-Key","admin").header("Api-Secret", "badPassword"))
-                .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void deleteBeer() throws Exception {
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311")
-                .header("Api-Key", "admin").header("Api-Secret", "password"))
-                .andExpect(status().isOk());
-    }
+    private final String BASE_URL = "/api/v1/beer/";
+    private final String EXISTING_BEER_ID = "97df0c39-90c4-4ae0-b663-453e8e19c311";
 
     @Test
     void deleteBeerHttpBasic() throws Exception{
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311")
+        mockMvc.perform(delete(BASE_URL + EXISTING_BEER_ID)
                 .with(httpBasic("admin", "password")))
                 .andExpect(status().is2xxSuccessful());
     }
 
     @Test
+    void deleteBeerHttpBasicUserRole() throws Exception{
+        mockMvc.perform(delete(BASE_URL + EXISTING_BEER_ID)
+                .with(httpBasic("user", "password")))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void deleteBeerHttpBasicCustomerRole() throws Exception{
+        mockMvc.perform(delete(BASE_URL + EXISTING_BEER_ID)
+                .with(httpBasic("customer", "password")))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     void deleteBeerNoAuth() throws Exception{
-        mockMvc.perform(delete("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311"))
+        mockMvc.perform(delete(BASE_URL + EXISTING_BEER_ID))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
     void findBeers() throws Exception{
-        mockMvc.perform(get("/api/v1/beer/"))
+        mockMvc.perform(get(BASE_URL))
                 .andExpect(status().isOk());
     }
 
     @Test
     void findBeerById() throws Exception{
-        mockMvc.perform(get("/api/v1/beer/97df0c39-90c4-4ae0-b663-453e8e19c311"))
+        mockMvc.perform(get(BASE_URL + EXISTING_BEER_ID))
                 .andExpect(status().isOk());
     }
 
