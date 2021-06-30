@@ -25,8 +25,7 @@ public class BreweryController {
     }
 
     @GetMapping("/api/v1/breweries")
-    public @ResponseBody
-    List<Brewery> getBreweriesJson(){
+    public @ResponseBody List<Brewery> getBreweriesJson(){
         return breweryService.getAllBreweries();
     }
 }
