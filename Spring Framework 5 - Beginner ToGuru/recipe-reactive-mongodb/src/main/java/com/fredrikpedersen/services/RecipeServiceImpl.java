@@ -1,85 +1,56 @@
 package com.fredrikpedersen.services;
 
 import com.fredrikpedersen.commands.RecipeCommand;
+import com.fredrikpedersen.converters.RecipeCommandToRecipe;
 import com.fredrikpedersen.converters.RecipeToRecipeCommand;
 import com.fredrikpedersen.domain.Recipe;
-import com.fredrikpedersen.converters.RecipeCommandToRecipe;
-import com.fredrikpedersen.exceptions.NotFoundException;
-import com.fredrikpedersen.repositories.RecipeRepository;
+import com.fredrikpedersen.repositories.reactive.RecipeReactiveRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-/**
- * Created by jt on 6/13/17.
- */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class RecipeServiceImpl implements RecipeService {
 
-    private final RecipeRepository recipeRepository;
+    private final RecipeReactiveRepository recipeRepository;
     private final RecipeCommandToRecipe recipeCommandToRecipe;
     private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
-        this.recipeRepository = recipeRepository;
-        this.recipeCommandToRecipe = recipeCommandToRecipe;
-        this.recipeToRecipeCommand = recipeToRecipeCommand;
+    @Override
+    public Flux<Recipe> getRecipes() {
+        return recipeRepository.findAll();
     }
 
     @Override
-    public Set<Recipe> getRecipes() {
-        log.debug("I'm in the service");
-
-        Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
-        return recipeSet;
+    public Mono<Recipe> findById(final String id) {
+        return recipeRepository.findById(id);
     }
 
     @Override
-    public Recipe findById(String id) {
+    public Mono<RecipeCommand> findCommandById(final String id) {
+        return recipeRepository.findById(id)
+                .map(recipe -> {
+                    final RecipeCommand recipeCommand = recipeToRecipeCommand.convert(recipe);
+                    recipeCommand.getIngredients().forEach(rc -> rc.setRecipeId(recipeCommand.getId()));
 
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-
-        if (!recipeOptional.isPresent()) {
-            throw new NotFoundException("Recipe Not Found. For ID value: " + id );
-        }
-
-        return recipeOptional.get();
+                    return recipeCommand;
+                });
     }
 
     @Override
-    @Transactional
-    public RecipeCommand findCommandById(String id) {
-
-        RecipeCommand recipeCommand = recipeToRecipeCommand.convert(findById(id));
-
-        //enhance command object with id value
-        if(recipeCommand.getIngredients() != null && recipeCommand.getIngredients().size() > 0){
-            recipeCommand.getIngredients().forEach(rc -> {
-                rc.setRecipeId(recipeCommand.getId());
-            });
-        }
-
-        return recipeCommand;
+    public Mono<RecipeCommand> saveRecipeCommand(final RecipeCommand command) {
+        return recipeRepository
+                .save(recipeCommandToRecipe.convert(command))
+                .map(recipeToRecipeCommand::convert);
     }
 
     @Override
-    @Transactional
-    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
-        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
-
-        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
-        log.debug("Saved RecipeId:" + savedRecipe.getId());
-        return recipeToRecipeCommand.convert(savedRecipe);
-    }
-
-    @Override
-    public void deleteById(String idToDelete) {
-        recipeRepository.deleteById(idToDelete);
+    public Mono<Void> deleteById(String idToDelete) {
+        recipeRepository.deleteById(idToDelete).block();
+        return Mono.empty();
     }
 }

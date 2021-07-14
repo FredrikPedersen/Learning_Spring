@@ -44,7 +44,7 @@ class IngredientControllerTest {
     MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
 
         controller = new IngredientController(ingredientService, recipeService, unitOfMeasureService);
@@ -55,7 +55,7 @@ class IngredientControllerTest {
     public void testListIngredients() throws Exception {
         //given
         RecipeCommand recipeCommand = new RecipeCommand();
-        when(recipeService.findCommandById(anyString())).thenReturn(recipeCommand);
+        when(recipeService.findCommandById(anyString())).thenReturn(Mono.just(recipeCommand));
 
         //when
         mockMvc.perform(get("/recipe/1/ingredients"))
@@ -89,7 +89,7 @@ class IngredientControllerTest {
         recipeCommand.setId("1");
 
         //when
-        when(recipeService.findCommandById(anyString())).thenReturn(recipeCommand);
+        when(recipeService.findCommandById(anyString())).thenReturn(Mono.just(recipeCommand));
         when(unitOfMeasureService.listAllUoms()).thenReturn(Flux.just(new UnitOfMeasureCommand()));
 
         //then
@@ -134,7 +134,8 @@ class IngredientControllerTest {
         mockMvc.perform(post("/recipe/2/ingredient")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("id", "")
-                .param("description", "some string"))
+                .param("description", "some string")
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
 
@@ -146,7 +147,8 @@ class IngredientControllerTest {
         when(ingredientService.deleteById(anyString(), anyString())).thenReturn(Mono.empty());
 
         //then
-        mockMvc.perform(get("/recipe/2/ingredient/3/delete"))
+        mockMvc.perform(get("/recipe/2/ingredient/3/delete")
+        )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredients"));
 
