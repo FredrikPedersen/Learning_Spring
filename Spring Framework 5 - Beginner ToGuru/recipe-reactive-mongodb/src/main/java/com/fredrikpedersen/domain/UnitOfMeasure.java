@@ -1,17 +1,15 @@
 package com.fredrikpedersen.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-/**
- * Created by jt on 6/13/17.
- */
 @Getter
 @Setter
+@Builder
 @Document
+@NoArgsConstructor
+@AllArgsConstructor
 public class UnitOfMeasure {
 
     @Id
