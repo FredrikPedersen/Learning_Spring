@@ -23,14 +23,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     private final IngredientToIngredientCommand ingredientToIngredientCommand;
     private final IngredientCommandToIngredient ingredientCommandToIngredient;
-    private final RecipeReactiveRepository recipeReactiveRepository;
-    private final RecipeRepository recipeRepository;
+    private final RecipeReactiveRepository recipeRepository;
     private final UnitOfMeasureReactiveRepository unitOfMeasureRepository;
 
     @Override
     public Mono<IngredientCommand> findByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
 
-        return recipeReactiveRepository
+        return recipeRepository
                 .findById(recipeId)
                 .flatMapIterable(Recipe::getIngredients)
                 .filter(ingredient -> ingredient.getId().equalsIgnoreCase(ingredientId))
@@ -44,15 +43,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Mono<IngredientCommand> saveIngredientCommand(IngredientCommand command) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
+        Recipe recipe = recipeRepository.findById(command.getRecipeId()).block();
 
-        if (!recipeOptional.isPresent()) {
-            
+        if (recipe == null) {
             log.error("Recipe not found for id: " + command.getRecipeId());
             return Mono.just(new IngredientCommand());
 
         } else {
-            Recipe recipe = recipeOptional.get();
 
             Optional<Ingredient> ingredientOptional = recipe
                     .getIngredients()
@@ -70,13 +67,14 @@ public class IngredientServiceImpl implements IngredientService {
                 if (ingredientFound.getUom() == null) {
                     throw new RuntimeException("UOM NOT FOUND");
                 }
+
             } else {
                 //add new Ingredient
                 Ingredient ingredient = ingredientCommandToIngredient.convert(command);
                 recipe.addIngredient(ingredient);
             }
 
-            Recipe savedRecipe = recipeReactiveRepository.save(recipe).block();
+            Recipe savedRecipe = recipeRepository.save(recipe).block();
 
             Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream()
                     .filter(recipeIngredients -> recipeIngredients.getId().equals(command.getId()))
@@ -92,8 +90,6 @@ public class IngredientServiceImpl implements IngredientService {
                         .findFirst();
             }
 
-            //todo check for fail
-
             //enhance with id value
             IngredientCommand ingredientCommandSaved = ingredientToIngredientCommand.convert(savedIngredientOptional.get());
             ingredientCommandSaved.setRecipeId(recipe.getId());
@@ -106,21 +102,20 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Mono<Void> deleteById(String recipeId, String idToDelete) {
 
-        Recipe recipe = recipeRepository.findById(recipeId).get();
+        Recipe recipe = recipeRepository.findById(recipeId).block();
 
-        log.debug("found recipe");
+        if (recipe != null) {
+            Optional<Ingredient> ingredientOptional = recipe
+                    .getIngredients()
+                    .stream()
+                    .filter(ingredient -> ingredient.getId().equals(idToDelete))
+                    .findFirst();
 
-        Optional<Ingredient> ingredientOptional = recipe
-                .getIngredients()
-                .stream()
-                .filter(ingredient -> ingredient.getId().equals(idToDelete))
-                .findFirst();
+            if (ingredientOptional.isPresent()) {
+                recipe.getIngredients().remove(ingredientOptional.get());
+                recipeRepository.save(recipe).block();
+            }
 
-        if (ingredientOptional.isPresent()) {
-            log.debug("found Ingredient");
-
-            recipe.getIngredients().remove(ingredientOptional.get());
-            recipeRepository.save(recipe);
         }
 
         return Mono.empty();
