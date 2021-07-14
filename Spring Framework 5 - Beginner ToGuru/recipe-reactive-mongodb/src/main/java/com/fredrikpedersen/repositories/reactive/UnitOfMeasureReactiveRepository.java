@@ -2,6 +2,7 @@ package com.fredrikpedersen.repositories.reactive;
 
 import com.fredrikpedersen.domain.UnitOfMeasure;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import reactor.core.publisher.Mono;
 
 /**
  * @author Fredrik Pedersen
@@ -10,4 +11,6 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
  */
 
 public interface UnitOfMeasureReactiveRepository extends ReactiveMongoRepository<UnitOfMeasure, String> {
+
+    Mono<UnitOfMeasure> findByDescription(String description);
 }
