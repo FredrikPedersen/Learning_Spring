@@ -1,6 +1,5 @@
 package com.fredrikpedersen.webfluxrest.controllers;
 
-import com.fredrikpedersen.webfluxrest.domain.Category;
 import com.fredrikpedersen.webfluxrest.domain.Vendor;
 import com.fredrikpedersen.webfluxrest.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
