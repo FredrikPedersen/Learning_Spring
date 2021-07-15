@@ -7,6 +7,6 @@ package com.fredrikpedersen.webfluxrest.controllers;
  */
 public class URLs {
 
-    public static final String BASE_URL = "api/v1/";
+    public static final String BASE_URL = "/api/v1/";
     public static final String CATEGORY_BASE_URL = BASE_URL + "categories/";
 }
