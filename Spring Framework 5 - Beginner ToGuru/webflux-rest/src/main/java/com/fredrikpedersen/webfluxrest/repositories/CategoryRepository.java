@@ -1,4 +1,4 @@
-package com.fredrikpedersen.webfluxrest.repository;
+package com.fredrikpedersen.webfluxrest.repositories;
 
 import com.fredrikpedersen.webfluxrest.domain.Category;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

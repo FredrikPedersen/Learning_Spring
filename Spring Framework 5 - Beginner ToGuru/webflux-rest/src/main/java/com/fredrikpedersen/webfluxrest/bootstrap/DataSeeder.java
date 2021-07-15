@@ -2,11 +2,12 @@ package com.fredrikpedersen.webfluxrest.bootstrap;
 
 import com.fredrikpedersen.webfluxrest.domain.Category;
 import com.fredrikpedersen.webfluxrest.domain.Vendor;
-import com.fredrikpedersen.webfluxrest.repository.CategoryRepository;
-import com.fredrikpedersen.webfluxrest.repository.VendorRepository;
+import com.fredrikpedersen.webfluxrest.repositories.CategoryRepository;
+import com.fredrikpedersen.webfluxrest.repositories.VendorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import static java.util.Arrays.asList;
  */
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class DataSeeder implements CommandLineRunner {
 
@@ -26,7 +28,7 @@ public class DataSeeder implements CommandLineRunner {
     private final VendorRepository vendorRepository;
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws Exception {
 
         log.info("Seeding data...");
 
