@@ -1,7 +1,8 @@
 package com.fredrikpedersen.webfluxrest.controllers;
 
 import com.fredrikpedersen.webfluxrest.domain.Category;
-import com.fredrikpedersen.webfluxrest.repositories.CategoryRepository;
+import com.fredrikpedersen.webfluxrest.domain.Vendor;
+import com.fredrikpedersen.webfluxrest.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -15,42 +16,41 @@ import static org.mockito.BDDMockito.given;
 /**
  * @author Fredrik Pedersen
  * @version 1.0
- * @since 15/07/2021 at 17:30
+ * @since 15/07/2021 at 17:37
  */
+class VendorControllerTest {
 
-class CategoryControllerTest {
-
-    private final String BASE_URL = URLs.CATEGORY_BASE_URL;
+    private final String BASE_URL = URLs.VENDOR_BASE_URL;
 
     @Mock
-    private CategoryRepository categoryRepository;
+    private VendorRepository vendorRepository;
 
     private WebTestClient webTestClient;
-    private CategoryController categoryController;
+    private VendorController vendorController;
 
 
     @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        categoryController = new CategoryController(categoryRepository);
-        webTestClient = WebTestClient.bindToController(categoryController).build();
+        vendorController = new VendorController(vendorRepository);
+        webTestClient = WebTestClient.bindToController(vendorController).build();
     }
 
     @Test
     public void list() {
 
         //given
-        given(categoryRepository.findAll()).willReturn(Flux.just(
-                        Category.builder().description("Sci-fi").build(),
-                        Category.builder().description("Fantasy").build())
-        );
+        given(vendorRepository.findAll()).willReturn(Flux.just(
+                Vendor.builder().firstname("Fredrik").lastname("Pedersen").build(),
+                Vendor.builder().firstname("Fredrik").lastname("Pedersen").build()
+        ));
 
         //when/then
         webTestClient.get()
                 .uri(BASE_URL)
                 .exchange()
-                .expectBodyList(Category.class)
+                .expectBodyList(Vendor.class)
                 .hasSize(2);
     }
 
@@ -58,13 +58,13 @@ class CategoryControllerTest {
     public void getById() {
 
         //given
-        given(categoryRepository.findById("someid")).willReturn(Mono.just(Category.builder().description("Sci-fi").build()));
+        given(vendorRepository.findById("someid")).willReturn(Mono.just(Vendor.builder().firstname("Fredrik").lastname("Pedersen").build()));
 
         //when/then
         webTestClient.get()
                 .uri(BASE_URL + "someid")
                 .exchange()
-                .expectBody(Category.class);
+                .expectBody(Vendor.class);
 
     }
 }
