@@ -12,7 +12,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 /**
  * @author Fredrik Pedersen
@@ -95,11 +98,47 @@ class CategoryControllerTest {
         final Mono<Category> catToUpdateMono = Mono.just(Category.builder().description("Fantasy").build());
 
         webTestClient.put()
-                .uri(BASE_URL + "asdfasdf")
+                .uri(BASE_URL + "someId")
                 .body(catToUpdateMono, Category.class)
                 .exchange()
                 .expectStatus()
                 .isOk();
     }
 
+    @Test
+    public void testPatchWithChanges() {
+
+        //given
+        given(categoryRepository.findById(anyString())).willReturn(Mono.just(Category.builder().description("Sci-Fi").build()));
+        given(categoryRepository.save(any(Category.class))).willReturn(Mono.just(Category.builder().description("Fantasy").build()));
+        final Mono<Category> catToUpdateMono = Mono.just(Category.builder().description("Fantasy").build());
+
+        //when/then
+        webTestClient.patch()
+                .uri(BASE_URL + "someId")
+                .body(catToUpdateMono, Category.class)
+                .exchange()
+                .expectStatus()
+                .isOk();
+
+        verify(categoryRepository).save(any());
+    }
+
+    @Test
+    public void testPatchNoChanges() {
+
+        //given
+        given(categoryRepository.findById(anyString())).willReturn(Mono.just(Category.builder().description("Fantasy").build()));
+        final Mono<Category> catToUpdateMono = Mono.just(Category.builder().description("Fantasy").build());
+
+        //when/then
+        webTestClient.patch()
+                .uri(BASE_URL + "someId")
+                .body(catToUpdateMono, Category.class)
+                .exchange()
+                .expectStatus()
+                .isOk();
+
+        verify(categoryRepository, never()).save(any());
+    }
 }
