@@ -1,5 +1,6 @@
 package com.fredrikpedersen.webfluxrest.controllers;
 
+import com.fredrikpedersen.webfluxrest.domain.Category;
 import com.fredrikpedersen.webfluxrest.domain.Vendor;
 import com.fredrikpedersen.webfluxrest.repositories.VendorRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -83,5 +84,19 @@ class VendorControllerTest {
                 .exchange()
                 .expectStatus()
                 .isCreated();
+    }
+
+    @Test
+    public void testUpdate() {
+        //given
+        given(vendorRepository.save(any(Vendor.class))).willReturn(Mono.just(Vendor.builder().build()));
+        final Mono<Vendor> vendorToUpdateMono = Mono.just(Vendor.builder().firstname("Fredrik").lastname("Pedersen").build());
+
+        webTestClient.put()
+                .uri(BASE_URL + "asdfasdf")
+                .body(vendorToUpdateMono, Category.class)
+                .exchange()
+                .expectStatus()
+                .isOk();
     }
 }

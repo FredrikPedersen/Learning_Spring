@@ -89,7 +89,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    public void TestUpdate() {
+    public void testUpdate() {
         //given
         given(categoryRepository.save(any(Category.class))).willReturn(Mono.just(Category.builder().build()));
         final Mono<Category> catToUpdateMono = Mono.just(Category.builder().description("Fantasy").build());
