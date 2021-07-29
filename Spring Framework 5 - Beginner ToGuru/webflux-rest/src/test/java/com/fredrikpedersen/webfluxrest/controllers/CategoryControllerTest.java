@@ -80,11 +80,26 @@ class CategoryControllerTest {
 
         final Mono<Category> toSaveMono = Mono.just(Category.builder().description("Some description").build());
 
+        //when/then
         webTestClient.post()
                 .uri(BASE_URL)
                 .body(toSaveMono, Category.class)
                 .exchange()
                 .expectStatus().isCreated();
+    }
+
+    @Test
+    public void TestUpdate() {
+        //given
+        given(categoryRepository.save(any(Category.class))).willReturn(Mono.just(Category.builder().build()));
+        final Mono<Category> catToUpdateMono = Mono.just(Category.builder().description("Fantasy").build());
+
+        webTestClient.put()
+                .uri(BASE_URL + "asdfasdf")
+                .body(catToUpdateMono, Category.class)
+                .exchange()
+                .expectStatus()
+                .isOk();
     }
 
 }

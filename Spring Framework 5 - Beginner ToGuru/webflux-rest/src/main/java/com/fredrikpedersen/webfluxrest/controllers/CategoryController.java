@@ -27,7 +27,7 @@ public class CategoryController {
         return categoryRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     protected Mono<Category> getById(@PathVariable final String id) {
         return categoryRepository.findById(id);
     }
@@ -36,5 +36,11 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     protected Mono<Void> create(@RequestBody final Publisher<Category> categoryStream) {
         return categoryRepository.saveAll(categoryStream).then();
+    }
+
+    @PutMapping("{id}")
+    protected Mono<Category> update(@PathVariable final String id, @RequestBody final Category category) {
+        category.setId(id);
+        return categoryRepository.save(category);
     }
 }
