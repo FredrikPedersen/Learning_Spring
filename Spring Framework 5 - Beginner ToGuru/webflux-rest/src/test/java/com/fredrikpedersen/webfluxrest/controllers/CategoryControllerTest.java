@@ -71,7 +71,7 @@ class CategoryControllerTest {
     }
 
     @Test
-    public void testCreateCateogry() {
+    public void testCreateCategory() {
 
         //given
         given(categoryRepository.saveAll(any(Publisher.class))).willReturn(Flux.just(
