@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@Api(description = "My Customer Controller")
+@Api(description = "This is my Customer API")
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
