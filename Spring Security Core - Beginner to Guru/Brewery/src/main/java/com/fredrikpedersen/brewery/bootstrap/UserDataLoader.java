@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.fredrikpedersen.brewery.security.Authorities.*;
+import static com.fredrikpedersen.brewery.security.permissions.Authorities.*;
 
 /**
  * @author Fredrik Pedersen

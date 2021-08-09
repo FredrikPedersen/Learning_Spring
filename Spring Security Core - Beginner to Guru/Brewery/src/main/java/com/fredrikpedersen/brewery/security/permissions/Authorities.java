@@ -1,4 +1,4 @@
-package com.fredrikpedersen.brewery.security;
+package com.fredrikpedersen.brewery.security.permissions;
 
 /**
  * @author Fredrik Pedersen
