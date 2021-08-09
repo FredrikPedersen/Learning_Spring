@@ -236,3 +236,30 @@
 	 - Same technique as filter.
 	
 
+## Section 11: Multitenancy Security
+
+ - Multi-tenant software architectures allows multiple users to share a single instance of a software application.
+ - Tenants are users, can be individuals or groups.
+	- Individuals - example Gmail
+	- Groups - example GitHub Organizations
+ - Benefit of multi-tenancy is efficiency
+ - Multi-tenancy comes in many different forms.
+
+### Multi-tenancy security
+
+ - Shared Databases can use a schema per tenant or shared tables with a tenant attribute.
+ - When the application and/or database is shared, application security needs to prevent unauthorized access.
+ 	- Customer A should not be able to read Customer B's data.
+	- Cusomter A should not be able to update or delete Customer B's data.
+	- A super user may need access to all customer data.
+	- Service accounts may need to access all customer data.
+	
+### Multi-tenancy Security with Spring Security
+
+ - Use-case: Allow Customers to Place Orders, Read Orders and Cancel Orders.
+ - A customer can have one or more orders.
+ - A custom UserDetails Object is used to hold necessary attributes in Security Context
+ - SPeL is used to access attributes to make access decisions
+ - For our use case, we will add Customer to the UserDetails object.
+	 - Rather than using the Spring Security User object, we will implement our own
+	
