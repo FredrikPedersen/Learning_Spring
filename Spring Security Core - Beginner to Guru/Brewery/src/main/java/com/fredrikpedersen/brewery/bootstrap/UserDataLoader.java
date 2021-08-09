@@ -12,10 +12,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.fredrikpedersen.brewery.security.Authorities.*;
 
 /**
  * @author Fredrik Pedersen
@@ -40,26 +42,27 @@ public class UserDataLoader implements CommandLineRunner {
         }
     }
 
-    private void seedSecurityData() {
+    @Transactional
+    void seedSecurityData() {
         log.info("Seeding user data...");
 
         //Beer authorities
-        final Authority createBeer = authorityRepository.save(Authority.builder().permission("beer.create").build());
-        final Authority updateBeer = authorityRepository.save(Authority.builder().permission("beer.update").build());
-        final Authority readBeer = authorityRepository.save(Authority.builder().permission("beer.read").build());
-        final Authority deleteBeer = authorityRepository.save(Authority.builder().permission("beer.delete").build());
+        final Authority createBeer = authorityRepository.save(Authority.builder().permission(BEER_CREATE).build());
+        final Authority updateBeer = authorityRepository.save(Authority.builder().permission(BEER_UPDATE).build());
+        final Authority readBeer = authorityRepository.save(Authority.builder().permission(BEER_READ).build());
+        final Authority deleteBeer = authorityRepository.save(Authority.builder().permission(BEER_DELETE).build());
 
         //Customer authorities
-        final Authority createCustomer = authorityRepository.save(Authority.builder().permission("customer.create").build());
-        final Authority readCustomer = authorityRepository.save(Authority.builder().permission("customer.read").build());
-        final Authority updateCustomer = authorityRepository.save(Authority.builder().permission("customer.update").build());
-        final Authority deleteCustomer = authorityRepository.save(Authority.builder().permission("customer.delete").build());
+        final Authority createCustomer = authorityRepository.save(Authority.builder().permission(CUSTOMER_CREATE).build());
+        final Authority readCustomer = authorityRepository.save(Authority.builder().permission(CUSTOMER_READ).build());
+        final Authority updateCustomer = authorityRepository.save(Authority.builder().permission(CUSTOMER_UPDATE).build());
+        final Authority deleteCustomer = authorityRepository.save(Authority.builder().permission(CUSTOMER_DELETE).build());
 
         //Brewery authorities
-        final Authority createBrewery = authorityRepository.save(Authority.builder().permission("brewery.create").build());
-        final Authority readBrewery = authorityRepository.save(Authority.builder().permission("brewery.read").build());
-        final Authority updateBrewery = authorityRepository.save(Authority.builder().permission("brewery.update").build());
-        final Authority deleteBrewery = authorityRepository.save(Authority.builder().permission("brewery.delete").build());
+        final Authority createBrewery = authorityRepository.save(Authority.builder().permission(BREWERY_CREATE).build());
+        final Authority readBrewery = authorityRepository.save(Authority.builder().permission(BREWERY_READ).build());
+        final Authority updateBrewery = authorityRepository.save(Authority.builder().permission(BREWERY_UPDATE).build());
+        final Authority deleteBrewery = authorityRepository.save(Authority.builder().permission(BREWERY_DELETE).build());
 
         //Roles
         final Role adminRole = roleRepository.save(Role.builder().name("ADMIN").build());

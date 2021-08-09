@@ -20,23 +20,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final String ROLE_USER = "USER";
 
     private final String[] allRoles = new String[]{ROLE_ADMIN, ROLE_CUSTOMER, ROLE_USER};
-    private final String[] nonSecuredMvcPaths = new String[]{"/", "/webjars/**", "/login", "/resources/**", "/beers/find", "/beers*"};
+    private final String[] nonSecuredMvcPaths = new String[]{"/", "/webjars/**", "/login", "/resources/**"};
 
     @Override
     protected void configure(final HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity
                 .authorizeRequests(authorize -> authorize
-                        .antMatchers("/h2-console/**").permitAll()
+                        .antMatchers("/h2-console/**").permitAll() //do not use in production!
                         .antMatchers(nonSecuredMvcPaths).permitAll()
 
-                        .antMatchers(HttpMethod.GET, "/api/v1/beer/**").hasAnyRole(allRoles)
-                        .mvcMatchers(HttpMethod.DELETE, "api/v1/beer/**").hasRole(ROLE_ADMIN)
-                        .mvcMatchers(HttpMethod.GET, "/api/v1/beerUpc/{upc}").hasAnyRole(allRoles)
+                        .mvcMatchers("/brewery/breweries")
+                        .hasAnyRole(ROLE_ADMIN, ROLE_CUSTOMER)
 
-                        .mvcMatchers("/brewery/breweries").hasAnyRole(ROLE_ADMIN, ROLE_CUSTOMER)
-                        .mvcMatchers(HttpMethod.GET, "/brewery/api/v1/breweries").hasAnyRole(ROLE_ADMIN, ROLE_CUSTOMER)
-                        .mvcMatchers("/beers/find", "/beers/{beerId}").hasAnyRole(allRoles)
+                        .mvcMatchers(HttpMethod.GET, "/brewery/api/v1/breweries")
+                        .hasAnyRole(ROLE_ADMIN, ROLE_CUSTOMER)
+
+                        .mvcMatchers("/beers/find", "/beers/{beerId}")
+                        .hasAnyRole(allRoles)
                 )
                 .authorizeRequests()
                 .anyRequest().authenticated()

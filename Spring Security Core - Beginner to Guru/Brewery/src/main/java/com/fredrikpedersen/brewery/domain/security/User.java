@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @Setter
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -27,17 +27,24 @@ public class User {
     private String username;
     private String password;
 
-    @Singular //Allows us to pass in a single Authority instead of a full set when using the builder.
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @Singular
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
-            joinColumns = {@JoinColumn(name = "USER", referencedColumnName = "ID")},
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private Set<Role> roles;
 
-    @Transient //Value is not persisted
+    @Transient
     private Set<Authority> authorities;
 
-    @Builder.Default //Builder.Default makes sure the builder defaults to the set value if nothing is provided when calling the builder
+    public Set<Authority> getAuthorities() {
+        return this.roles.stream()
+                .map(Role::getAuthorities)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+    }
+
+    @Builder.Default
     private Boolean accountNonExpired = true;
 
     @Builder.Default
@@ -48,12 +55,5 @@ public class User {
 
     @Builder.Default
     private Boolean enabled = true;
-
-    public Set<Authority> getAuthorities() {
-        return this.roles.stream()
-                .map(Role::getAuthorities)
-                .flatMap(Set::stream)
-                .collect(Collectors.toSet());
-    }
 
 }
