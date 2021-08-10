@@ -23,4 +23,14 @@ public final class Authorities {
     public static final String BREWERY_UPDATE = "brewery.update";
     public static final String BREWERY_READ = "brewery.read";
     public static final String BREWERY_DELETE = "brewery.delete";
+
+    public static final String CUSTOMER_ORDER_CREATE = "customer.order.create";
+    public static final String CUSTOMER_ORDER_UPDATE = "customer.order.update";
+    public static final String CUSTOMER_ORDER_READ = "customer.order.read";
+    public static final String CUSTOMER_ORDER_DELETE = "customer.order.delete";
+
+    public static final String ADMIN_ORDER_CREATE = "admin.order.create";
+    public static final String ADMIN_ORDER_UPDATE = "admin.order.update";
+    public static final String ADMIN_ORDER_READ = "admin.order.read";
+    public static final String ADMIN_ORDER_DELETE = "admin.order.delete";
 }
