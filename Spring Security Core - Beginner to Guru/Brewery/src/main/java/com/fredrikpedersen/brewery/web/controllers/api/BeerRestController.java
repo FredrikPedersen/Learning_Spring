@@ -1,6 +1,9 @@
 package com.fredrikpedersen.brewery.web.controllers.api;
 
-import com.fredrikpedersen.brewery.security.permissions.*;
+import com.fredrikpedersen.brewery.security.permissions.BeerCreatePermission;
+import com.fredrikpedersen.brewery.security.permissions.BeerDeletePermission;
+import com.fredrikpedersen.brewery.security.permissions.BeerReadPermission;
+import com.fredrikpedersen.brewery.security.permissions.BeerUpdatePermission;
 import com.fredrikpedersen.brewery.services.BeerService;
 import com.fredrikpedersen.brewery.web.model.BeerDto;
 import com.fredrikpedersen.brewery.web.model.BeerPagedList;
@@ -11,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
@@ -21,9 +23,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/")
-@RestController
 public class BeerRestController {
 
     private static final Integer DEFAULT_PAGE_NUMBER = 0;

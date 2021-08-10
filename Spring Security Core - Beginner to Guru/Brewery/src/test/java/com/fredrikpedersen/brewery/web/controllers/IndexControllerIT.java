@@ -1,8 +1,10 @@
 package com.fredrikpedersen.brewery.web.controllers;
 
+import com.fredrikpedersen.brewery.domain.BeerOrder;
 import com.fredrikpedersen.brewery.repositories.BeerInventoryRepository;
 import com.fredrikpedersen.brewery.repositories.BeerRepository;
 import com.fredrikpedersen.brewery.repositories.CustomerRepository;
+import com.fredrikpedersen.brewery.services.BeerOrderService;
 import com.fredrikpedersen.brewery.services.BeerService;
 import com.fredrikpedersen.brewery.services.BreweryService;
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,9 @@ public class IndexControllerIT extends BaseIT {
 
     @MockBean
     protected BeerService beerService;
+
+    @MockBean
+    protected BeerOrderService beerOrderService;
 
     @Test
     void testGetIndexSlash() throws Exception{
