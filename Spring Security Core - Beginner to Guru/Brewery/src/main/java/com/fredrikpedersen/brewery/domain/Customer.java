@@ -1,13 +1,12 @@
 package com.fredrikpedersen.brewery.domain;
 
+import com.fredrikpedersen.brewery.domain.security.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
@@ -25,6 +24,9 @@ public class Customer extends BaseEntity {
 
     @OneToMany(mappedBy = "customer")
     private Set<BeerOrder> beerOrders;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<User> users;
 
     @Builder
     public Customer(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerName,
