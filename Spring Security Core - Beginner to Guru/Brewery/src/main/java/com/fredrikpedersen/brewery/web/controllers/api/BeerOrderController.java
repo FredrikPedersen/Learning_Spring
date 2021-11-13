@@ -1,14 +1,18 @@
 package com.fredrikpedersen.brewery.web.controllers.api;
 
+import com.fredrikpedersen.brewery.security.permissions.AdminAndCustomerReadPermission;
 import com.fredrikpedersen.brewery.services.BeerOrderService;
 import com.fredrikpedersen.brewery.web.model.BeerOrderDto;
 import com.fredrikpedersen.brewery.web.model.BeerOrderPagedList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+
+import static com.fredrikpedersen.brewery.security.permissions.Authorities.*;
 
 /**
  * @author Fredrik Pedersen
@@ -26,6 +30,7 @@ public class BeerOrderController {
 
     private final BeerOrderService beerOrderService;
 
+    @AdminAndCustomerReadPermission
     @GetMapping("orders")
     public BeerOrderPagedList listOrders(@PathVariable("customerId") final UUID customerId,
                                          @RequestParam(value = "pageNumber", required = false) Integer pageNumber,
@@ -48,6 +53,7 @@ public class BeerOrderController {
         return beerOrderService.placeOrder(customerId, beerOrderDto);
     }
 
+    @AdminAndCustomerReadPermission
     @GetMapping("orders/{orderId}")
     public BeerOrderDto getOrder(@PathVariable("customerId") final UUID customerId, @PathVariable("orderId") final UUID orderId) {
         return beerOrderService.getOrderById(customerId, orderId);
