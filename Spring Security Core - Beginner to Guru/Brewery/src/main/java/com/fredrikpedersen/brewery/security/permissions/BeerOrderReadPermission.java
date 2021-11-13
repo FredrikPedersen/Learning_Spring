@@ -18,5 +18,5 @@ import static com.fredrikpedersen.brewery.security.permissions.Authorities.CUSTO
 @PreAuthorize("hasAuthority(\"" + ADMIN_ORDER_READ + "\") " +
         "OR hasAuthority(\"" + CUSTOMER_ORDER_READ + "\") " +
         "AND @beerOrderAuthenticationManager.customerIdMatches(authentication, #customerId)")
-public @interface AdminAndCustomerReadPermission {
+public @interface BeerOrderReadPermission {
 }

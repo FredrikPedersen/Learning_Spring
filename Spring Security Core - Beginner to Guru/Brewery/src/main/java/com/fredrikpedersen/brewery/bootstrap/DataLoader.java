@@ -80,20 +80,22 @@ public class DataLoader implements CommandLineRunner {
         final Authority customerReadOrder = authorityRepository.save(Authority.builder().permission(CUSTOMER_ORDER_READ).build());
         final Authority customerUpdateOrder = authorityRepository.save(Authority.builder().permission(CUSTOMER_ORDER_UPDATE).build());
         final Authority customerDeleteOrder = authorityRepository.save(Authority.builder().permission(CUSTOMER_ORDER_DELETE).build());
+        final Authority customerPickupOrder = authorityRepository.save(Authority.builder().permission(CUSTOMER_ORDER_PICKUP).build());
 
         //Beer Admin Orders authorities
         final Authority adminCreateOrder = authorityRepository.save(Authority.builder().permission(ADMIN_ORDER_CREATE).build());
         final Authority adminReadOrder = authorityRepository.save(Authority.builder().permission(ADMIN_ORDER_READ).build());
         final Authority adminUpdateOrder = authorityRepository.save(Authority.builder().permission(ADMIN_ORDER_UPDATE).build());
         final Authority adminDeleteOrder = authorityRepository.save(Authority.builder().permission(ADMIN_ORDER_DELETE).build());
+        final Authority adminPickupOrder = authorityRepository.save(Authority.builder().permission(ADMIN_ORDER_PICKUP).build());
 
         //Roles
         final Role adminRole = roleRepository.save(Role.builder().name("ADMIN").build());
         final Role customerRole = roleRepository.save(Role.builder().name("CUSTOMER").build());
         final Role userRole = roleRepository.save(Role.builder().name("USER").build());
 
-        adminRole.setAuthorities(new HashSet<>(Set.of(createBeer, updateBeer, readBeer, deleteBeer, createCustomer, readCustomer, updateCustomer, deleteCustomer, createBrewery, readBrewery, updateBrewery, deleteBrewery, adminCreateOrder, adminReadOrder, adminUpdateOrder, adminDeleteOrder)));
-        customerRole.setAuthorities(new HashSet<>(Set.of(readBeer, readCustomer, readBrewery, customerCreateOrder, customerReadOrder, customerUpdateOrder, customerDeleteOrder)));
+        adminRole.setAuthorities(new HashSet<>(Set.of(createBeer, updateBeer, readBeer, deleteBeer, createCustomer, readCustomer, updateCustomer, deleteCustomer, createBrewery, readBrewery, updateBrewery, deleteBrewery, adminCreateOrder, adminReadOrder, adminUpdateOrder, adminDeleteOrder, adminPickupOrder)));
+        customerRole.setAuthorities(new HashSet<>(Set.of(readBeer, readCustomer, readBrewery, customerCreateOrder, customerReadOrder, customerUpdateOrder, customerDeleteOrder, customerPickupOrder)));
         userRole.setAuthorities(new HashSet<>(Set.of(readBeer)));
 
         roleRepository.saveAll(Arrays.asList(adminRole, customerRole, userRole));
