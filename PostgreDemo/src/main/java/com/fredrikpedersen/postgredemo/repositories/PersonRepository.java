@@ -1,8 +1,8 @@
-package com.fredrikpedersen.postgredemo.repository;
+package com.fredrikpedersen.postgredemo.repositories;
 
 import com.fredrikpedersen.postgredemo.model.Person;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Fredrik Pedersen
@@ -10,6 +10,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @since 01/04/2020 at 13:40
  */
 
-@RepositoryRestResource
+@Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 }

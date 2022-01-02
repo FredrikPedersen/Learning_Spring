@@ -14,8 +14,8 @@ import javax.persistence.Id;
  * @since 01/04/2020 at 13:38
  */
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 public class Person {
 
