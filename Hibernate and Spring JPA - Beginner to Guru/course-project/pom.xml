@@ -81,6 +81,9 @@
                     <url>jdbc:postgresql://localhost:5432/JPACourse</url>
                     <username>spring</username>
                     <password>spring</password>
+                    <outputChangeLogFile>changelog.xml</outputChangeLogFile>
+                    <changeSetAuthor>Fredrik Pedersen</changeSetAuthor>
+                    <changelogSchemaName>JPACourse</changelogSchemaName>
                 </configuration>
                 <dependencies>
                     <dependency>
