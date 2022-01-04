@@ -20,11 +20,20 @@ class AuthorDaoImplIT {
     private AuthorDao authorDao;
 
     @Test
-    void testGetAuthor() {
+    void testGetAuthorById() {
 
         final Author author = authorDao.getById(1L);
 
         assertNotNull(author);
+    }
+
+    @Test
+    void testGetAuthorByName() {
+
+        final Author author = authorDao.getByName("Brandon", "Sanderson");
+
+        assertNotNull(author);
+
     }
 
 }

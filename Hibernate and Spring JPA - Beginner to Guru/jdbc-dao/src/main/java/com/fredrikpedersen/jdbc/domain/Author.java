@@ -18,6 +18,7 @@ public class Author extends IdentityEntity {
     private String firstName;
     private String lastName;
 
+    @Builder
     public Author(final String firstName, final String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
