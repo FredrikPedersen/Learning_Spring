@@ -8,4 +8,6 @@
   http://www.liquibase.org/xml/ns/pro
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
     <include file="db/changelog/baseline-changelog.xml"/>
+    <include file="db/changelog/create-author.xml"/>
+    <include file="db/changelog/insert-author.xml"/>
 </databaseChangeLog>

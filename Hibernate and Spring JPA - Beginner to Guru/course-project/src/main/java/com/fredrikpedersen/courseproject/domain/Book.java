@@ -1,25 +1,16 @@
 package com.fredrikpedersen.courseproject.domain;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
-@ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Book extends IdentityEntity {
 
     private String title;
     private String isbn;
@@ -29,18 +20,5 @@ public class Book {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Book book = (Book) o;
-        return id != null && Objects.equals(id, book.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }
