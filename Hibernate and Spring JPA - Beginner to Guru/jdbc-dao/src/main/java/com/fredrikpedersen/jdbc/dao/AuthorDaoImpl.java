@@ -31,14 +31,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    final Author author = Author.builder()
-                            .firstName(resultSet.getString(COLUMN_FIRST_NAME))
-                            .lastName(resultSet.getString(COLUMN_LAST_NAME))
-                            .build();
-
-                    author.setId(id);
-
-                    return author;
+                    return getAuthorFromResultSet(resultSet);
                 }
             }
 
@@ -61,14 +54,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    final Author author = Author.builder()
-                            .firstName(resultSet.getString(COLUMN_FIRST_NAME))
-                            .lastName(resultSet.getString(COLUMN_LAST_NAME))
-                            .build();
-
-                    author.setId(resultSet.getLong(COLUMN_ID));
-
-                    return author;
+                    return getAuthorFromResultSet(resultSet);
                 }
             }
 
@@ -77,5 +63,16 @@ public class AuthorDaoImpl implements AuthorDao {
         }
 
         return null;
+    }
+
+    private Author getAuthorFromResultSet(final ResultSet resultSet) throws SQLException {
+        final Author author = Author.builder()
+                .firstName(resultSet.getString(COLUMN_FIRST_NAME))
+                .lastName(resultSet.getString(COLUMN_LAST_NAME))
+                .build();
+
+        author.setId(resultSet.getLong(COLUMN_ID));
+
+        return author;
     }
 }
