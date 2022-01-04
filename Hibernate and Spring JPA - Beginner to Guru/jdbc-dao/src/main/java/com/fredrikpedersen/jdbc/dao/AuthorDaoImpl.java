@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +18,7 @@ public class AuthorDaoImpl implements AuthorDao {
     private final DataSource dataSource;
 
     @Override
-    public Author getById(final Long id) {
+    public Author findById(final Long id) {
         final String query = "SELECT * FROM author WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
@@ -43,9 +40,18 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public Author getByName(final String firstName, final String lastName) {
+    public Author findByName(final String firstName, final String lastName) {
         final String query = "SELECT * FROM author WHERE first_name = ? AND last_name = ?";
+        return executeQueryOnFirstAndLastName(query, firstName, lastName);
+    }
 
+    @Override
+    public Author save(final Author author) {
+        final String query = "INSERT INTO author (first_name, last_name) values (?, ?) RETURNING *";
+        return executeQueryOnFirstAndLastName(query, author.getFirstName(), author.getLastName());
+    }
+
+    private Author executeQueryOnFirstAndLastName(final String query, final String firstName, final String lastName) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
