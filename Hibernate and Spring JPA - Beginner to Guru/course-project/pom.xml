@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fredrikpedersen</groupId>
-    <artifactId>sdjpa-intro</artifactId>
+    <artifactId>course-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>course-project</name>
     <description>Introduction to Spring Data JPA</description>
