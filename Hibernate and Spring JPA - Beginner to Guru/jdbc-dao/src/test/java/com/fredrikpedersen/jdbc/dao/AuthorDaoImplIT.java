@@ -77,5 +77,19 @@ class AuthorDaoImplIT {
 
     }
 
+    @Test
+    void testDelete() {
+
+        //given
+        final Author savedAuthor = authorDao.save(new Author("Fredrik", "Deletesen"));
+
+        //when
+        final boolean isDeleted = authorDao.deleteById(savedAuthor.getId());
+
+        //then
+        assertTrue(isDeleted);
+        assertNull(authorDao.findById(savedAuthor.getId()));
+    }
+
 
 }

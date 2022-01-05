@@ -78,6 +78,24 @@ public class AuthorDaoImpl implements AuthorDao {
         return this.findById(author.getId());
     }
 
+    @Override
+    public boolean deleteById(final Long id) {
+        final String query = "DELETE FROM author WHERE id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setLong(1, id);
+            statement.execute();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     private Author executeQueryOnFirstAndLastName(final String query, final String firstName, final String lastName) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
