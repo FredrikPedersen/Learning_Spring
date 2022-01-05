@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import static com.fredrikpedersen.jdbcTemplate.dao.Queries.SELECT_AUTHOR_BY_ID;
+
 
 @Component
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author findById(final Long id) {
-        return null;
+        return jdbcTemplate.queryForObject(SELECT_AUTHOR_BY_ID, getRowMapper(), id);
     }
 
     @Override
