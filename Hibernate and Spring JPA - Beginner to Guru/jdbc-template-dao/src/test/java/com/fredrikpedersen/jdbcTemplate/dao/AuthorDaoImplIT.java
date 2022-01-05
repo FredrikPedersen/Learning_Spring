@@ -66,14 +66,13 @@ class AuthorDaoImplIT {
         //given
         final String correctLastName = "Pedersen";
         final Author savedAuthor = authorDao.save(new Author("Fredrik", "P"));
-        savedAuthor.setLastName(correctLastName);
 
         //when
+        savedAuthor.setLastName(correctLastName);
         final Author updatedAuthor = authorDao.update(savedAuthor);
 
         //then
-        assertEquals(correctLastName, updatedAuthor.getLastName());
-        assertNull(authorDao.findByName("Fredrik", "P"));
+        assertEquals(savedAuthor, updatedAuthor);
 
     }
 
@@ -88,7 +87,6 @@ class AuthorDaoImplIT {
 
         //then
         assertTrue(isDeleted);
-        assertNull(authorDao.findById(savedAuthor.getId()));
     }
 
 
