@@ -3,6 +3,8 @@ package com.fredrikpedersen.jdbcTemplate.domain;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,6 +16,9 @@ public class Author extends IdentityEntity {
 
     private String firstName;
     private String lastName;
+
+    @Transient
+    private List<Book> boooks;
 
     @Builder
     public Author(final String firstName, final String lastName) {

@@ -6,10 +6,16 @@ public class Queries {
     }
 
     public static final String SELECT_AUTHOR_BY_ID =
-            "SELECT * FROM author WHERE id = ?";
+            "SELECT author.id as id, first_name, last_name, book.id as book_id, book.title, book.isbn, book.publisher " +
+            "FROM author " +
+            "LEFT OUTER JOIN book ON author.id = book.author_id " +
+            "WHERE author.id = ?";
 
     public static final String SELECT_AUTHOR_BY_FIRST_AND_LAST_NAME =
-            "SELECT * FROM author WHERE first_name = ? AND last_name = ?";
+            "SELECT author.id as id, first_name, last_name, book.id as book_id, book.title, book.isbn, book.publisher " +
+            "FROM author " +
+            "LEFT OUTER JOIN book ON author.id = book.author_id " +
+            "WHERE first_name = ? AND last_name = ?";
 
     public static final String INSERT_AUTHOR =
             "INSERT INTO author (first_name, last_name) VALUES (?, ?) RETURNING id";

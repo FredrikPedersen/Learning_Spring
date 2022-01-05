@@ -1,5 +1,6 @@
 package com.fredrikpedersen.jdbcTemplate.dao;
 
+import com.fredrikpedersen.jdbcTemplate.dao.extractors.AuthorExtractor;
 import com.fredrikpedersen.jdbcTemplate.dao.mappers.AuthorMapper;
 import com.fredrikpedersen.jdbcTemplate.domain.Author;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author findById(final Long id) {
-        return jdbcTemplate.queryForObject(SELECT_AUTHOR_BY_ID, getRowMapper(), id);
+        return jdbcTemplate.query(SELECT_AUTHOR_BY_ID, new AuthorExtractor(), id);
     }
 
     @Override

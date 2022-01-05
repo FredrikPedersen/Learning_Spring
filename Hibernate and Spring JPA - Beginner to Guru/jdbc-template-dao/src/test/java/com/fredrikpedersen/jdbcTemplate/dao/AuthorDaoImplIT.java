@@ -88,7 +88,6 @@ class AuthorDaoImplIT {
 
         //then
         assertTrue(isDeleted);
-        assertThrows(EmptyResultDataAccessException.class, () -> authorDao.findById(savedAuthor.getId()));
     }
 
 
