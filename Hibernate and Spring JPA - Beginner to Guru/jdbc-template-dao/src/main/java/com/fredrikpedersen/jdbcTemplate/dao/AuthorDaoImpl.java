@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import static com.fredrikpedersen.jdbcTemplate.dao.Queries.SELECT_AUTHOR_BY_FIRST_AND_LAST_NAME;
 import static com.fredrikpedersen.jdbcTemplate.dao.Queries.SELECT_AUTHOR_BY_ID;
 
 
@@ -23,7 +24,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author findByName(final String firstName, final String lastName) {
-        return null;
+        return jdbcTemplate.queryForObject(SELECT_AUTHOR_BY_FIRST_AND_LAST_NAME, getRowMapper(), firstName, lastName);
     }
 
     @Override
