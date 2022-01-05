@@ -7,12 +7,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@Transactional
 @ActiveProfiles("local")
 @ComponentScan(basePackages = {"com.fredrikpedersen.jdbc.dao"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -22,7 +20,7 @@ class AuthorDaoImplIT {
     private AuthorDao authorDao;
 
     @Test
-    void testFindAuthorById() {
+    void testFindById() {
 
         final Author author = authorDao.findById(1L);
 
@@ -31,7 +29,7 @@ class AuthorDaoImplIT {
     }
 
     @Test
-    void testFindAuthorByName() {
+    void testFindByName() {
 
         //given
         final Author expectedAuthor = new Author("Brandon", "Sanderson");
@@ -47,7 +45,7 @@ class AuthorDaoImplIT {
     }
 
     @Test
-    void testSaveAuthor() {
+    void testSave() {
 
         //given
         final Author author = new Author("Fredrik", "Pedersen");
@@ -60,6 +58,23 @@ class AuthorDaoImplIT {
         assertEquals(author.getFirstName(), savedAuthor.getFirstName());
         assertEquals(author.getLastName(), savedAuthor.getLastName());
         assertNotNull(savedAuthor.getId());
+    }
+
+    @Test
+    void testUpdate() {
+
+        //given
+        final String correctLastName = "Pedersen";
+        final Author savedAuthor = authorDao.save(new Author("Fredrik", "P"));
+        savedAuthor.setLastName(correctLastName);
+
+        //when
+        final Author updatedAuthor = authorDao.update(savedAuthor);
+
+        //then
+        assertEquals(correctLastName, updatedAuthor.getLastName());
+        assertNull(authorDao.findByName("Fredrik", "P"));
+
     }
 
 
