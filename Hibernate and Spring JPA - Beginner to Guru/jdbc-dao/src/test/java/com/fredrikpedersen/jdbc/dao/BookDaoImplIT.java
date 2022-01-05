@@ -1,5 +1,6 @@
 package com.fredrikpedersen.jdbc.dao;
 
+import com.fredrikpedersen.jdbc.domain.Author;
 import com.fredrikpedersen.jdbc.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,9 @@ class BookDaoImplIT {
     void findByTitle() {
 
         //given
-        final Book expectedBook = new Book("The Way of Kings", "978-0-7653-2635-5", "Tor Books", 1L);
+        final Author author = new Author();
+        author.setId(1L);
+        final Book expectedBook = new Book("The Way of Kings", "978-0-7653-2635-5", "Tor Books", author);
 
         //when
         final Book actualBook = bookDao.findByTitle("The Way of Kings");
@@ -48,7 +51,9 @@ class BookDaoImplIT {
     void save() {
 
         //given
-        final Book book = new Book("Mogworld", "123-0-4567-8910-5", "Dark Horse", 3L);
+        final Author author = new Author();
+        author.setId(1L);
+        final Book book = new Book("Mogworld", "123-0-4567-8910-5", "Dark Horse", author);
 
         //when
         final Book savedBook = bookDao.save(book);
@@ -58,7 +63,7 @@ class BookDaoImplIT {
         assertEquals(book.getTitle(), savedBook.getTitle());
         assertEquals(book.getIsbn(), savedBook.getIsbn());
         assertEquals(book.getPublisher(), savedBook.getPublisher());
-        assertEquals(book.getAuthorId(), savedBook.getAuthorId());
+        assertEquals(book.getAuthor().getId(), savedBook.getAuthor().getId());
         assertNotNull(savedBook.getId());
     }
 
@@ -67,7 +72,9 @@ class BookDaoImplIT {
 
         //given
         final String correctTitle = "Prince of Thorns";
-        final Book savedBook = bookDao.save(new Book("King of Horns", "123-0-4567-8910-5", "Harper Voyager", 1L));
+        final Author author = new Author();
+        author.setId(1L);
+        final Book savedBook = bookDao.save(new Book("King of Horns", "123-0-4567-8910-5", "Harper Voyager", author));
         savedBook.setTitle(correctTitle);
 
         //when
@@ -82,7 +89,14 @@ class BookDaoImplIT {
     void deleteById() {
 
         //given
-        final Book savedBook = bookDao.save(new Book("Ghosts of Onyx", "123-0-4567-8910-5", "Tor Books", 1L));
+        final Author author = new Author();
+        author.setId(1L);
+        final Book savedBook = bookDao.save(Book.builder()
+                .title("Ghosts of Onyx")
+                .isbn("123-0-4567-8910-5")
+                .publisher("Tor Books")
+                .author(author)
+                .build());
 
         //when
         final boolean isDeleted = bookDao.deleteById(savedBook.getId());

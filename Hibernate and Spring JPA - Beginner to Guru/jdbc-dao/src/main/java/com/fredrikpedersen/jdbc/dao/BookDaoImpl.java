@@ -1,5 +1,6 @@
 package com.fredrikpedersen.jdbc.dao;
 
+import com.fredrikpedersen.jdbc.domain.Author;
 import com.fredrikpedersen.jdbc.domain.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 public class BookDaoImpl implements BookDao {
 
     private final DataSource dataSource;
+    private final AuthorDao authorDao;
 
     @Override
     public Book findById(final Long id) {
@@ -27,15 +29,7 @@ public class BookDaoImpl implements BookDao {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    final Book book = Book.builder()
-                            .title(resultSet.getString("title"))
-                            .isbn(resultSet.getString("isbn"))
-                            .publisher(resultSet.getString("publisher"))
-                            .authorId(resultSet.getLong("author_id"))
-                            .build();
-
-                    book.setId(resultSet.getLong("id"));
-                    return book;
+                    return getBookFromResultSet(resultSet);
                 }
             }
 
@@ -78,7 +72,10 @@ public class BookDaoImpl implements BookDao {
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getIsbn());
             statement.setString(3, book.getPublisher());
-            statement.setLong(4, book.getAuthorId());
+
+            if (book.getAuthor() != null) {
+                statement.setLong(4, book.getAuthor().getId());
+            }
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -103,7 +100,11 @@ public class BookDaoImpl implements BookDao {
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getIsbn());
             statement.setString(3, book.getPublisher());
-            statement.setLong(4, book.getAuthorId());
+
+            if (book.getAuthor() != null) {
+                statement.setLong(4, book.getAuthor().getId());
+            }
+
             statement.setLong(5, book.getId());
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -141,7 +142,7 @@ public class BookDaoImpl implements BookDao {
                 .title(resultSet.getString("title"))
                 .isbn(resultSet.getString("isbn"))
                 .publisher(resultSet.getString("publisher"))
-                .authorId(resultSet.getLong("author_id"))
+                .author(authorDao.findById(resultSet.getLong("author_id")))
                 .build();
 
         book.setId(resultSet.getLong("id"));
