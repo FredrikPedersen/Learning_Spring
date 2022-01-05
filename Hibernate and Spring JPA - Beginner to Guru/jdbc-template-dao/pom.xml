@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.fredrikpedersen</groupId>
-    <artifactId>sdjpa-jdbc</artifactId>
+    <artifactId>sdjpa-jdbc-template</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>JDBC DAO</name>
-    <description>sdjpa-jdbc</description>
+    <name>JDBCTemplate DAO</name>
+    <description>sdjpa-jdbc-template</description>
 
     <properties>
         <java.version>11</java.version>
