@@ -49,7 +49,7 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public Author update(final Author author) {
         jdbcTemplate.update(connection -> {
-            final PreparedStatement statement = connection.prepareStatement(UPDATE_AUTHOR, Statement.RETURN_GENERATED_KEYS);
+            final PreparedStatement statement = connection.prepareStatement(UPDATE_AUTHOR);
             statement.setString(1, author.getFirstName());
             statement.setString(2, author.getLastName());
             statement.setLong(3, author.getId());
