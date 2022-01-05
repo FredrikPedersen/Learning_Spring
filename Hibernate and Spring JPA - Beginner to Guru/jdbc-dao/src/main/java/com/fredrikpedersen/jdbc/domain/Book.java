@@ -21,6 +21,7 @@ public class Book extends IdentityEntity {
     private String publisher;
     private Long authorId;
 
+    @Builder
     public Book(final String title, final String isbn, final String publisher, final Long authorId) {
         this.title = title;
         this.isbn = isbn;

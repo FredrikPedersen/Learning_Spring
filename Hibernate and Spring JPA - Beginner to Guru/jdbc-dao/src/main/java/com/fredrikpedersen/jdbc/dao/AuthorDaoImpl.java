@@ -83,7 +83,7 @@ public class AuthorDaoImpl implements AuthorDao {
         final String query = "DELETE FROM author WHERE id = ?";
 
         try (Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setLong(1, id);
             statement.execute();
