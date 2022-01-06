@@ -58,8 +58,16 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public boolean deleteById(final Long id) {
-        return false;
+    public void deleteById(final Long id) {
+        final EntityManager entityManager = getEntityManager();
+
+        entityManager.getTransaction().begin();
+        final Author author = entityManager.find(Author.class, id);
+
+        entityManager.remove(author);
+        entityManager.flush();
+        entityManager.getTransaction().commit();
+
     }
 
     private EntityManager getEntityManager() {

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.NoResultException;
@@ -86,11 +85,9 @@ class AuthorDaoImplIT {
         //given
         final Author savedAuthor = authorDao.save(new Author("Fredrik", "Deletesen"));
 
-        //when
-        final boolean isDeleted = authorDao.deleteById(savedAuthor.getId());
-
-        //then
-        assertTrue(isDeleted);
+        //when/then
+        assertDoesNotThrow(() -> authorDao.deleteById(savedAuthor.getId()));
+        assertNull(authorDao.findById(savedAuthor.getId()));
     }
 
 
