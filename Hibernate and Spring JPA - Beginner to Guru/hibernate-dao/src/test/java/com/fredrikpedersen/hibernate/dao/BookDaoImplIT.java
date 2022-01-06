@@ -1,6 +1,7 @@
 package com.fredrikpedersen.hibernate.dao;
 
 import com.fredrikpedersen.hibernate.domain.Book;
+import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,6 +21,25 @@ class BookDaoImplIT {
 
     @Autowired
     private BookDao bookDao;
+
+    @Test
+    void findByISBN() {
+
+        //given
+        final String mockISBN = "1234" + RandomString.make();
+        final Book savedBook = bookDao.save(Book.builder()
+                .isbn(mockISBN)
+                .title("ISBN Test")
+                .publisher("Homemade Books")
+                .authorId(1L)
+                .build());
+
+        //when
+        final Book fetchedBook = bookDao.findByISBN(mockISBN);
+
+        //then
+        assertEquals(savedBook, fetchedBook);
+    }
 
     @Test
     void findById() {

@@ -4,6 +4,8 @@ import com.fredrikpedersen.hibernate.domain.Book;
 
 public interface BookDao {
 
+    Book findByISBN(String isbn);
+
     Book findById(Long id);
 
     Book findByTitle(String title);
