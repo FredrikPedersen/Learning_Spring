@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 
+import javax.persistence.NoResultException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -74,7 +76,8 @@ class AuthorDaoImplIT {
 
         //then
         assertEquals(savedAuthor, updatedAuthor);
-        assertThrows(EmptyResultDataAccessException.class, () -> authorDao.findByName("Fredrik", "P"));
+        assertNull(authorDao.findByName("Fredrik", "P"));
+        assertThrows(NoResultException.class, () -> authorDao.findByName("Fredrik", "P"));
     }
 
     @Test
