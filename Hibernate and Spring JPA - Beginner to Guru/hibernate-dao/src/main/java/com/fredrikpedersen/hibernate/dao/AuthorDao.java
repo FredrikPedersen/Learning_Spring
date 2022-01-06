@@ -2,7 +2,11 @@ package com.fredrikpedersen.hibernate.dao;
 
 import com.fredrikpedersen.hibernate.domain.Author;
 
+import java.util.List;
+
 public interface AuthorDao {
+
+    List<Author> findAllWithLastNameLike(String lastName);
 
     Author findById(Long id);
 

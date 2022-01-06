@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 
 @Component
@@ -14,6 +16,21 @@ import javax.persistence.TypedQuery;
 public class AuthorDaoImpl implements AuthorDao {
 
     private final EntityManagerFactory emf;
+
+    @Override
+    public List<Author> findAllWithLastNameLike(final String lastName) {
+        final EntityManager entityManager = getEntityManager();
+
+        try {
+            final Query query = entityManager.createQuery("SELECT a from Author a WHERE a.lastName like :last_name");
+            query.setParameter("last_name", lastName + "%");
+
+            return query.getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
 
     @Override
     public Author findById(final Long id) {

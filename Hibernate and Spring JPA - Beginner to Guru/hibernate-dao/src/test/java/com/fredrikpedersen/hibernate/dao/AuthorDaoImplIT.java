@@ -10,6 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.NoResultException;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -20,6 +22,17 @@ class AuthorDaoImplIT {
 
     @Autowired
     private AuthorDao authorDao;
+
+    @Test
+    void findAllByLastName() {
+
+        //when
+        final List<Author> authors = authorDao.findAllWithLastNameLike("Sander");
+
+        //then
+        assertNotNull(authors);
+        assertTrue(authors.size() > 0);
+    }
 
     @Test
     void testFindById() {
