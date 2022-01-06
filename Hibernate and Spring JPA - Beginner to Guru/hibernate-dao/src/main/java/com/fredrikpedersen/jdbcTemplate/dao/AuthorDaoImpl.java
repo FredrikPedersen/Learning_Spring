@@ -4,14 +4,19 @@ import com.fredrikpedersen.jdbcTemplate.domain.Author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 
 @Component
 @RequiredArgsConstructor
 public class AuthorDaoImpl implements AuthorDao {
 
+    private final EntityManagerFactory emf;
+
     @Override
     public Author findById(final Long id) {
-        return null;
+        return getEntityManager().find(Author.class, id);
     }
 
     @Override
@@ -32,5 +37,9 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public boolean deleteById(final Long id) {
         return false;
+    }
+
+    private EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
 }
