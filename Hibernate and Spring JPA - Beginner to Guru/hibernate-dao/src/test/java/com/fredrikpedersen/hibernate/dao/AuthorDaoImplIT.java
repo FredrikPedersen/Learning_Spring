@@ -24,6 +24,17 @@ class AuthorDaoImplIT {
     private AuthorDao authorDao;
 
     @Test
+    void findAll() {
+
+        //when
+        final List<Author> authors = authorDao.findAll();
+
+        //then
+        assertNotNull(authors);
+        assertTrue(authors.size() > 0);
+    }
+
+    @Test
     void findAllByLastName() {
 
         //when

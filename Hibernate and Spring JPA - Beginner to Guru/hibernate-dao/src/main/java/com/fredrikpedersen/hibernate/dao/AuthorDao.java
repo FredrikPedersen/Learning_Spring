@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface AuthorDao {
 
+    List<Author> findAll();
+
     List<Author> findAllWithLastNameLike(String lastName);
 
     Author findById(Long id);
