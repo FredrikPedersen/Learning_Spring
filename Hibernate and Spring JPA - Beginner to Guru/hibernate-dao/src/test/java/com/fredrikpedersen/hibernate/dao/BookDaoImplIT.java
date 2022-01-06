@@ -1,6 +1,6 @@
-package com.fredrikpedersen.jdbcTemplate.dao;
+package com.fredrikpedersen.hibernate.dao;
 
-import com.fredrikpedersen.jdbcTemplate.domain.Book;
+import com.fredrikpedersen.hibernate.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @ActiveProfiles("local")
-@ComponentScan(basePackages = {"com.fredrikpedersen.jdbcTemplate.dao"})
+@ComponentScan(basePackages = {"com.fredrikpedersen.hibernate.dao"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class BookDaoImplIT {
 

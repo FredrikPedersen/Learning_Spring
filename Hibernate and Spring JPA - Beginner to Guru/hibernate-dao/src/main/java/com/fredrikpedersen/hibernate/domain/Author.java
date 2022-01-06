@@ -1,10 +1,8 @@
-package com.fredrikpedersen.jdbcTemplate.domain;
+package com.fredrikpedersen.hibernate.domain;
 
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
-import java.util.List;
 
 @Getter
 @Setter

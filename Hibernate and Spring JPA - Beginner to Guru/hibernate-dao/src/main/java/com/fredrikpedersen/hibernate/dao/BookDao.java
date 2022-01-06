@@ -1,6 +1,6 @@
-package com.fredrikpedersen.jdbcTemplate.dao;
+package com.fredrikpedersen.hibernate.dao;
 
-import com.fredrikpedersen.jdbcTemplate.domain.Book;
+import com.fredrikpedersen.hibernate.domain.Book;
 
 public interface BookDao {
 

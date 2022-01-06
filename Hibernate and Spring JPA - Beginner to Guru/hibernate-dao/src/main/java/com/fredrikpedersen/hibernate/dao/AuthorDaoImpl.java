@@ -1,6 +1,6 @@
-package com.fredrikpedersen.jdbcTemplate.dao;
+package com.fredrikpedersen.hibernate.dao;
 
-import com.fredrikpedersen.jdbcTemplate.domain.Author;
+import com.fredrikpedersen.hibernate.domain.Author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

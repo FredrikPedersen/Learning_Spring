@@ -1,4 +1,4 @@
-package com.fredrikpedersen.jdbcTemplate;
+package com.fredrikpedersen.hibernate;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

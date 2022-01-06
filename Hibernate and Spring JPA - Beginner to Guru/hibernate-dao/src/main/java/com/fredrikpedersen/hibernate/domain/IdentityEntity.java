@@ -1,4 +1,4 @@
-package com.fredrikpedersen.jdbcTemplate.domain;
+package com.fredrikpedersen.hibernate.domain;
 
 import lombok.*;
 
