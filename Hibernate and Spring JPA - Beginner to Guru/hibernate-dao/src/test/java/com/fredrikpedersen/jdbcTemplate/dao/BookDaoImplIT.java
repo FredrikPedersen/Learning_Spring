@@ -1,14 +1,14 @@
 package com.fredrikpedersen.jdbcTemplate.dao;
 
-import com.fredrikpedersen.jdbcTemplate.domain.Author;
 import com.fredrikpedersen.jdbcTemplate.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
+
+import javax.persistence.NoResultException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,7 +77,7 @@ class BookDaoImplIT {
 
         //then
         assertNotNull(correctTitle, updatedBook.getTitle());
-        assertThrows(EmptyResultDataAccessException.class, () -> bookDao.findByTitle("King of Horns"));
+        assertThrows(NoResultException.class, () -> bookDao.findByTitle("King of Horns"));
     }
 
     @Test
@@ -91,11 +91,8 @@ class BookDaoImplIT {
                 .authorId(1L)
                 .build());
 
-        //when
-        final boolean isDeleted = bookDao.deleteById(savedBook.getId());
-
-        //then
-        assertTrue(isDeleted);
-        assertThrows(EmptyResultDataAccessException.class, () -> bookDao.findById(savedBook.getId()));
+        //when/then
+        assertDoesNotThrow(() -> bookDao.deleteById(savedBook.getId()));
+        assertNull(bookDao.findById(savedBook.getId()));
     }
 }
