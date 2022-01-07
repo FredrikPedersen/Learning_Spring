@@ -7,7 +7,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.ActiveProfiles;
+
+import javax.persistence.EntityNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,7 +79,7 @@ class BookDaoImplIT {
 
         //then
         assertNotNull(correctTitle, updatedBook.getTitle());
-        assertThrows(EmptyResultDataAccessException.class, () -> bookDao.findByTitle("King of Horns"));
+        assertThrows(EntityNotFoundException.class, () -> bookDao.findByTitle("King of Horns"));
     }
 
     @Test
@@ -94,6 +97,6 @@ class BookDaoImplIT {
         bookDao.deleteById(savedBook.getId());
 
         //then
-        assertNull(bookDao.findById(savedBook.getId()));
+        assertThrows(JpaObjectRetrievalFailureException.class, () -> bookDao.findById(savedBook.getId()));
     }
 }

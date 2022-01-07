@@ -10,6 +10,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.ActiveProfiles;
 
+import javax.persistence.EntityNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -22,7 +24,7 @@ class AuthorDaoImplIT {
     private AuthorDao authorDao;
 
     @Test
-    void testFindById() {
+    void findById() {
 
         final Author author = authorDao.findById(1L);
 
@@ -31,7 +33,7 @@ class AuthorDaoImplIT {
     }
 
     @Test
-    void testFindByName() {
+    void findByName() {
 
         //given
         final Author expectedAuthor = new Author("Brandon", "Sanderson");
@@ -47,7 +49,7 @@ class AuthorDaoImplIT {
     }
 
     @Test
-    void testSave() {
+    void save() {
 
         //given
         final Author author = new Author("Fredrik", "Pedersen");
@@ -63,7 +65,7 @@ class AuthorDaoImplIT {
     }
 
     @Test
-    void testUpdate() {
+    void update() {
 
         //given
         final String correctLastName = "Pedersen";
@@ -75,11 +77,11 @@ class AuthorDaoImplIT {
 
         //then
         assertEquals(savedAuthor, updatedAuthor);
-        assertNull(authorDao.findByName("Fredrik", "P"));
+        assertThrows(EntityNotFoundException.class, () -> authorDao.findByName("Fredrik", "P"));
     }
 
     @Test
-    void testDelete() {
+    void deleteById() {
 
         //given
         final Author savedAuthor = authorDao.save(new Author("Fredrik", "Deletesen"));

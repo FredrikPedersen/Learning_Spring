@@ -5,6 +5,7 @@ import com.fredrikpedersen.sdjpaQueries.repositories.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 
@@ -21,7 +22,8 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author findByName(final String firstName, final String lastName) {
-        return repository.findAuthorByFirstNameAndLastName(firstName, lastName);
+        return repository.findByFirstNameAndLastName(firstName, lastName)
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
