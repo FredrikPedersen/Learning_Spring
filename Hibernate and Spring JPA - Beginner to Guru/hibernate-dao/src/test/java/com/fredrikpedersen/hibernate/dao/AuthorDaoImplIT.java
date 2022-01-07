@@ -71,6 +71,16 @@ class AuthorDaoImplIT {
     }
 
     @Test
+    void findByNameNative() {
+
+        //when
+        final Author author = authorDao.findByNameNative("Brandon", "Sanderson");
+
+        //then
+        assertNotNull(author);
+    }
+
+    @Test
     void testSave() {
 
         //given
