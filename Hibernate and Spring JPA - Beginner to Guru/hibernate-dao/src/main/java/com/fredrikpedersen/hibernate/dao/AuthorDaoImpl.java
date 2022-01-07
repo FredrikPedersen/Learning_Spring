@@ -70,7 +70,7 @@ public class AuthorDaoImpl implements AuthorDao {
                     .setParameter(1, firstName)
                     .setParameter(2, lastName)
                     .getSingleResult();
-            
+
         } finally {
             entityManager.close();
         }
