@@ -2,7 +2,11 @@ package com.fredrikpedersen.hibernate.dao;
 
 import com.fredrikpedersen.hibernate.domain.Book;
 
+import java.util.List;
+
 public interface BookDao {
+
+    List<Book> findAll();
 
     Book findByISBN(String isbn);
 

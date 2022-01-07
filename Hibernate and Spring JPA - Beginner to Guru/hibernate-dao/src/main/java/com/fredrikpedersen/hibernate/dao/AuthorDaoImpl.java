@@ -53,7 +53,7 @@ public class AuthorDaoImpl implements AuthorDao {
     @Override
     public Author findByName(final String firstName, final String lastName) {
 
-        final TypedQuery<Author> query = getEntityManager().createNamedQuery("find_by_name", Author.class);
+        final TypedQuery<Author> query = getEntityManager().createNamedQuery("author_find_by_name", Author.class);
         query.setParameter("first_name", firstName);
         query.setParameter("last_name", lastName);
 

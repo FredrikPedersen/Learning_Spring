@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -15,12 +16,23 @@ public class BookDaoImpl implements BookDao {
     private final EntityManagerFactory emf;
 
     @Override
+    public List<Book> findAll() {
+        final EntityManager entityManager = getEntityManager();
+
+        try {
+            final TypedQuery<Book> query = entityManager.createNamedQuery("book_find_all", Book.class);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
     public Book findByISBN(final String isbn) {
         final EntityManager entityManager = getEntityManager();
 
         try {
-            final TypedQuery<Book> query = entityManager.createQuery(
-                    "SELECT b FROM Book b WHERE b.isbn = :isbn", Book.class);
+            final TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b WHERE b.isbn = :isbn", Book.class);
             query.setParameter("isbn", isbn);
 
             return query.getSingleResult();
@@ -42,16 +54,15 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book findByTitle(final String title) {
         final EntityManager entityManager = getEntityManager();
-        final TypedQuery<Book> query = entityManager
-                .createQuery("SELECT b FROM Book b where b.title = :title", 
-                        Book.class);
-        
-        query.setParameter("title", title);
-        
-        final Book book = query.getSingleResult();
-        entityManager.close();
-        
-        return book;
+
+        try {
+            final TypedQuery<Book> query = entityManager.createNamedQuery("book_find_by_title", Book.class);
+            query.setParameter("title", title);
+
+            return query.getSingleResult();
+        } finally {
+            entityManager.close();
+        }
     }
 
     @Override

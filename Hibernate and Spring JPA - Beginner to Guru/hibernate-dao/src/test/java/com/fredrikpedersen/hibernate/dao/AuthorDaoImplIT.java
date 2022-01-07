@@ -99,7 +99,6 @@ class AuthorDaoImplIT {
 
         //then
         assertEquals(savedAuthor, updatedAuthor);
-        assertNull(authorDao.findByName("Fredrik", "P"));
         assertThrows(NoResultException.class, () -> authorDao.findByName("Fredrik", "P"));
     }
 

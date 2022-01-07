@@ -3,6 +3,13 @@ package com.fredrikpedersen.hibernate.domain;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@NamedQueries({
+        @NamedQuery(name = "book_find_all", query = "FROM Book b"),
+        @NamedQuery(name = "book_find_by_title", query = "FROM Book b WHERE b.title = :title")
+})
 
 @Getter
 @Setter
