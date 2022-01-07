@@ -29,7 +29,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public boolean deleteById(final Long id) {
-        return false;
+    public void deleteById(final Long id) {
     }
 }

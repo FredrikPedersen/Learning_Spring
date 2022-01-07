@@ -91,10 +91,9 @@ class BookDaoImplIT {
                 .build());
 
         //when
-        final boolean isDeleted = bookDao.deleteById(savedBook.getId());
+        bookDao.deleteById(savedBook.getId());
 
         //then
-        assertTrue(isDeleted);
-        assertThrows(EmptyResultDataAccessException.class, () -> bookDao.findById(savedBook.getId()));
+        assertNull(bookDao.findById(savedBook.getId()));
     }
 }

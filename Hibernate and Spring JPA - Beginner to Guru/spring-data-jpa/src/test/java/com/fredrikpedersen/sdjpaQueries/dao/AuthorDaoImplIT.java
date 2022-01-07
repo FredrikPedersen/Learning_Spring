@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,7 +75,6 @@ class AuthorDaoImplIT {
 
         //then
         assertEquals(savedAuthor, updatedAuthor);
-        assertThrows(EmptyResultDataAccessException.class, () -> authorDao.findByName("Fredrik", "P"));
     }
 
     @Test
@@ -84,10 +84,10 @@ class AuthorDaoImplIT {
         final Author savedAuthor = authorDao.save(new Author("Fredrik", "Deletesen"));
 
         //when
-        final boolean isDeleted = authorDao.deleteById(savedAuthor.getId());
+        authorDao.deleteById(savedAuthor.getId());
 
         //then
-        assertTrue(isDeleted);
+        assertThrows(JpaObjectRetrievalFailureException.class, () -> authorDao.findById(savedAuthor.getId()));
     }
 
 
