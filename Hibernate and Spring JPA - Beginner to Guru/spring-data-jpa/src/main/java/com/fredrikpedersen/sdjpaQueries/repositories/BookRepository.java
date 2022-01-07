@@ -2,10 +2,16 @@ package com.fredrikpedersen.sdjpaQueries.repositories;
 
 import com.fredrikpedersen.sdjpaQueries.domain.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.lang.Nullable;
 
 import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findByTitle(String title);
+
+    Book readByTitle(String title);
+
+    @Nullable
+    Book getByTitle(@Nullable String title);
 }
