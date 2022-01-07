@@ -6,13 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+@NamedQueries({
+        @NamedQuery(name = "author_find_all", query = "FROM Author"),
+        @NamedQuery(name = "find_by_name", query = "FROM Author a WHERE a.firstName = :first_name and a.lastName = :last_name")
+})
+
+
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@NamedQuery(name = "author_find_all", query = "FROM Author")
+
 public class Author extends IdentityEntity {
 
     private String firstName;
