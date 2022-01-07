@@ -75,6 +75,7 @@ class AuthorDaoImplIT {
 
         //then
         assertEquals(savedAuthor, updatedAuthor);
+        assertNull(authorDao.findByName("Fredrik", "P"));
     }
 
     @Test
