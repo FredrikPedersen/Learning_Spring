@@ -3,6 +3,9 @@ package com.fredrikpedersen.sdjpaQueries.domain;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+
+@NamedQuery(name = "Book.jpaNamed", query = "FROM Book b WHERE b.title = :title")
 
 @Getter
 @Setter

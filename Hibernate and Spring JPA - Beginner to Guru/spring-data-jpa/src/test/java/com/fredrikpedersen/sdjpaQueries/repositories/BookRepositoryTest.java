@@ -74,5 +74,14 @@ class BookRepositoryTest {
         assertEquals("The Way of Kings", book.getTitle());
     }
 
+    @Test
+    void withJpaNamedQuery() {
+        final Book book = bookRepository.jpaNamed("The Way of Kings");
+
+        assertNotNull(book);
+        assertEquals("The Way of Kings", book.getTitle());
+    }
+
+
 
 }
