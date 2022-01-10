@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
@@ -20,6 +22,14 @@ class BookDaoImplIT {
 
     @Autowired
     private BookDao bookDao;
+
+    @Test
+    void findAll() {
+        final List<Book> books = bookDao.findAll();
+
+        assertNotNull(books);
+        assertTrue(books.size() > 1);
+    }
 
     @Test
     void findById() {

@@ -40,4 +40,7 @@ public class Queries {
 
     public static final String DELETE_BOOK_BY_ID =
             "DELETE FROM book WHERE id = ?";
+
+    public static final String SELECT_ALL_BOOKS =
+            "SELECT * FROM book";
 }

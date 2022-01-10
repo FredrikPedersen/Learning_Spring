@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.List;
 
 import static com.fredrikpedersen.jdbcTemplate.dao.Queries.*;
 
@@ -18,6 +19,11 @@ import static com.fredrikpedersen.jdbcTemplate.dao.Queries.*;
 public class BookDaoImpl implements BookDao {
 
     private final JdbcTemplate jdbcTemplate;
+
+    @Override
+    public List<Book> findAll() {
+        return jdbcTemplate.query(SELECT_ALL_BOOKS, getBookMapper());
+    }
 
     @Override
     public Book findById(final Long id) {
