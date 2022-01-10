@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -34,5 +36,15 @@ class BookRepositoryTest {
     void noException() {
         assertNull(bookRepository.getByTitle("foobar"));
     }
+
+    @Test
+    void streamByTitle() {
+        final AtomicInteger count = new AtomicInteger();
+
+        bookRepository.findAlLByTitleNotNull().forEach(book -> count.incrementAndGet());
+
+        assertTrue(count.get() > 1);
+    }
+
 
 }
