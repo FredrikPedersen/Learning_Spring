@@ -3,6 +3,7 @@ package com.fredrikpedersen.jdbcTemplate.dao;
 import com.fredrikpedersen.jdbcTemplate.dao.mappers.BookMapper;
 import com.fredrikpedersen.jdbcTemplate.domain.Book;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -28,6 +29,14 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> findAll(final int pageSize, final int offset) {
         return jdbcTemplate.query(SELECT_ALL_BOOKS_PAGING_SORTING, getBookMapper(), pageSize, offset);
+    }
+
+    @Override
+    public List<Book> findAll(final Pageable pageable) {
+        return jdbcTemplate.query(SELECT_ALL_BOOKS_PAGING_SORTING,
+                getBookMapper(),
+                pageable.getPageSize(),
+                pageable.getOffset());
     }
 
     @Override
