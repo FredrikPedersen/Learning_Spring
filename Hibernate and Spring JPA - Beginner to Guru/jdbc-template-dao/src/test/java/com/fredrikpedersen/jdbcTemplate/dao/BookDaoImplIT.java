@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -150,6 +151,16 @@ class BookDaoImplIT {
         @Test
         void findAllPage1() {
             final List<Book> books = bookDao.findAll(PageRequest.of(0, 10));
+
+            assertNotNull(books);
+            assertEquals(10, books.size());
+        }
+
+        @Test
+        void findAllPage1_SortByTitle() {
+            final List<Book> books = bookDao.findAllSortByTitle(
+                    PageRequest.of(0, 10, Sort.by(Sort.Order.desc("title"))
+            ));
 
             assertNotNull(books);
             assertEquals(10, books.size());

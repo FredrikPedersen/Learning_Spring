@@ -45,5 +45,5 @@ public class Queries {
             "SELECT * FROM book";
 
     public static final String SELECT_ALL_BOOKS_PAGING_SORTING =
-            SELECT_ALL_BOOKS + " limit ? offset ?";
+            SELECT_ALL_BOOKS + " LIMIT ? OFFSET ?";
 }
