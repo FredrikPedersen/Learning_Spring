@@ -66,5 +66,13 @@ class BookRepositoryTest {
         assertEquals("The Way of Kings", book.getTitle());
     }
 
+    @Test
+    void withNativeQuery() {
+        final Book book = bookRepository.findByTitleNativeQuery("The Way of Kings");
+
+        assertNotNull(book);
+        assertEquals("The Way of Kings", book.getTitle());
+    }
+
 
 }
