@@ -32,6 +32,30 @@ class BookDaoImplIT {
     }
 
     @Test
+    void findAllPage1() {
+        final List<Book> books = bookDao.findAll(10, 0);
+
+        assertNotNull(books);
+        assertEquals(10, books.size());
+    }
+
+    @Test
+    void findAllPage2() {
+        final List<Book> books = bookDao.findAll(10, 10);
+
+        assertNotNull(books);
+        assertEquals(10, books.size());
+    }
+
+    @Test
+    void findAllPage10() {
+        final List<Book> books = bookDao.findAll(10, 100); //Offset exceeding max number of records returns empty list
+
+        assertNotNull(books);
+        assertEquals(0, books.size());
+    }
+
+    @Test
     void findById() {
 
         final Book book = bookDao.findById(1L);

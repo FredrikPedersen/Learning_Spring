@@ -43,4 +43,7 @@ public class Queries {
 
     public static final String SELECT_ALL_BOOKS =
             "SELECT * FROM book";
+
+    public static final String SELECT_ALL_BOOKS_PAGING_SORTING =
+            SELECT_ALL_BOOKS + " limit ? offset ?";
 }

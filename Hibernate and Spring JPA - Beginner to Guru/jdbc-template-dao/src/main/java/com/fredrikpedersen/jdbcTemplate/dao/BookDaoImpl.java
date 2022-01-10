@@ -26,6 +26,11 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public List<Book> findAll(final int pageSize, final int offset) {
+        return jdbcTemplate.query(SELECT_ALL_BOOKS_PAGING_SORTING, getBookMapper(), pageSize, offset);
+    }
+
+    @Override
     public Book findById(final Long id) {
         return jdbcTemplate.queryForObject(SELECT_BOOK_BY_ID, getBookMapper(), id);
     }
