@@ -50,12 +50,20 @@ class BookRepositoryTest {
     }
 
     @Test
-    void bookFutureAsync() throws ExecutionException, InterruptedException {
+    void futureAsync() throws ExecutionException, InterruptedException {
         final Future<Book> bookFuture = bookRepository.queryByTitle("The Way of Kings");
 
         final Book book = bookFuture.get();
 
         assertNotNull(book);
+    }
+
+    @Test
+    void withQuery() {
+        final Book book = bookRepository.findByTitleWithQuery("The Way of Kings");
+
+        assertNotNull(book);
+        assertEquals("The Way of Kings", book.getTitle());
     }
 
 
