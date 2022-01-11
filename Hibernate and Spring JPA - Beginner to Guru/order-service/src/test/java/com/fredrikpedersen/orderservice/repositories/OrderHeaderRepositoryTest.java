@@ -2,12 +2,14 @@ package com.fredrikpedersen.orderservice.repositories;
 
 import com.fredrikpedersen.orderservice.domain.Address;
 import com.fredrikpedersen.orderservice.domain.OrderHeader;
+import com.fredrikpedersen.orderservice.domain.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static com.fredrikpedersen.orderservice.domain.OrderStatus.NEW;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
@@ -26,6 +28,7 @@ class OrderHeaderRepositoryTest {
                 .customer("Fredrik")
                 .shippingAddress(new Address())
                 .billToAddress(new Address())
+                .orderStatus(NEW)
                 .build();
 
         //when
