@@ -1,5 +1,6 @@
 package com.fredrikpedersen.orderservice.repositories;
 
+import com.fredrikpedersen.orderservice.domain.Address;
 import com.fredrikpedersen.orderservice.domain.OrderHeader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,11 @@ class OrderHeaderRepositoryTest {
     void testSaveOrder() {
 
         //given
-        final OrderHeader orderHeader = new OrderHeader("New Customer");
+        final OrderHeader orderHeader = OrderHeader.builder()
+                .customer("Fredrik")
+                .shippingAddress(new Address())
+                .billToAddress(new Address())
+                .build();
 
         //when
         final OrderHeader savedOrder = orderHeaderRepository.save(orderHeader);
