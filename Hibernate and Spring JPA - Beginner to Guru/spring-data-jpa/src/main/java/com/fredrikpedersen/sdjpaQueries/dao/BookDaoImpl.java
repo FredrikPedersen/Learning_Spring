@@ -4,16 +4,47 @@ import com.fredrikpedersen.sdjpaQueries.domain.Book;
 import com.fredrikpedersen.sdjpaQueries.repositories.AuthorRepository;
 import com.fredrikpedersen.sdjpaQueries.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
 public class BookDaoImpl implements BookDao {
 
     private final BookRepository repository;
+
+    @Override
+    public List<Book> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Book> findAllSortByTitle(final Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<Book> findAll(final Pageable pageable) {
+        return repository.findAll(pageable).getContent();
+    }
+
+    @Override
+    public List<Book> findAll(final int pageSize, int offset) {
+        Pageable pageable = PageRequest.ofSize(pageSize);
+
+        if (offset > 0) {
+            pageable = pageable.withPage(offset / pageSize);
+        } else {
+            pageable = pageable.withPage(0);
+        }
+
+        return this.findAll(pageable);
+    }
 
     @Override
     public Book findById(final Long id) {
@@ -47,4 +78,6 @@ public class BookDaoImpl implements BookDao {
     public void deleteById(final Long id) {
         repository.deleteById(id);
     }
+
+
 }
