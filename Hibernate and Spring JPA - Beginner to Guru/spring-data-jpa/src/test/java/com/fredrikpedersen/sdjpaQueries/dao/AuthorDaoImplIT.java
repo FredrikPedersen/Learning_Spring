@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.test.context.ActiveProfiles;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,8 +25,15 @@ class AuthorDaoImplIT {
     private AuthorDao authorDao;
 
     @Test
-    void findById() {
+    void findAllAuthorsByLastName() {
+        final List<Author> authors = authorDao.findAllByLastName("Sanderson", PageRequest.of(0, 10));
 
+        assertNotNull(authors);
+        assertEquals(10, authors.size());
+    }
+
+    @Test
+    void findById() {
         final Author author = authorDao.findById(1L);
 
         assertNotNull(author);

@@ -3,10 +3,12 @@ package com.fredrikpedersen.sdjpaQueries.dao;
 import com.fredrikpedersen.sdjpaQueries.domain.Author;
 import com.fredrikpedersen.sdjpaQueries.repositories.AuthorRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Component
@@ -14,6 +16,11 @@ import javax.transaction.Transactional;
 public class AuthorDaoImpl implements AuthorDao {
 
     private final AuthorRepository repository;
+
+    @Override
+    public List<Author> findAllByLastName(final String lastname, final Pageable pageable) {
+        return repository.findByLastName(lastname, pageable).getContent();
+    }
 
     @Override
     public Author findById(final Long id) {
