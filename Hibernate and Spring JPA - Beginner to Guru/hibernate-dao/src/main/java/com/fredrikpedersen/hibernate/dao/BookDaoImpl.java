@@ -2,6 +2,7 @@ package com.fredrikpedersen.hibernate.dao;
 
 import com.fredrikpedersen.hibernate.domain.Book;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -25,6 +26,32 @@ public class BookDaoImpl implements BookDao {
         } finally {
             entityManager.close();
         }
+    }
+
+    @Override
+    public List<Book> findAll(final int pageSize, final int offset) {
+        return null;
+    }
+
+    @Override
+    public List<Book> findAll(final Pageable pageable) {
+        final EntityManager entityManager = getEntityManager();
+
+        try {
+            final TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b", Book.class);
+            query.setFirstResult(Math.toIntExact(pageable.getOffset()));
+            query.setMaxResults(pageable.getPageSize());
+
+            return query.getResultList();
+
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public List<Book> findAllSortByTitle(final Pageable pageable) {
+        return null;
     }
 
     @Override
