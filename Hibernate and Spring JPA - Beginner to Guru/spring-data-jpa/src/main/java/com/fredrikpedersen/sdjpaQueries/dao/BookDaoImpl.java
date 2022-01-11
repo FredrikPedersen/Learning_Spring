@@ -4,6 +4,7 @@ import com.fredrikpedersen.sdjpaQueries.domain.Book;
 import com.fredrikpedersen.sdjpaQueries.repositories.AuthorRepository;
 import com.fredrikpedersen.sdjpaQueries.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,10 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> findAllSortByTitle(final Pageable pageable) {
-        return null;
+        //Sorting is applied automatically when a Pageable with a sorting property is passed to the method
+        final Page<Book> bookPage = repository.findAll(pageable);
+
+        return bookPage.getContent();
     }
 
     @Override
