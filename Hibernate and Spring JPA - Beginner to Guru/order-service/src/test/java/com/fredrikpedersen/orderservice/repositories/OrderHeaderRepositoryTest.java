@@ -34,12 +34,10 @@ class OrderHeaderRepositoryTest {
         //when
         final OrderHeader savedOrder = orderHeaderRepository.save(orderHeader);
 
+        //then
+        System.out.println(savedOrder);
         assertNotNull(savedOrder);
         assertNotNull(savedOrder.getId());
-
-        final OrderHeader fetchedOrder = orderHeaderRepository.getById(savedOrder.getId());
-
-        assertNotNull(fetchedOrder);
-        assertNotNull(fetchedOrder.getId());
+        assertNotNull(savedOrder.getCreatedDate());
     }
 }
