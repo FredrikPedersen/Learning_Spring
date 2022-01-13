@@ -1,8 +1,7 @@
 package com.fredrikpedersen.orderservice.repositories;
 
-import com.fredrikpedersen.orderservice.domain.Address;
-import com.fredrikpedersen.orderservice.domain.OrderHeader;
-import com.fredrikpedersen.orderservice.domain.OrderLine;
+import com.fredrikpedersen.orderservice.domain.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,10 +22,21 @@ class OrderHeaderRepositoryTest {
     @Autowired
     private OrderHeaderRepository orderHeaderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    private Product product;
+
+    @BeforeEach
+    void setUp() {
+        final Product newProduct = new Product("Test Product", ProductStatus.NEW);
+        product = productRepository.saveAndFlush(newProduct);
+    }
+
     @Test
     void saveWithOrderLine() {
         //given
-        final OrderLine orderLine = OrderLine.builder().quantityOrdered(5).build();
+        final OrderLine orderLine = OrderLine.builder().quantityOrdered(5).product(product).build();
         final OrderHeader orderHeader = OrderHeader.builder()
                 .customer("Fredrik")
                 .shippingAddress(new Address())
