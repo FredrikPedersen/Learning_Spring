@@ -3,6 +3,7 @@ package com.fredrikpedersen.orderservice.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @AttributeOverrides({
@@ -37,6 +38,16 @@ public class OrderHeader extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.PERSIST) //When OrderHeader is persisted, persist the entire entity-graph (all child objects).
+    //When OrderHeader is persisted, persist the entire entity-graph (all child objects).
+    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.PERSIST)
     private Set<OrderLine> orderLines;
+
+    public void addOrderLine(final OrderLine orderLine) {
+        if (orderLines == null) {
+            orderLines = new HashSet<>();
+        }
+
+        orderLines.add(orderLine);
+        orderLine.setOrderHeader(this);
+    }
 }

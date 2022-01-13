@@ -42,10 +42,9 @@ class OrderHeaderRepositoryTest {
                 .shippingAddress(new Address())
                 .billToAddress(new Address())
                 .orderStatus(NEW)
-                .orderLines(Set.of(orderLine))
                 .build();
 
-        orderLine.setOrderHeader(orderHeader);
+        orderHeader.addOrderLine(orderLine);
 
         //when
         final OrderHeader savedOrder = orderHeaderRepository.save(orderHeader);
