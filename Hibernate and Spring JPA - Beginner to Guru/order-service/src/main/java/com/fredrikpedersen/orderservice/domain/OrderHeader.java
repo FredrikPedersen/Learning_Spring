@@ -36,7 +36,7 @@ public class OrderHeader extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-    
-    @OneToMany(mappedBy = "orderHeader")
+
+    @OneToMany(mappedBy = "orderHeader", cascade = CascadeType.PERSIST) //When OrderHeader is persisted, persist the entire entity-graph (all child objects).
     private Set<OrderLine> orderLines;
 }
