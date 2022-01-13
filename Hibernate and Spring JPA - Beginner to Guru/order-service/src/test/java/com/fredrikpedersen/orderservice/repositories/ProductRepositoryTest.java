@@ -22,7 +22,10 @@ class ProductRepositoryTest {
     void save() {
 
         //given
-        final Product product = new Product("My Product", ProductStatus.NEW);
+        final Product product = Product.builder()
+                .description("My Product")
+                .productStatus(ProductStatus.NEW)
+                .build();
 
         //when
         final Product savedProduct = productRepository.save(product);
@@ -33,6 +36,15 @@ class ProductRepositoryTest {
         assertNotNull(fetchedProduct.getDescription());
         assertNotNull(fetchedProduct.getCreatedDate());
         assertNotNull(fetchedProduct.getLastModifiedDate());
+    }
+
+    @Test
+    void getCategory() {
+        final Product product = productRepository.findByDescription("PRODUCT1");
+
+        assertNotNull(product);
+        assertNotNull(product.getCategories());
+
     }
 
 }

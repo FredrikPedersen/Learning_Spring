@@ -2,7 +2,10 @@ package com.fredrikpedersen.orderservice.domain;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Getter
@@ -13,17 +16,14 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Product extends BaseEntity {
+public class Category extends BaseEntity {
 
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus;
-
     @ManyToMany
     @JoinTable(name = "product_category",
-    joinColumns = @JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name = "category_id"))
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     @EqualsAndHashCode.Exclude
-    private Set<Category> categories;
+    private Set<Product> products;
 }

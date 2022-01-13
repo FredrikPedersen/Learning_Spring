@@ -29,7 +29,11 @@ class OrderHeaderRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        final Product newProduct = new Product("Test Product", ProductStatus.NEW);
+        final Product newProduct = Product.builder()
+                .description("Test Product")
+                .productStatus(ProductStatus.NEW)
+                .build();
+
         product = productRepository.saveAndFlush(newProduct);
     }
 
