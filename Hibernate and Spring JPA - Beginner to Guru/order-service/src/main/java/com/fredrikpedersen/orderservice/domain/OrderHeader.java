@@ -3,6 +3,7 @@ package com.fredrikpedersen.orderservice.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AttributeOverrides({
         @AttributeOverride(name = "shippingAddress.address", column = @Column(name = "shipping_address")),
@@ -35,4 +36,7 @@ public class OrderHeader extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+    
+    @OneToMany(mappedBy = "orderHeader")
+    private Set<OrderLine> orderLines;
 }
