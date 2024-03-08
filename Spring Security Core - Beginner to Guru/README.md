@@ -2,12 +2,18 @@
 
 ## Key Security Terminology
 
+### Identity
+ - A unique actor, typically an individual aka user
+
+### Credentials
+ - Usually a user ID and password
+
 ### Authentication
 
  - The Process or action of verifying the identity of a user or process.
  - Spring Security has a built in class for this, called Authentication.
 	- Out of the box it supports Basic, Form, Digest and Certificate authentication.
- - Spring Security calls a authenticated user for a Principal, and is often refered to as a Authenticated Principal
+ - Spring Security calls a authenticated user for a Principal, and is often referred to as a Authenticated Principal
 
 #### Authorization
  - The Function of specifying access rights and privileges to resources.
@@ -25,7 +31,13 @@
  - Spring Security Web
 	- Used for securing webapplications
 	
- - ... there are a lot more of these.
+ - Spring Security OAuth 2.0 Core
+   - Core of OAuth 2.0 Authorization and OpenID
+
+ - Spring Security OAuth 2.0 Client
+   - Client support for OAuth 2.0 and OpenID clients
+
+ - Also a lot more...
  
 ## Section 3 HTTP Basic Auth
  
